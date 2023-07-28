@@ -1,0 +1,83 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+#---------------------------------------#
+# IDEs & Editors Ignores                #
+#---------------------------------------#
+# Sublime Text
+*.sublime*
+.sublime-gulp.cache
+# JetBrains IDEs
+.idea/
+# VIM
+## Session
+Session.vim
+Sessionx.vim
+## Temporary
+.netrwhist
+## Backup and swap files
+*~
+## Auto-generated tag files
+/tags
+# Vscode
+.vscode-test
+
+#---------------------------------------#
+# Linux Ignores                         #
+#---------------------------------------#
+# directory preferences
+.directory
+
+#---------------------------------------#
+# OSX Ignores                           #
+#---------------------------------------#
+.DS_Store
+.AppleDouble
+.LSOverride
+.localized
+
+#---------------------------------------#
+# Windows Ignores                       #
+#---------------------------------------#
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+# Folder config file
+Desktop.ini
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+#---------------------------------------#
+# Tools and Package specific ignores    #
+#---------------------------------------#
+.eslintcache
+yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+.yarnrc
+yarn-1.22.5.cjs
+yarn-1.22.5.js
