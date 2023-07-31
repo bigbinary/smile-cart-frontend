@@ -12,6 +12,7 @@ module.exports = {
    * unless you're sure of it.
    */
   extends: [
+    "plugin:@bigbinary/neeto/recommended",
     "plugin:cypress/recommended",
     "plugin:json/recommended",
     "eslint:recommended",
@@ -35,7 +36,7 @@ module.exports = {
     // We need this for the import/extensions rule to work: https://github.com/import-js/eslint-plugin-import#importextensions
     "import/resolver": {
       node: {
-        extensions: [".js", ".jsx", ".ts", ".tsx", ".svg", ".json", ".mp3"],
+        extensions: [".js", ".jsx", ".ts", ".tsx", ".svg", ".json"],
       },
     },
   },
@@ -56,6 +57,7 @@ module.exports = {
     "promise",
     "jam3",
     "unused-imports",
+    "@bigbinary/neeto",
   ],
   rules: {
     // auto-fixable: Respect all Prettier rules and apply it.
@@ -76,6 +78,8 @@ module.exports = {
     "no-console": "error",
     // not-auto-fixable: require `return` statements to either always or never specify values.
     "consistent-return": "error",
+    // auto-fixable: disallows repeating variable name when declaring object properties.
+    "object-shorthand": "error",
     // auto-fixable: sadly this doesn't support guard clauses yet.
     "padding-line-between-statements": [
       "error",
@@ -134,12 +138,14 @@ module.exports = {
     "prefer-template": "error",
     // auto-fixable: Disallows ternary operators when simpler alternatives exist.
     "no-unneeded-ternary": ["error", { defaultAssignment: false }],
-    // auto-fixable: Partially fixable. Prefer {x} over {x: x}.
-    "object-shorthand": [
-      "error",
-      "always",
-      { avoidQuotes: true, ignoreConstructors: true },
-    ],
+    // not-auto-fixable: Enforces declaring default params last
+    "default-param-last": "error",
+    // not-auto-fixable: Remove redundant async-awaits
+    "no-return-await": "warn",
+    // not-auto-fixable: Disallow empty block statements
+    "no-empty": ["error", { allowEmptyCatch: true }],
+    // not-auto-fixable: Enforce return statements in callbacks of array methods.
+    "array-callback-return": ["error"],
     // auto-fixable: Partially fixable. Unless there's a need to the this keyword, there's no advantage of using a plain function.
     "prefer-arrow-callback": ["error", { allowUnboundThis: true }],
     // not-auto-fixable: Convert multiple imports from same module into a single import.
@@ -150,5 +156,9 @@ module.exports = {
     "no-var": "error",
     // auto-fixable: This rule conflicts with prettier rules. Thus we've NOT kept this rule in react file. This rule ensures we don't add blank lines in JSX.
     "react/jsx-newline": ["error", { prevent: true }],
+    "@bigbinary/neeto/no-missing-localization": "off",
+    "@bigbinary/neeto/webpack-aliases-and-jsconfig-paths-should-be-in-sync":
+      "off",
+    "@bigbinary/neeto/hard-coded-strings-should-be-localized": "off",
   },
 };
