@@ -2,17 +2,11 @@ import React, { useEffect, useState } from "react";
 
 import { findById } from "@bigbinary/neeto-commons-frontend/pure";
 import { Button, Input } from "@bigbinary/neetoui";
-// import { pick } from "ramda";
-// import { shallow } from "zustand/shallow";
 
 import TooltipWrapper from "./commons/TooltipWrapper";
 import useCartItemsStore from "./useCartItemsStore";
 
 const AddToCart = ({ id, availableQuantity }) => {
-  // const { cartItems, updateQuantity } = useCartItemsStore(
-  //   pick(["cartItems", "updateQuantity", "addItem"]),
-  //   shallow
-  // );
   const { cartItems, updateQuantity } = useCartItemsStore.pick();
 
   const handleChange = e => {
