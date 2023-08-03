@@ -1,0 +1,28 @@
+import React from "react";
+
+import { isNotEmpty } from "neetocommons/pure";
+import { Typography } from "neetoui";
+import { prop } from "ramda";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+
+import useCartItemsStore from "./useCartItemsStore";
+
+const Header = ({ title }) => {
+  const cartItems = useCartItemsStore(prop("cartItems"));
+
+  return (
+    <div className="mx-6 mb-2 flex justify-between">
+      <Typography style="h1">{title}</Typography>
+      <div className="flex flex-col">
+        {isNotEmpty(cartItems) && (
+          <span className="neeto-ui-border-black neeto-ui-rounded-full flex h-5 w-5 min-w-fit items-center self-end border p-1">
+            {cartItems?.length}
+          </span>
+        )}
+        <AiOutlineShoppingCart size="2rem" />
+      </div>
+    </div>
+  );
+};
+
+export default Header;
