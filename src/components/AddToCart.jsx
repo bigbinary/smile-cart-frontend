@@ -38,16 +38,16 @@ const AddToCart = ({ id, availableQuantity }) => {
   }
 
   return (
-    <div className="flex items-center">
+    <div className="neeto-ui-border-black flex items-center border">
       <Button
+        className="focus-within:ring-0 hover:bg-transparent"
         label="-"
         style="text"
         onClick={() => setSelectedQuantity(prevQuantity => prevQuantity - 1)}
       />
-      {/* TODO: Limit the width of input component */}
       <Input
-        // nakedInput
-        // className="shrink"
+        nakedInput
+        contentSize="2"
         value={selectedQuantity}
         onChange={handleChange}
       />
@@ -59,6 +59,7 @@ const AddToCart = ({ id, availableQuantity }) => {
         }}
       >
         <Button
+          className="focus-within:ring-0 hover:bg-transparent"
           disabled={selectedQuantity >= availableQuantity}
           label="+"
           style="text"

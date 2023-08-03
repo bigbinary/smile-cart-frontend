@@ -25,7 +25,7 @@ const Carousel = ({ title, images }) => {
     <div className="flex flex-col items-center">
       <div className="flex items-center">
         <Button
-          className="shrink-0"
+          className="shrink-0 focus-within:ring-0 hover:bg-transparent"
           icon={Left}
           style="text"
           onClick={handlePrev}
@@ -37,7 +37,7 @@ const Carousel = ({ title, images }) => {
           width="350px"
         />
         <Button
-          className="shrink-0"
+          className="shrink-0 focus-within:ring-0 hover:bg-transparent"
           icon={Right}
           style="text"
           onClick={handleNext}
