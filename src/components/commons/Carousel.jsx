@@ -1,8 +1,8 @@
 import { React, useState } from "react";
 
-import { Left, Right } from "@bigbinary/neeto-icons";
-import { Button } from "@bigbinary/neetoui";
 import classNames from "classnames";
+import { Left, Right } from "neetoicons";
+import { Button } from "neetoui";
 
 const Carousel = ({ title, images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);

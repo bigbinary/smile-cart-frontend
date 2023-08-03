@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import { findById } from "@bigbinary/neeto-commons-frontend/pure";
-import { Button, Input } from "@bigbinary/neetoui";
+import { findById } from "neetocommons/pure";
+import { Button, Input } from "neetoui";
 
 import TooltipWrapper from "./commons/TooltipWrapper";
 import useCartItemsStore from "./useCartItemsStore";
@@ -29,7 +29,7 @@ const AddToCart = ({ id, availableQuantity }) => {
   if (selectedQuantity === 0) {
     return (
       <Button
-        className="neeto-ui-bg-black hover:neeto-ui-bg-black"
+        className="bg-neutral-800 hover:bg-neutral-950"
         label="Add to cart"
         size="large"
         onClick={() => setSelectedQuantity(prevQuantity => prevQuantity + 1)}

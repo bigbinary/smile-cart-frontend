@@ -1,7 +1,7 @@
 import React from "react";
 
-import { isNotEmpty } from "@bigbinary/neeto-commons-frontend/pure";
-import { Button, Typography } from "@bigbinary/neetoui";
+import { isNotEmpty } from "neetocommons/pure";
+import { Button, Typography } from "neetoui";
 import { prop } from "ramda";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
@@ -51,7 +51,7 @@ const Product = ({
           <div className="flex space-x-10">
             <AddToCart {...{ availableQuantity, id }} />
             <Button
-              className="neeto-ui-bg-black hover:neeto-ui-bg-black"
+              className="bg-neutral-800 hover:bg-neutral-950"
               label="Buy now"
               size="large"
             />

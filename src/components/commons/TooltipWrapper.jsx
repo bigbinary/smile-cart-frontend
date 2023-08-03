@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Tooltip } from "@bigbinary/neetoui";
+import { Tooltip } from "neetoui";
 
 const TooltipWrapper = ({ showTooltip, children, tooltipProps }) => {
   if (showTooltip) {
