@@ -20,9 +20,7 @@ const AddToCart = ({ id, availableQuantity }) => {
 
   const handleInputSubmit = e => {
     let newValue = parseInt(e.target.value);
-    if (isNaN(newValue)) {
-      newValue = 0;
-    } else if (newValue < 0) {
+    if (isNaN(newValue) || newValue < 0) {
       newValue = 0;
     } else if (newValue > availableQuantity) {
       newValue = availableQuantity;
@@ -45,8 +43,8 @@ const AddToCart = ({ id, availableQuantity }) => {
         label="Add to cart"
         size="large"
         onClick={() => {
-          setSelectedQuantity(prevQuantity => prevQuantity + 1);
-          setInputValue(prevQuantity => prevQuantity + 1);
+          setSelectedQuantity(1);
+          setInputValue(1);
         }}
       />
     );
@@ -54,24 +52,16 @@ const AddToCart = ({ id, availableQuantity }) => {
 
   return (
     <div className="neeto-ui-border-black flex items-center border">
-      <TooltipWrapper
-        showTooltip={selectedQuantity === 0}
-        tooltipProps={{
-          content: "You haven't added this item to the cart",
-          position: "top",
+      <Button
+        className="focus-within:ring-0 hover:bg-transparent"
+        disabled={selectedQuantity === 0}
+        label="-"
+        style="text"
+        onClick={() => {
+          setSelectedQuantity(prevQuantity => prevQuantity - 1);
+          setInputValue(prevQuantity => prevQuantity - 1);
         }}
-      >
-        <Button
-          className="focus-within:ring-0 hover:bg-transparent"
-          disabled={selectedQuantity === 0}
-          label="-"
-          style="text"
-          onClick={() => {
-            setSelectedQuantity(prevQuantity => prevQuantity - 1);
-            setInputValue(prevQuantity => prevQuantity - 1);
-          }}
-        />
-      </TooltipWrapper>
+      />
       <Input
         nakedInput
         contentSize="2"

@@ -7,19 +7,15 @@ import { Button } from "neetoui";
 const Carousel = ({ title, images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handleNext = () => {
+  const handleNext = () =>
     setCurrentIndex(prevIndex => (prevIndex + 1) % images.length);
-  };
 
-  const handlePrev = () => {
+  const handlePrevious = () =>
     setCurrentIndex(
       prevIndex => (prevIndex - 1 + images.length) % images.length
     );
-  };
 
-  const handleDotClick = index => {
-    setCurrentIndex(index);
-  };
+  const handleDotClick = index => setCurrentIndex(index);
 
   return (
     <div className="flex flex-col items-center">
@@ -28,7 +24,7 @@ const Carousel = ({ title, images }) => {
           className="shrink-0 focus-within:ring-0 hover:bg-transparent"
           icon={Left}
           style="text"
-          onClick={handlePrev}
+          onClick={handlePrevious}
         />
         <img
           alt={title}
