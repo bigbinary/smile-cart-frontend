@@ -1,3 +1,5 @@
+// TODO: Remove this file once Backend APIs are ready.
+
 export const PRODUCTS = [
   {
     id: 1,
