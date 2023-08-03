@@ -1,3 +1,4 @@
+// eslint-disable-next-line @bigbinary/neeto/no-dangling-constants
 const VALID_ENVIRONMENTS = ["development", "test", "production"];
 
 module.exports = function (api) {
@@ -31,10 +32,10 @@ module.exports = function (api) {
             },
           ],
       ["@babel/preset-react", { development: isDevelopmentEnv || isTestEnv }],
+      "@bigbinary/neeto",
     ].filter(Boolean),
     plugins: [
       "babel-plugin-macros",
-      "js-logger",
       "@babel/plugin-transform-runtime",
       isTestEnv
         ? "babel-plugin-dynamic-import-node" // tests run in node environment
