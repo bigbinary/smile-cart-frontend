@@ -6,7 +6,7 @@ import { prop } from "ramda";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
 import AddToCart from "./AddToCart";
-import Carousel from "./Carousel";
+import Carousel from "./commons/Carousel";
 import useCartItemsStore from "./useCartItemsStore";
 
 const Product = ({
