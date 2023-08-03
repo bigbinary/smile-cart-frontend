@@ -19,7 +19,7 @@ const Product = ({
   availableQuantity,
   images,
 }) => {
-  const { cartItems } = useCartItemsStore(prop("cartItems"));
+  const cartItems = useCartItemsStore(prop("cartItems"));
 
   return (
     <>
@@ -50,7 +50,11 @@ const Product = ({
           </Typography>
           <div className="flex space-x-10">
             <AddToCart {...{ availableQuantity, id }} />
-            <Button className="neeto-ui-bg-black" label="Buy now" />
+            <Button
+              className="neeto-ui-bg-black hover:neeto-ui-bg-black"
+              label="Buy now"
+              size="large"
+            />
           </div>
         </div>
       </div>

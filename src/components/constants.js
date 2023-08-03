@@ -78,6 +78,7 @@ export const PRODUCTS = [
 ];
 
 export const SNEAKERS = {
+  id: 1,
   name: "Sneakers",
   slug: "sneakers",
   description:
