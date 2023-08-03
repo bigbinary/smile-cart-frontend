@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 const buildPathGroupsBasedOnWebpackAliases = ({
-  customJSRoot = "app/javascript/",
+  customJSRoot = "src",
   customAliasPath = "config/webpack/resolve.js",
 }) => {
   const rootOfProject = __dirname + `/../../`;
