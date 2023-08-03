@@ -52,7 +52,7 @@ const AddToCart = ({ id, availableQuantity }) => {
         onChange={handleChange}
       />
       <TooltipWrapper
-        disabled={selectedQuantity >= availableQuantity}
+        showTooltip={selectedQuantity >= availableQuantity}
         tooltipProps={{
           content: "Maximum quantity reached for this item in the cart.",
         }}
