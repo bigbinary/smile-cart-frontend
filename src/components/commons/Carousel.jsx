@@ -23,7 +23,7 @@ const Carousel = ({ title, images }) => {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="flex flex-row items-center">
+      <div className="flex items-center">
         <Button
           className="shrink-0"
           icon={Left}
@@ -43,7 +43,7 @@ const Carousel = ({ title, images }) => {
           onClick={handleNext}
         />
       </div>
-      <div className="flex flex-row space-x-1">
+      <div className="flex space-x-1">
         {images.map((_, index) => (
           <span
             key={index}

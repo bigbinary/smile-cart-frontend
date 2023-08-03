@@ -38,7 +38,7 @@ const AddToCart = ({ id, availableQuantity }) => {
   }
 
   return (
-    <div className="flex flex-row items-center">
+    <div className="flex items-center">
       <Button
         label="-"
         style="text"
@@ -55,6 +55,7 @@ const AddToCart = ({ id, availableQuantity }) => {
         showTooltip={selectedQuantity >= availableQuantity}
         tooltipProps={{
           content: "Maximum quantity reached for this item in the cart.",
+          position: "top",
         }}
       >
         <Button
