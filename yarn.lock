@@ -478,7 +478,7 @@
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-private-property-in-object/-/plugin-proposal-private-property-in-object-7.21.0-placeholder-for-preset-env.2.tgz#7844f9289546efa9febac2de4cfe358a050bd703"
   integrity sha512-SOSkfJDddaM7mak6cPEpswyTRnuRltl429hMraQEglW+OkovnCzsiszTmsrlY//qLFjCpQDFRvjdm2wA5pPm9w==
 
-"@babel/plugin-proposal-private-property-in-object@^7.16.7":
+"@babel/plugin-proposal-private-property-in-object@^7.16.7", "@babel/plugin-proposal-private-property-in-object@^7.21.11":
   version "7.21.11"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-private-property-in-object/-/plugin-proposal-private-property-in-object-7.21.11.tgz#69d597086b6760c4126525cfa154f34631ff272c"
   integrity sha512-0QZ8qP/3RLDVBwBFoWAwCtgcDZJVwA5LUJRZU8x2YFfKNuFq161wK3cuGrALu5yiPu+vzwTAg/sMWVNeWeNyaw==
@@ -531,7 +531,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
 
-"@babel/plugin-syntax-dynamic-import@^7.8.3":
+"@babel/plugin-syntax-dynamic-import@7.8.3", "@babel/plugin-syntax-dynamic-import@^7.8.3":
   version "7.8.3"
   resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-dynamic-import/-/plugin-syntax-dynamic-import-7.8.3.tgz#62bf98b2da3cd21d626154fc96ee5b3cb68eacb3"
   integrity sha512-5gdGbFon+PszYzqs83S3E5mpi7/y/8M9eC90MRTZfduQOYW76ig6SOSPNe41IG5LoP3FGBn2N0RjVDSQiS94kQ==
@@ -1376,14 +1376,14 @@
     ramda "^0.29.0"
 
 "@bigbinary/eslint-plugin-neeto@^1.1.6":
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/@bigbinary/eslint-plugin-neeto/-/eslint-plugin-neeto-1.1.7.tgz#a0fbeeb7d145621e1fc4d16ac2209ae4816c7ca9"
-  integrity sha512-IO1ecwj+4vxAmUZ3QiqElAnra7d2uybCehP83npH8UVSd8TNDlpYf9fiIMDPZCH6uPdfmQq+kb1FnSBXqskPuw==
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/@bigbinary/eslint-plugin-neeto/-/eslint-plugin-neeto-1.1.8.tgz#b17e780667f5afbc51b3250ccf6ca2d771b24c32"
+  integrity sha512-+8+vUWbSbFY7EzFnXO2pvSag9gcUFHBFmh+DRDdoxTPhR/FCwvg+dB9QTJN2jmJ0wV0s1tbyHNguofNrc0KGtg==
 
 "@bigbinary/neeto-commons-frontend@^2.0.105", "@bigbinary/neeto-commons-frontend@^2.0.63":
-  version "2.0.105"
-  resolved "https://registry.yarnpkg.com/@bigbinary/neeto-commons-frontend/-/neeto-commons-frontend-2.0.105.tgz#ce8a6de0052c6787c22cb62da8b986bf6f0afc70"
-  integrity sha512-PQIKKBP3ta1poMY61rv0Hjdd6kJLnLWgWw4VSf7eDrRIDhzPr4knxYpxugF7Ui7+cIdVrbFdRlPcfG4KXCGx2w==
+  version "2.0.106"
+  resolved "https://registry.yarnpkg.com/@bigbinary/neeto-commons-frontend/-/neeto-commons-frontend-2.0.106.tgz#0c94e4808529f4166eb0435514a7e287a4970fa7"
+  integrity sha512-7uQGeu7gTyvnfCmBQDPicnlg2XxSx0pqnqD7/LQRJ6ORjWkLVHTRDSf5JxG4ozr/NBbS40fqPo4pTN5ohtYT5w==
 
 "@bigbinary/neeto-icons@^1.14.0":
   version "1.14.0"
@@ -1391,9 +1391,9 @@
   integrity sha512-k1Gyjn0JplG9mm/eMzIIhScGogZv8LL6BlQNOnJNEktAUtf8L222QMcltjXkqQHQ6NsM7zkJ2mzidag03nbIBg==
 
 "@bigbinary/neetoui@^5.0.17":
-  version "5.0.17"
-  resolved "https://registry.yarnpkg.com/@bigbinary/neetoui/-/neetoui-5.0.17.tgz#3ddce96b43d948c28d58c291b4f55b4ded7580d9"
-  integrity sha512-UF1elhMdPaJWnUNuh/to5CmuxHBErl3B/dTOoCbmsZhpIABLEj22mL3d5QHihjBDZSbJbznbiecNN/97KtgRoA==
+  version "5.1.3"
+  resolved "https://registry.yarnpkg.com/@bigbinary/neetoui/-/neetoui-5.1.3.tgz#26f295c7c96fb771ede13476c3012d1ce848b003"
+  integrity sha512-/swDgQ/NvO5Y/OOpuNT1MGLhYxw8id9DzNKPx0ScXHazbVwQ1ckuegKngt/AT9t29IRqILfdoh/HfQQX5bh3Iw==
 
 "@csstools/normalize.css@*":
   version "12.0.0"
@@ -1923,11 +1923,6 @@
     loader-utils "^2.0.4"
     schema-utils "^3.0.0"
     source-map "^0.7.3"
-
-"@popperjs/core@^2.9.0":
-  version "2.11.8"
-  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.8.tgz#6b79032e760a0899cd4204710beede972a3a185f"
-  integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
 
 "@rc-component/portal@^1.0.0-8", "@rc-component/portal@^1.0.2", "@rc-component/portal@^1.1.1":
   version "1.1.2"
@@ -4733,9 +4728,9 @@ ejs@^3.1.6:
     jake "^10.8.5"
 
 electron-to-chromium@^1.4.477:
-  version "1.4.479"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.479.tgz#ec9f676f23d3a0b0e429bc454d25e0b3253d2118"
-  integrity sha512-ABv1nHMIR8I5n3O3Een0gr6i0mfM+YcTZqjHy3pAYaOjgFG+BMquuKrSyfYf5CbEkLr9uM05RA3pOk4udNB/aQ==
+  version "1.4.480"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.480.tgz#40e32849ca50bc23ce29c1516c5adb3fddac919d"
+  integrity sha512-IXTgg+bITkQv/FLP9FjX6f9KFCs5hQWeh5uNSKxB9mqYj/JXhHDbu+ekS43LVvbkL3eW6/oZy4+r9Om6lan1Uw==
 
 emittery@^0.10.2:
   version "0.10.2"
@@ -9392,6 +9387,11 @@ react-i18next@12.3.1:
     "@babel/runtime" "^7.20.6"
     html-parse-stringify "^3.0.1"
 
+react-icons@^4.10.1:
+  version "4.10.1"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.10.1.tgz#3f3b5eec1f63c1796f6a26174a1091ca6437a500"
+  integrity sha512-/ngzDP/77tlCfqthiiGNZeYFACw85fUjZtLbedmJ5DTlNDIwETxhwBzdOJ21zj4iJdvc0J3y7yOsX3PpxAJzrw==
+
 react-is@^16.12.0, react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
@@ -10704,13 +10704,6 @@ tiny-warning@^1.0.0, tiny-warning@^1.0.2, tiny-warning@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/tiny-warning/-/tiny-warning-1.0.3.tgz#94a30db453df4c643d0fd566060d60a875d84754"
   integrity sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==
-
-tippy.js@^6.3.7:
-  version "6.3.7"
-  resolved "https://registry.yarnpkg.com/tippy.js/-/tippy.js-6.3.7.tgz#8ccfb651d642010ed9a32ff29b0e9e19c5b8c61c"
-  integrity sha512-E1d3oP2emgJ9dRQZdf3Kkn0qJgI6ZLpyS5z6ZkY1DF3kaQaBsGZsndEpHwx+eC+tYM41HaSNvNtLx8tU57FzTQ==
-  dependencies:
-    "@popperjs/core" "^2.9.0"
 
 tmpl@1.0.5:
   version "1.0.5"
