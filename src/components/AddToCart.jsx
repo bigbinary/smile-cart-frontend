@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 
 import { findById } from "neetocommons/pure";
 import { Button, Input } from "neetoui";
+import useCartItemsStore from "stores/useCartItemsStore";
 
 import TooltipWrapper from "./commons/TooltipWrapper";
-import useCartItemsStore from "./stores/useCartItemsStore";
 
 const AddToCart = ({ id, availableQuantity }) => {
   const { cartItems, updateQuantity } = useCartItemsStore.pick();

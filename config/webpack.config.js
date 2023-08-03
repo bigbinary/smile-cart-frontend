@@ -2,7 +2,7 @@
 
 const fs = require("fs");
 const path = require("path");
-const absolutePath = basePath => path.resolve(__dirname, "../..", basePath);
+const absolutePath = basePath => path.resolve(__dirname, "..", basePath);
 const webpack = require("webpack");
 const resolve = require("resolve");
 const HtmlWebpackPlugin = require("html-webpack-plugin");

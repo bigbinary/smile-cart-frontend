@@ -4,8 +4,7 @@ import { isNotEmpty } from "neetocommons/pure";
 import { Typography } from "neetoui";
 import { prop } from "ramda";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-
-import useCartItemsStore from "./useCartItemsStore";
+import useCartItemsStore from "stores/useCartItemsStore";
 
 const Header = ({ title }) => {
   const cartItems = useCartItemsStore(prop("cartItems"));
