@@ -1,13 +1,7 @@
 public
-coverage
-db
-docs
-log
-.scripts
-.semaphore
-test
 tmp
 .vscode
 babel.config.js
-app/javascript/packs
-jsconfig.json
+.eslintrc.js
+postcss.config.js
+tailwind.config.js
