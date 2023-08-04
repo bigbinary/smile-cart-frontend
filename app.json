@@ -11,6 +11,9 @@
     },
     "YARN_CACHE": {
       "value": "true"
+    },
+    "PORT": {
+      "value": 8080
     }
   },
   "formation": {},
