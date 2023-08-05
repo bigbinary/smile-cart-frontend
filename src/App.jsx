@@ -1,11 +1,10 @@
 import React from "react";
 
-import { SNEAKERS } from "./components/constants";
-import Product from "./components/Product";
+import Products from "./components/Products";
 
 const App = () => (
   <div className="p-4">
-    <Product {...SNEAKERS} />
+    <Products />
   </div>
 );
 
