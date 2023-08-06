@@ -1,6 +1,9 @@
 // TODO: Remove this file once Backend APIs are ready.
 
-export const PRODUCTS = [
+import { dynamicArray } from "neetocommons/pure";
+import { modify, concat, __ } from "ramda";
+
+const SAMPLE_PRODUCTS = [
   {
     id: 1,
     name: "Sneakers",
@@ -79,19 +82,8 @@ export const PRODUCTS = [
   },
 ];
 
-export const SNEAKERS = {
-  id: 1,
-  name: "Sneakers",
-  slug: "sneakers",
-  description:
-    "Introducing the epitome of style and comfort: our latest collection of sneakers! Crafted with precision and designed to elevate your everyday fashion game, these sneakers are the perfect blend of aesthetics and functionality. Step into a world of urban chic with our meticulously curated selection of sneakers. Each pair is expertly crafted with top-quality materials to ensure unmatched durability, allowing you to stride with confidence and ease. Experience the sensation of walking on clouds as our sneakers embrace your feet with their plush cushioning and responsive support. From morning commutes to weekend adventures, these sneakers will keep you on your feet and ready for anything that comes your way.",
-  mrp: 150,
-  offerPrice: 100,
-  discountRate: 33,
-  availableQuantity: 10,
-  images: [
-    "https://lh3.googleusercontent.com/pw/AIL4fc9Jic7uD7Q_tURCT5RqBr4MXXcPEVG9lXD5eYNz3c7Dyu6ZLpX27UDFEvSNShlwiWpPjDb6dDtnRV76OmvnwIDXTWjTEG6aM58jDpBmrccE-BMSjQ=w2400",
-    "https://lh3.googleusercontent.com/pw/AIL4fc__R_ToKSm1oU85FgCMemHGSfEPbcnKOovBDKPtmHnqa2NozFbdYuH86UYddT7oOwLxBn-yIj8yxhAgDY894D3sYXjSU6ZPopz4-KilQUvlWHl0Cg=w2400",
-    "https://lh3.googleusercontent.com/pw/AIL4fc9VT6pPl7wuMp0pNSdLFRZNQ9_iE8vIqU73NTMo6Ch0GuxJid9Hwo9QsvVmOQDqvtXK3ji6nBj1heR8tBHil7YCo2tkB-wd71W-zjnhMOiIjm2_cw=w2400",
-  ],
-};
+export const PRODUCTS = dynamicArray(8, index =>
+  SAMPLE_PRODUCTS.map(product =>
+    modify("slug", concat(__, `-${index}`), product)
+  )
+).flat();

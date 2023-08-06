@@ -1,27 +1,65 @@
-import React from "react";
+import React, { useState } from "react";
+
+import { useSearchedProducts } from "hooks/reactQuery/useProductsApi";
+import useDebounce from "hooks/useDebounce";
+import { Search } from "neetoicons";
+import { Input, Pagination } from "neetoui";
 
 import Thumbnail from "./Thumbnail";
 
-import { PRODUCTS } from "../constants";
+import { Header } from "../commons";
 
-const Products = () => (
-  <div className="grid grid-cols-2 gap-y-6 p-4 sm:grid-cols-3 lg:grid-cols-5">
-    {PRODUCTS.map(
-      ({
-        id: key,
-        offerPrice: price,
-        name: title,
-        slug,
-        images: [imageUrl],
-        availableQuantity,
-      }) => (
-        // eslint-disable-next-line react/jsx-key, react/react-in-jsx-scope
-        <Thumbnail
-          {...{ availableQuantity, imageUrl, key, price, slug, title }}
+const Products = () => {
+  const [searchKey, setSearchKey] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const debouncedSearchKey = useDebounce(searchKey, 300);
+
+  const { data: products } = useSearchedProducts(
+    debouncedSearchKey,
+    currentPage
+  );
+
+  return (
+    <div className="flex flex-col">
+      <Header
+        title="Smile Cart"
+        actionBlock={
+          <Input
+            placeholder="Search products"
+            prefix={<Search />}
+            type="search"
+            value={searchKey}
+            onChange={e => setSearchKey(e.target.value)}
+          />
+        }
+      />
+      <div className="grid grid-cols-2 justify-items-center gap-y-8 p-4 md:grid-cols-3 lg:grid-cols-4">
+        {products?.map(
+          ({
+            slug: key,
+            id,
+            offerPrice: price,
+            name: title,
+            slug,
+            images: [imageUrl],
+            availableQuantity,
+          }) => (
+            // eslint-disable-next-line react/jsx-key, react/react-in-jsx-scope
+            <Thumbnail
+              {...{ availableQuantity, id, imageUrl, key, price, slug, title }}
+            />
+          )
+        )}
+      </div>
+      <div className="self-end">
+        <Pagination
+          count={50}
+          navigate={page => setCurrentPage(page)}
+          pageNo={currentPage}
+          pageSize={10}
         />
-      )
-    )}
-  </div>
-);
-
+      </div>
+    </div>
+  );
+};
 export default Products;
