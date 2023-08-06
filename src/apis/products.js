@@ -17,7 +17,7 @@ import { includes, toLower } from "ramda";
 
 const getSearchedProducts = (searchKey, page) =>
   filterBy(
-    { name: name => includes(searchKey, toLower(name)) },
+    { name: name => includes(toLower(searchKey), toLower(name)) },
     PRODUCTS
   ).slice((page - 1) * 8, page * 8);
 
