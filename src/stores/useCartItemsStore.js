@@ -1,23 +1,14 @@
-import { existsById, modifyById } from "neetocommons/pure";
-import { append, assoc } from "ramda";
+import { assoc, dissoc } from "ramda";
 import { create } from "zustand";
 
 // eslint-disable-next-line @bigbinary/neeto/ensure-zustand-stores-are-type-annotated, @bigbinary/neeto/zustand-use-with-immutable-actions-wrapper-inside-create
 const useCartItemsStore = create(set => ({
-  cartItems: [],
+  cartItems: {},
   updateQuantity: (id, quantity) =>
     set(state => {
-      if (existsById(id, state.cartItems)) {
-        return {
-          cartItems: modifyById(
-            id,
-            assoc("quantity", quantity),
-            state.cartItems
-          ),
-        };
-      }
+      if (quantity === 0) return { cartItems: dissoc(id, state.cartItems) };
 
-      return { cartItems: append({ id, quantity }, state.cartItems) };
+      return { cartItems: assoc(id, quantity, state.cartItems) };
     }),
 }));
 
