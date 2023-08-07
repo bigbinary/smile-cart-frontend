@@ -4,7 +4,7 @@ import { create } from "zustand";
 // eslint-disable-next-line @bigbinary/neeto/ensure-zustand-stores-are-type-annotated, @bigbinary/neeto/zustand-use-with-immutable-actions-wrapper-inside-create
 const useCartItemsStore = create(set => ({
   cartItems: {},
-  updateQuantity: (id, quantity) =>
+  setSelectedQuantity: (id, quantity) =>
     set(state => {
       if (quantity === 0) return { cartItems: dissoc(id, state.cartItems) };
 
