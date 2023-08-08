@@ -11,7 +11,7 @@ const useCartItemsStore = create(set => ({
         return { cartItems: dissoc(id, state.cartItems) };
       }
 
-      return { cartItems: assoc(id, quantity, state.cartItems) };
+      return { cartItems: assoc(id, String(quantity), state.cartItems) };
     }),
 }));
 

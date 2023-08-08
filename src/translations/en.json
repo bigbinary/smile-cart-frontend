@@ -7,7 +7,8 @@
     "discountRate": "{{discountRate}}% off",
     "maximumUnits": "Reached maximum units",
     "error": {
-      "quantityLimit": "We are sorry only {{availableQuantity}} units are available"
+      "quantityLimit_one": "Only {{availableQuantity}} unit is available",
+      "quantityLimit_other": "Only {{availableQuantity}} units are available"
     }
   }
 }

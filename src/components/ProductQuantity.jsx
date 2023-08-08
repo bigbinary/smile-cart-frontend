@@ -2,40 +2,43 @@ import React, { useRef } from "react";
 
 import TooltipWrapper from "components/commons/TooltipWrapper";
 import { Input, Button, Toastr } from "neetoui";
-import { equals, gt, isEmpty } from "ramda";
+import { isEmpty, paths } from "ramda";
 import { useTranslation } from "react-i18next";
+import useCartItemsStore from "stores/useCartItemsStore";
+import { shallow } from "zustand/shallow";
 
 const ProductQuantity = ({
   id,
-  selectedQuantity,
-  setSelectedQuantity,
   availableQuantity,
-  shouldDisableDecrementCounter = true,
+  isDecrementCounterDisabled = true,
 }) => {
   const { t } = useTranslation();
 
   const countInputFocus = useRef(null);
 
-  const isDecrementCounterDisabled =
-    equals(selectedQuantity, 1) || isEmpty(selectedQuantity);
-  const isValidQuantity = selectedQuantity >= availableQuantity;
+  const [selectedQuantity, setSelectedQuantity] = useCartItemsStore(
+    paths([["cartItems", id], ["setSelectedQuantity"]]),
+    shallow
+  );
+  const updatedQuantity = parseInt(selectedQuantity) || 0;
+
+  const isNotValidQuantity = selectedQuantity =>
+    selectedQuantity >= availableQuantity;
 
   const handleSetCount = event => {
-    const {
-      target: { value },
-    } = event;
+    const { value } = event.target;
 
-    const currentQuantity = parseInt(value);
-    const isNotValidProductQuantity = gt(currentQuantity, availableQuantity);
-
-    if (isNotValidProductQuantity) {
-      Toastr.error(t("product.error.quantityLimit", { availableQuantity }), {
-        autoClose: 2000,
+    if (isNotValidQuantity(parseInt(value))) {
+      const errorMessage = t("product.error.quantityLimit", {
+        availableQuantity,
+        count: availableQuantity,
       });
+
+      Toastr.error(errorMessage, { autoClose: 2000 });
       setSelectedQuantity(id, availableQuantity);
       countInputFocus.current.blur();
     } else if (!isNaN(value)) {
-      setSelectedQuantity(id, currentQuantity || "");
+      setSelectedQuantity(id, value);
     }
   };
 
@@ -43,10 +46,10 @@ const ProductQuantity = ({
     <div className="neeto-ui-border-black neeto-ui-rounded flex items-center border">
       <Button
         className="focus-within:ring-0"
-        disabled={shouldDisableDecrementCounter && isDecrementCounterDisabled}
+        disabled={isDecrementCounterDisabled && isEmpty(selectedQuantity)}
         label="-"
         style="text"
-        onClick={() => setSelectedQuantity(id, selectedQuantity - 1)}
+        onClick={() => setSelectedQuantity(id, updatedQuantity - 1)}
       />
       <Input
         nakedInput
@@ -57,17 +60,15 @@ const ProductQuantity = ({
         onChange={handleSetCount}
       />
       <TooltipWrapper
-        showTooltip={isValidQuantity}
+        showTooltip={isNotValidQuantity(updatedQuantity)}
         tooltipProps={{ content: t("product.maximumUnits"), position: "top" }}
       >
         <Button
           className="focus-within:ring-0"
-          disabled={isValidQuantity}
+          disabled={isNotValidQuantity(updatedQuantity)}
           label="+"
           style="text"
-          onClick={() =>
-            setSelectedQuantity(id, parseInt(selectedQuantity + 1))
-          }
+          onClick={() => setSelectedQuantity(id, updatedQuantity + 1)}
         />
       </TooltipWrapper>
     </div>
