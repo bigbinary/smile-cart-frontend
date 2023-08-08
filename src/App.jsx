@@ -2,7 +2,7 @@ import React from "react";
 
 import { QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import queryClient from "utils/queryClient";
 
 import PageNotFound from "./components/commons/PageNotFound";
@@ -13,17 +13,12 @@ import routes from "./routes";
 const App = () => (
   <div className="p-8">
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<Product />} path={routes.product.show} />
-          <Route element={<Products />} path={routes.product.index} />
-          <Route
-            element={<Navigate replace to={routes.product.index} />}
-            path={routes.root}
-          />
-          <Route element={PageNotFound} path="*" />
-        </Routes>
-      </BrowserRouter>
+      <Switch>
+        <Route exact component={Product} path={routes.product.show} />
+        <Route exact component={Products} path={routes.product.index} />
+        <Redirect from={routes.root} to={routes.product.index} />
+        <Route component={PageNotFound} path="*" />
+      </Switch>
       <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
     </QueryClientProvider>
   </div>

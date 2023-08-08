@@ -42,7 +42,8 @@ const AddToCart = ({ id, availableQuantity }) => {
         className="bg-neutral-800 hover:bg-neutral-950"
         label="Add to cart"
         size="large"
-        onClick={() => {
+        onClick={e => {
+          e.stopPropagation();
           setSelectedQuantity(1);
           setInputValue(1);
         }}
@@ -57,7 +58,8 @@ const AddToCart = ({ id, availableQuantity }) => {
         disabled={selectedQuantity === 0}
         label="-"
         style="text"
-        onClick={() => {
+        onClick={e => {
+          e.stopPropagation();
           setSelectedQuantity(prevQuantity => prevQuantity - 1);
           setInputValue(prevQuantity => prevQuantity - 1);
         }}
@@ -82,7 +84,8 @@ const AddToCart = ({ id, availableQuantity }) => {
           disabled={selectedQuantity >= availableQuantity}
           label="+"
           style="text"
-          onClick={() => {
+          onClick={e => {
+            e.stopPropagation();
             setSelectedQuantity(prevQuantity => prevQuantity + 1);
             setInputValue(prevQuantity => prevQuantity + 1);
           }}
