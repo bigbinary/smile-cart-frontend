@@ -18,23 +18,24 @@ const ProductQuantity = ({
 
   const isDecrementCounterDisabled =
     equals(selectedQuantity, 1) || isEmpty(selectedQuantity);
+  const isValidQuantity = selectedQuantity >= availableQuantity;
 
   const handleSetCount = event => {
     const {
       target: { value },
     } = event;
 
-    const currentCount = parseInt(value);
-    const isNotValidProductCount = gt(currentCount, availableQuantity);
+    const currentQuantity = parseInt(value);
+    const isNotValidProductQuantity = gt(currentQuantity, availableQuantity);
 
-    if (isNotValidProductCount) {
+    if (isNotValidProductQuantity) {
       Toastr.error(t("product.error.quantityLimit", { availableQuantity }), {
         autoClose: 2000,
       });
       setSelectedQuantity(id, availableQuantity);
       countInputFocus.current.blur();
     } else if (!isNaN(value)) {
-      setSelectedQuantity(id, currentCount || "");
+      setSelectedQuantity(id, currentQuantity || "");
     }
   };
 
@@ -56,12 +57,12 @@ const ProductQuantity = ({
         onChange={handleSetCount}
       />
       <TooltipWrapper
-        showTooltip={selectedQuantity >= availableQuantity}
+        showTooltip={isValidQuantity}
         tooltipProps={{ content: t("product.maximumUnits"), position: "top" }}
       >
         <Button
           className="focus-within:ring-0"
-          disabled={selectedQuantity >= availableQuantity}
+          disabled={isValidQuantity}
           label="+"
           style="text"
           onClick={() =>
