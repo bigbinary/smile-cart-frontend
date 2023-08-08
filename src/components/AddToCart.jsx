@@ -6,7 +6,9 @@ import useCartItemsStore from "stores/useCartItemsStore";
 
 import TooltipWrapper from "./commons/TooltipWrapper";
 
-const AddToCart = ({ id, availableQuantity }) => {
+const AddToCart = ({ product }) => {
+  const { id, availableQuantity } = product;
+
   const { cartItems, updateQuantity } = useCartItemsStore.pick();
 
   const cartItemsCount = findById(id, cartItems)?.quantity ?? 0;
@@ -15,8 +17,10 @@ const AddToCart = ({ id, availableQuantity }) => {
   const [inputValue, setInputValue] = useState(cartItemsCount);
 
   useEffect(() => {
-    updateQuantity(id, selectedQuantity);
-  }, [selectedQuantity, id, updateQuantity]);
+    if (selectedQuantity > 0) {
+      updateQuantity(product, selectedQuantity);
+    }
+  }, [id, selectedQuantity]);
 
   const handleInputSubmit = e => {
     let newValue = parseInt(e.target.value);

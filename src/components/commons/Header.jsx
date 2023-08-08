@@ -4,10 +4,15 @@ import { isNotEmpty, filterBy } from "neetocommons/pure";
 import { Typography } from "neetoui";
 import { gt, __, prop } from "ramda";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { useHistory } from "react-router-dom";
 import useCartItemsStore from "stores/useCartItemsStore";
+
+import routes from "../../routes";
 
 const Header = ({ title }) => {
   const cartItems = useCartItemsStore(prop("cartItems"));
+
+  const history = useHistory();
 
   return (
     <div className="mx-6 mb-2 flex justify-between">
@@ -18,7 +23,11 @@ const Header = ({ title }) => {
             {filterBy({ quantity: gt(__, 0) }, cartItems).length}
           </span>
         )}
-        <AiOutlineShoppingCart size="2rem" />
+        <AiOutlineShoppingCart
+          className="cursor-pointer"
+          size="2rem"
+          onClick={() => history.push(routes.cart)}
+        />
       </div>
     </div>
   );
