@@ -1,0 +1,13 @@
+{
+  "product": {
+    "addToCart": "Add to cart",
+    "buyNow": "Buy now",
+    "mrp": "MRP: ${{mrp}}",
+    "offerPrice": "Offer price: ${{offerPrice}}",
+    "discountRate": "{{discountRate}}% off",
+    "maximumUnits": "Reached maximum units",
+    "error": {
+      "quantityLimit": "We are sorry only {{availableQuantity}} units are available"
+    }
+  }
+}
