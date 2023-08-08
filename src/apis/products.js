@@ -11,17 +11,19 @@ const show = slug => axios.get(`api/products/${slug}`);
 
 */
 
-import { PRODUCTS } from "components/constants";
+import { buildProducts } from "components/utils";
 import { filterBy, findBy } from "neetocommons/pure";
 import { includes, toLower } from "ramda";
+
+const products = buildProducts();
 
 const getSearchedProducts = (searchKey, page) =>
   filterBy(
     { name: name => includes(toLower(searchKey), toLower(name)) },
-    PRODUCTS
+    products
   ).slice((page - 1) * 8, page * 8);
 
-const show = slug => findBy({ slug }, PRODUCTS);
+const show = slug => findBy({ slug }, products);
 
 const productsApi = { getSearchedProducts, show };
 

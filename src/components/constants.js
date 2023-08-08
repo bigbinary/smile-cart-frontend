@@ -1,9 +1,6 @@
 // TODO: Remove this file once Backend APIs are ready.
 
-import { dynamicArray } from "neetocommons/pure";
-import { modify, concat, __ } from "ramda";
-
-const SAMPLE_PRODUCTS = [
+export const SAMPLE_PRODUCTS = [
   {
     id: 1,
     name: "Sneakers",
@@ -81,9 +78,3 @@ const SAMPLE_PRODUCTS = [
     ],
   },
 ];
-
-export const PRODUCTS = dynamicArray(8, index =>
-  SAMPLE_PRODUCTS.map(product =>
-    modify("slug", concat(__, `-${index}`), product)
-  )
-).flat();
