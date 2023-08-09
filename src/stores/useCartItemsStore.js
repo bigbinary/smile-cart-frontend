@@ -6,12 +6,12 @@ import { create } from "zustand";
 const useCartItemsStore = create(set => ({
   cartItems: {},
   setSelectedQuantity: (id, quantity) =>
-    set(state => {
+    set(({ cartItems }) => {
       if (quantity <= 0 && isNotEmpty(quantity)) {
-        return { cartItems: dissoc(id, state.cartItems) };
+        return { cartItems: dissoc(id, cartItems) };
       }
 
-      return { cartItems: assoc(id, String(quantity), state.cartItems) };
+      return { cartItems: assoc(id, String(quantity), cartItems) };
     }),
 }));
 

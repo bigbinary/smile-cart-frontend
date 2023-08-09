@@ -24,9 +24,9 @@ const ProductQuantity = ({ id, availableQuantity }) => {
 
   const handleSetCount = event => {
     const { value } = event.target;
-    const isNotValidQuantity = parseInt(value) > availableQuantity;
+    const isNotValidCurrentQuantity = parseInt(value) > availableQuantity;
 
-    if (isNotValidQuantity) {
+    if (isNotValidCurrentQuantity) {
       const errorMessage = t("product.error.quantityLimit", {
         availableQuantity,
         count: availableQuantity,
