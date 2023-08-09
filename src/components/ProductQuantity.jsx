@@ -19,7 +19,6 @@ const ProductQuantity = ({ id, availableQuantity }) => {
     shallow
   );
   const updatedQuantity = parseInt(selectedQuantity) || 0;
-
   const isNotValidQuantity = updatedQuantity >= availableQuantity;
 
   const handleSetCount = event => {
