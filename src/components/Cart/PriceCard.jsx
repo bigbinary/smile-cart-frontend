@@ -3,8 +3,11 @@ import React from "react";
 import classNames from "classnames";
 import { Typography, Button } from "neetoui";
 import { gt } from "ramda";
+import { useTranslation, Trans } from "react-i18next";
 
 const PriceCard = ({ totalMrp, offerPrice }) => {
+  const { t } = useTranslation();
+
   const totalDiscounts = totalMrp - offerPrice;
   const isDiscountPresent = gt(totalDiscounts, 0);
   const discountPercentage = ((totalDiscounts / totalMrp) * 100).toFixed(1);
@@ -16,23 +19,32 @@ const PriceCard = ({ totalMrp, offerPrice }) => {
           "line-through": isDiscountPresent,
         })}
       >
-        Total MRP <span> ${totalMrp}</span>
+        <Trans
+          components={{ span: <span /> }}
+          i18nKey="cart.totalMrp"
+          values={{ mrp: totalMrp }}
+        />
       </Typography>
       {isDiscountPresent && (
         <>
           <Typography className="flex justify-between text-lime-700">
-            Total discounts:
-            <span>
-              ${totalDiscounts} ({discountPercentage}%)
-            </span>
+            <Trans
+              components={{ span: <span /> }}
+              i18nKey="cart.totalDiscounts"
+              values={{ discounts: totalDiscounts, discountPercentage }}
+            />
           </Typography>
           <Typography className="flex justify-between">
-            Total offer price: <span>${offerPrice}</span>
+            <Trans
+              components={{ span: <span /> }}
+              i18nKey="cart.offerPrice"
+              values={{ offerPrice }}
+            />
           </Typography>
         </>
       )}
       <div className="flex flex-col items-center pt-4">
-        <Button className="bg-neutral-800" label="Buy now" />
+        <Button className="bg-neutral-800" label={t("product.buyNow")} />
       </div>
     </div>
   );

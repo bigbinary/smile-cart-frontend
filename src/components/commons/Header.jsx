@@ -25,6 +25,7 @@ const Header = ({ title }) => {
           </span>
         )}
         <AiOutlineShoppingCart
+          className="cursor-pointer"
           size="2rem"
           onClick={() => history.push(routes.cart)}
         />

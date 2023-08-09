@@ -10,5 +10,12 @@
       "quantityLimit_one": "Only {{availableQuantity}} unit is available",
       "quantityLimit_other": "Only {{availableQuantity}} units are available"
     }
+  },
+  "cart": {
+    "title": "My cart",
+    "empty": "Your cart is empty!",
+    "totalMrp": "Total MRP: <span>${{mrp}}</span>",
+    "totalDiscounts": "Total discounts: <span>${{discounts}} ({{discountPercentage}}%)</span>",
+    "offerPrice": "Total offer price: <span>${{offerPrice}}</span>"
   }
 }
