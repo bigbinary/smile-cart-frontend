@@ -2,7 +2,7 @@ import React from "react";
 
 import { Tooltip } from "neetoui";
 
-const TooltipWrapper = ({ showTooltip, children, tooltipProps }) => {
+const TooltipWrapper = ({ showTooltip, children, ...tooltipProps }) => {
   if (!showTooltip) return children;
 
   return (

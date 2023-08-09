@@ -60,8 +60,9 @@ const ProductQuantity = ({
         onChange={handleSetCount}
       />
       <TooltipWrapper
+        content={t("product.maximumUnits")}
+        position="top"
         showTooltip={isNotValidQuantity(updatedQuantity)}
-        tooltipProps={{ content: t("product.maximumUnits"), position: "top" }}
       >
         <Button
           className="focus-within:ring-0"
