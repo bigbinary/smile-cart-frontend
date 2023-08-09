@@ -27,12 +27,7 @@ const AddToCart = ({ id, availableQuantity }) => {
     );
   }
 
-  return (
-    <ProductQuantity
-      isDecrementCounterDisabled={false}
-      {...{ availableQuantity, id }}
-    />
-  );
+  return <ProductQuantity {...{ availableQuantity, id }} />;
 };
 
 export default AddToCart;
