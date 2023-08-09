@@ -13,7 +13,7 @@ const App = () => (
       <Route
         exact
         path={routes.home}
-        render={() => <Product product={SNEAKERS} />}
+        render={() => <Product {...SNEAKERS} />}
       />
       <Route component={Cart} path={routes.cart} />
     </Switch>

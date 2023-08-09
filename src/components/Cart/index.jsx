@@ -2,25 +2,33 @@ import React from "react";
 
 import Header from "components/commons/Header";
 import { NoData } from "neetoui";
-import { sum, prop, pipe, map, isEmpty } from "ramda";
+import { sum, prop, pipe, map, isEmpty, filter, includes, keys } from "ramda";
 import useCartItemsStore from "stores/useCartItemsStore";
 
 import PriceCard from "./PriceCard";
 import ProductCard from "./ProductCard";
 
+import { PRODUCTS } from "../constants";
+
 const Cart = () => {
   const cartItems = useCartItemsStore(prop("cartItems"));
+
+  const products = filter(
+    obj => includes(prop("id", obj), keys(cartItems)),
+    PRODUCTS
+  );
+
   const totalMrp = pipe(
-    map(({ mrp, quantity }) => mrp * quantity),
+    map(({ mrp, id }) => mrp * cartItems[id]),
     sum
-  )(cartItems);
+  )(products);
 
   const offerPrice = pipe(
-    map(({ offerPrice, quantity }) => offerPrice * quantity),
+    map(({ offerPrice, id }) => offerPrice * cartItems[id]),
     sum
-  )(cartItems);
+  )(products);
 
-  if (isEmpty(cartItems)) {
+  if (isEmpty(products)) {
     return (
       <div className="flex h-screen items-center justify-center">
         <NoData title="Your cart is empty!" />
@@ -33,8 +41,8 @@ const Cart = () => {
       <Header title="My cart" />
       <hr className="neeto-ui-bg-black h-1" />
       <div className="mt-10 flex w-full flex-row justify-center space-x-10">
-        {cartItems.map(cartItem => (
-          <ProductCard key={cartItem.id} {...cartItem} />
+        {products.map(product => (
+          <ProductCard key={product.id} {...product} />
         ))}
         <PriceCard {...{ offerPrice, totalMrp }} />
       </div>

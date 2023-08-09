@@ -1,9 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
 
-import { isNotEmpty } from "neetocommons/pure";
+import ProductQuantity from "components/ProductQuantity";
 import { Delete } from "neetoicons";
-import { Typography, Input, Button, Toastr } from "neetoui";
-import { equals, isEmpty, gt } from "ramda";
+import { Typography } from "neetoui";
 import useCartItemsStore from "stores/useCartItemsStore";
 
 const ProductCard = ({
@@ -11,38 +10,10 @@ const ProductCard = ({
   images,
   offerPrice,
   mrp,
-  quantity,
   name,
   availableQuantity,
 }) => {
-  const [productCount, setProductCount] = useState(quantity);
-
-  const countInputFocus = useRef(null);
-
-  const { updateQuantity, removeCartItem } = useCartItemsStore.pick();
-
-  const handleSetCount = event => {
-    const {
-      target: { value },
-    } = event;
-
-    const currentCount = parseInt(value);
-    const isNotValidProductCount = gt(currentCount, availableQuantity);
-
-    if (isNotValidProductCount) {
-      Toastr.error(
-        `We are sorry only ${availableQuantity} units are available`
-      );
-      setProductCount(availableQuantity);
-      countInputFocus.current.blur();
-    } else if (!isNaN(value)) {
-      setProductCount(currentCount || "");
-    }
-  };
-
-  useEffect(() => {
-    isNotEmpty(productCount) && updateQuantity({ id }, productCount);
-  }, [productCount]);
+  const { removeCartItem } = useCartItemsStore.pick();
 
   return (
     <div
@@ -58,32 +29,13 @@ const ProductCard = ({
           <Typography style="body2">MRP: ${mrp}</Typography>
           <Typography style="body2">Offer price: ${offerPrice}</Typography>
         </div>
-        <div className="neeto-ui-border-black neeto-ui-rounded mr-3 flex w-1/5 items-center border">
-          <Button
-            className="focus-within:ring-0"
-            disabled={equals(productCount, 1) || isEmpty(productCount)}
-            label="-"
-            style="text"
-            onClick={() => setProductCount(prevCount => prevCount - 1)}
-          />
-          <Input
-            nakedInput
-            className="pl-1.5"
-            ref={countInputFocus}
-            value={productCount}
-            onChange={handleSetCount}
-          />
-          <Button
-            className="focus-within:ring-0"
-            disabled={equals(productCount, availableQuantity)}
-            label="+"
-            style="text"
-            onClick={() =>
-              setProductCount(prevCount => parseInt(prevCount + 1))
-            }
+        <div className="flex items-center space-x-2">
+          <ProductQuantity {...{ availableQuantity, id }} />
+          <Delete
+            className="cursor-pointer"
+            onClick={() => removeCartItem(id)}
           />
         </div>
-        <Delete className="cursor-pointer" onClick={() => removeCartItem(id)} />
       </div>
     </div>
   );

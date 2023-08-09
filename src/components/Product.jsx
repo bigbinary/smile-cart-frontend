@@ -1,13 +1,23 @@
 import React from "react";
 
+import Carousel from "components/commons/Carousel";
+import Header from "components/commons/Header";
 import { Button, Typography } from "neetoui";
+import { useTranslation } from "react-i18next";
 
 import AddToCart from "./AddToCart";
-import Carousel from "./commons/Carousel";
-import Header from "./commons/Header";
 
-const Product = ({ product }) => {
-  const { name, mrp, offerPrice, discountRate, images, description } = product;
+const Product = ({
+  id,
+  name,
+  description,
+  mrp,
+  offerPrice,
+  discountRate,
+  availableQuantity,
+  images,
+}) => {
+  const { t } = useTranslation();
 
   return (
     <>
@@ -17,20 +27,22 @@ const Product = ({ product }) => {
         <Carousel className="basis-2/5" {...{ images }} />
         <div className="basis-3/5 space-y-4">
           <Typography style="body1">{description}</Typography>
-          <Typography style="body1">MRP: ${mrp}</Typography>
-          <Typography weight="bold">Offer price: ${offerPrice}</Typography>
+          <Typography style="body1">{t("product.mrp", { mrp })}</Typography>
+          <Typography weight="bold">
+            {t("product.offerPrice", { offerPrice })}
+          </Typography>
           <Typography
             className="neeto-ui-text-success-800"
             style="body1"
             weight="extrabold"
           >
-            {discountRate}% off
+            {t("product.discountRate", { discountRate })}
           </Typography>
           <div className="flex space-x-10">
-            <AddToCart {...{ product }} />
+            <AddToCart {...{ availableQuantity, id }} />
             <Button
               className="bg-neutral-800 hover:bg-neutral-950"
-              label="Buy now"
+              label={t("product.buyNow")}
               size="large"
             />
           </div>

@@ -2,7 +2,7 @@
 
 export const PRODUCTS = [
   {
-    id: 1,
+    id: "1",
     name: "Sneakers",
     slug: "sneakers",
     description:
@@ -18,7 +18,7 @@ export const PRODUCTS = [
     ],
   },
   {
-    id: 2,
+    id: "2",
     name: "Rainbow T-shirt",
     slug: "rainbow-t-shirt",
     description:
@@ -33,7 +33,7 @@ export const PRODUCTS = [
     ],
   },
   {
-    id: 3,
+    id: "3",
     name: "Cheers T-shirt",
     slug: "cheers-t-shirt",
     description:
@@ -48,7 +48,7 @@ export const PRODUCTS = [
     ],
   },
   {
-    id: 4,
+    id: "4",
     name: "Friends T-shirt",
     slug: "friends-t-shirt",
     description:
@@ -63,7 +63,7 @@ export const PRODUCTS = [
     ],
   },
   {
-    id: 5,
+    id: "5",
     name: "Paw T-shirt",
     slug: "paw-t-shirt",
     description:
@@ -95,3 +95,5 @@ export const SNEAKERS = {
     "https://lh3.googleusercontent.com/pw/AIL4fc9VT6pPl7wuMp0pNSdLFRZNQ9_iE8vIqU73NTMo6Ch0GuxJid9Hwo9QsvVmOQDqvtXK3ji6nBj1heR8tBHil7YCo2tkB-wd71W-zjnhMOiIjm2_cw=w2400",
   ],
 };
+
+export const VALID_COUNT_REGEX = /^(?:\d*|)$/;
