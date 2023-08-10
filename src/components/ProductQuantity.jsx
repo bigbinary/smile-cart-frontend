@@ -18,8 +18,8 @@ const ProductQuantity = ({ id, availableQuantity }) => {
     paths([["cartItems", id], ["setSelectedQuantity"]]),
     shallow
   );
-  const updatedSelectedQuantity = parseInt(selectedQuantity) || 0;
-  const isNotValidQuantity = updatedSelectedQuantity >= availableQuantity;
+  const parsedSelectedQuantity = parseInt(selectedQuantity) || 0;
+  const isNotValidQuantity = parsedSelectedQuantity >= availableQuantity;
 
   const handleSetCount = event => {
     const { value } = event.target;
@@ -45,7 +45,7 @@ const ProductQuantity = ({ id, availableQuantity }) => {
         className="focus-within:ring-0"
         label="-"
         style="text"
-        onClick={() => setSelectedQuantity(id, updatedSelectedQuantity - 1)}
+        onClick={() => setSelectedQuantity(id, parsedSelectedQuantity - 1)}
       />
       <Input
         nakedInput
@@ -65,7 +65,7 @@ const ProductQuantity = ({ id, availableQuantity }) => {
           disabled={isNotValidQuantity}
           label="+"
           style="text"
-          onClick={() => setSelectedQuantity(id, updatedSelectedQuantity + 1)}
+          onClick={() => setSelectedQuantity(id, parsedSelectedQuantity + 1)}
         />
       </TooltipWrapper>
     </div>
