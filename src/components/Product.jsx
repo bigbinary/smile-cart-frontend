@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import AddToCart from "./AddToCart";
 
 const Product = ({
-  id,
+  slug,
   name,
   description,
   mrp,
@@ -39,7 +39,7 @@ const Product = ({
             {t("product.discountRate", { discountRate })}
           </Typography>
           <div className="flex space-x-10">
-            <AddToCart {...{ availableQuantity, id }} />
+            <AddToCart {...{ availableQuantity, slug }} />
             <Button
               className="bg-neutral-800 hover:bg-neutral-950"
               label={t("product.buyNow")}

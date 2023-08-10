@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import useCartItemsStore from "stores/useCartItemsStore";
 
 const ProductCard = ({
-  id,
+  slug,
   images,
   offerPrice,
   mrp,
@@ -19,10 +19,7 @@ const ProductCard = ({
   const { removeCartItem } = useCartItemsStore.pick();
 
   return (
-    <div
-      className="neeto-ui-rounded neeto-ui-border-black h-1/2 w-1/3 border p-2"
-      key={id}
-    >
+    <div className="neeto-ui-rounded neeto-ui-border-black border p-2">
       <div className="flex w-full items-center">
         <img alt={name} height="100px" src={images[0]} width="100px" />
         <div className="flex-grow space-y-1">
@@ -35,10 +32,10 @@ const ProductCard = ({
           </Typography>
         </div>
         <div className="flex items-center space-x-2">
-          <ProductQuantity {...{ availableQuantity, id }} />
+          <ProductQuantity {...{ availableQuantity, slug }} />
           <Delete
             className="cursor-pointer"
-            onClick={() => removeCartItem(id)}
+            onClick={() => removeCartItem(slug)}
           />
         </div>
       </div>

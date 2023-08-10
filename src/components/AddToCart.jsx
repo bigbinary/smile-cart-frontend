@@ -8,11 +8,11 @@ import { shallow } from "zustand/shallow";
 
 import ProductQuantity from "./ProductQuantity";
 
-const AddToCart = ({ id, availableQuantity }) => {
+const AddToCart = ({ slug, availableQuantity }) => {
   const { t } = useTranslation();
 
   const [selectedQuantity, setSelectedQuantity] = useCartItemsStore(
-    paths([["cartItems", id], ["setSelectedQuantity"]]),
+    paths([["cartItems", slug], ["setSelectedQuantity"]]),
     shallow
   );
 
@@ -22,12 +22,12 @@ const AddToCart = ({ id, availableQuantity }) => {
         className="bg-neutral-800 hover:bg-neutral-950"
         label={t("product.addToCart")}
         size="large"
-        onClick={() => setSelectedQuantity(id, 1)}
+        onClick={() => setSelectedQuantity(slug, 1)}
       />
     );
   }
 
-  return <ProductQuantity {...{ availableQuantity, id }} />;
+  return <ProductQuantity {...{ availableQuantity, slug }} />;
 };
 
 export default AddToCart;

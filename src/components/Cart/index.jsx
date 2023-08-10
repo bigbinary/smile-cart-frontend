@@ -1,35 +1,39 @@
 import React from "react";
 
 import Header from "components/commons/Header";
+import PageLoader from "components/commons/PageLoader";
 import { NoData } from "neetoui";
-import { sum, prop, pipe, map, isEmpty, filter, includes, keys } from "ramda";
+import { sum, pipe, map, isEmpty, keys } from "ramda";
 import { useTranslation } from "react-i18next";
 import useCartItemsStore from "stores/useCartItemsStore";
 
 import PriceCard from "./PriceCard";
 import ProductCard from "./ProductCard";
 
-import { PRODUCTS } from "../constants";
+import { useFetchCartProducts } from "../../hooks/reactQuery/useProductsApi";
 
 const Cart = () => {
   const { t } = useTranslation();
 
   const { cartItems } = useCartItemsStore.pick();
 
-  const products = filter(
-    obj => includes(prop("id", obj), keys(cartItems)),
-    PRODUCTS
+  const { data: products = [], isLoading } = useFetchCartProducts(
+    keys(cartItems)
   );
 
   const totalMrp = pipe(
-    map(({ mrp, id }) => mrp * cartItems[id]),
+    map(({ mrp, slug }) => mrp * cartItems[slug]),
     sum
   )(products);
 
   const offerPrice = pipe(
-    map(({ offerPrice, id }) => offerPrice * cartItems[id]),
+    map(({ offerPrice, slug }) => offerPrice * cartItems[slug]),
     sum
   )(products);
+
+  if (isLoading) {
+    return <PageLoader />;
+  }
 
   if (isEmpty(products)) {
     return (
@@ -43,11 +47,17 @@ const Cart = () => {
     <>
       <Header title={t("cart.title")} />
       <hr className="neeto-ui-bg-black h-1" />
-      <div className="mt-10 flex w-full flex-row justify-center space-x-10">
-        {products.map(product => (
-          <ProductCard key={product.id} {...product} />
-        ))}
-        {totalMrp > 0 && <PriceCard {...{ offerPrice, totalMrp }} />}
+      <div className="mt-10 flex justify-center space-x-10">
+        <div className="w-1/3 space-y-5">
+          {products.map(product => (
+            <ProductCard key={product.slug} {...product} />
+          ))}
+        </div>
+        {totalMrp > 0 && (
+          <div className="w-1/4">
+            <PriceCard {...{ offerPrice, totalMrp }} />
+          </div>
+        )}
       </div>
     </>
   );
