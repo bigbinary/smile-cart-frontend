@@ -4,6 +4,7 @@ import { useSearchedProducts } from "hooks/reactQuery/useProductsApi";
 import useDebounce from "hooks/useDebounce";
 import { Search } from "neetoicons";
 import { Input, Pagination } from "neetoui";
+import { useTranslation } from "react-i18next";
 
 import Thumbnail from "./Thumbnail";
 
@@ -12,6 +13,9 @@ import { Header } from "../commons";
 const Products = () => {
   const [searchKey, setSearchKey] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+
+  const { t } = useTranslation();
+
   const debouncedSearchKey = useDebounce(searchKey, 300);
 
   const { data: products } = useSearchedProducts(
@@ -25,7 +29,7 @@ const Products = () => {
         title="Smile Cart"
         actionBlock={
           <Input
-            placeholder="Search products"
+            placeholder={t("product.search")}
             prefix={<Search />}
             type="search"
             value={searchKey}
