@@ -1398,21 +1398,6 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.46.0.tgz#3f7802972e8b6fe3f88ed1aabc74ec596c456db6"
   integrity sha512-a8TLtmPi8xzPkCbp/OGFUo5yhRkHM2Ko9kOWP4znJr0WAhWyThaw3PnwX4vOTWOAMsV2uRt32PPDcEz63esSaA==
 
-"@honeybadger-io/js@^3.2.8":
-  version "3.2.9"
-  resolved "https://registry.yarnpkg.com/@honeybadger-io/js/-/js-3.2.9.tgz#01650ced68878771c5bd57b7d4849afdb4122953"
-  integrity sha512-ByaN4rouf9+nqPv87Ccny6/Fbs1gn2bVYFb8za/IgyYqR9OfgvzwY2/ddDjO57sgOCkHjBq8U78rqA4opn5ddw==
-  dependencies:
-    "@types/express" "^4.17.13"
-    stacktrace-parser "^0.1.10"
-
-"@honeybadger-io/react@2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@honeybadger-io/react/-/react-2.0.1.tgz#50651ebd93fbb0daa2688d14d934301348cf62e8"
-  integrity sha512-7Sr0ExI+s4CDYXPuZf9nUoy6KUofzyrwH09ZcjUVELySGrSpaBEDJplGzZ3tIdaV/oYkltWfyRaC+rnghsiH6g==
-  dependencies:
-    "@honeybadger-io/js" "^3.2.8"
-
 "@humanwhocodes/config-array@^0.11.10":
   version "0.11.10"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.11.10.tgz#5a3ffe32cc9306365fb3fd572596cd602d5e12d2"
