@@ -15,7 +15,7 @@ const Thumbnail = ({ imageUrl, title, price, id, availableQuantity, slug }) => {
       onClick={() => history.push(`products/${slug}`)}
     >
       <div className="relative">
-        <img alt={title} className="aspect-square" src={imageUrl} />
+        <img alt={title} className="aspect-square h-40 w-40" src={imageUrl} />
         <div className="absolute inset-x-4 bottom-4">
           <AddToCart {...{ availableQuantity, id }} />
         </div>

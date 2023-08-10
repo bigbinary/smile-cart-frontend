@@ -78,3 +78,5 @@ export const SAMPLE_PRODUCTS = [
     ],
   },
 ];
+
+export const VALID_COUNT_REGEX = /^(?:\d*|)$/;

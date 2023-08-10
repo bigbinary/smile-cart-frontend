@@ -1210,9 +1210,9 @@
   integrity sha512-+8+vUWbSbFY7EzFnXO2pvSag9gcUFHBFmh+DRDdoxTPhR/FCwvg+dB9QTJN2jmJ0wV0s1tbyHNguofNrc0KGtg==
 
 "@bigbinary/neeto-commons-frontend@^2.0.105", "@bigbinary/neeto-commons-frontend@^2.0.63":
-  version "2.0.110"
-  resolved "https://registry.yarnpkg.com/@bigbinary/neeto-commons-frontend/-/neeto-commons-frontend-2.0.110.tgz#4fd0c3a2859a36ae4ac3af47091a8efce6e5b1bd"
-  integrity sha512-Ie9rklSvz+Y/WnBgxaVfCHYx4kx3c99c88Wt7zXcdHIvJCi2xy6weberbpZJ4ilTcm+UyOHL8n3LWU+Q6LeRlQ==
+  version "2.0.108"
+  resolved "https://registry.yarnpkg.com/@bigbinary/neeto-commons-frontend/-/neeto-commons-frontend-2.0.108.tgz#2a389d513cf1fc9bda69c2403d705bceaf50119f"
+  integrity sha512-eA+D2NJXkDrYOecl79LftR72kackVJAi+OJr9gB6jRuAIZk3a8JXvqcXZ+KXtonhmTpQvJskAZL19AFu6AEQWg==
 
 "@bigbinary/neeto-icons@^1.14.0":
   version "1.14.0"
@@ -2189,9 +2189,9 @@
   integrity sha512-YATxVxgRqNH6nHEIsvg6k2Boc1JHI9ZbH5iWFFv/MTkchz3b1ieGDa5T0a9RznNdI0KhVbdbWSN+KWWrQZRxTw==
 
 "@types/node@*":
-  version "20.4.8"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.4.8.tgz#b5dda19adaa473a9bf0ab5cbd8f30ec7d43f5c85"
-  integrity sha512-0mHckf6D2DiIAzh8fM8f3HQCvMKDpK94YQ0DSVkfWTG9BZleYIWudw9cJxX8oCk9bM+vAkDyujDV6dmKHbvQpg==
+  version "20.4.7"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.4.7.tgz#74d323a93f1391a63477b27b9aec56669c98b2ab"
+  integrity sha512-bUBrPjEry2QUTsnuEjzjbS7voGWCc30W0qzgMf90GPeDGFRakvrz47ju+oqDAKCXLUCe39u57/ORMl/O/04/9g==
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
@@ -4405,9 +4405,9 @@ ejs@^3.1.6:
     jake "^10.8.5"
 
 electron-to-chromium@^1.4.477:
-  version "1.4.487"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.487.tgz#e2ef8b15f2791bf68fa6f38f2656f1a551d360ae"
-  integrity sha512-XbCRs/34l31np/p33m+5tdBrdXu9jJkZxSbNxj5I0H1KtV2ZMSB+i/HYqDiRzHaFx2T5EdytjoBRe8QRJE2vQg==
+  version "1.4.484"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.484.tgz#770358eba089471c5dae5719db3a5a4fbf02bfb2"
+  integrity sha512-nO3ZEomTK2PO/3TUXgEx0A97xZTpKVf4p427lABHuCpT1IQ2N+njVh29DkQkCk6Q4m2wjU+faK4xAcfFndwjvw==
 
 emittery@^0.10.2:
   version "0.10.2"
@@ -4822,7 +4822,7 @@ eslint-webpack-plugin@^3.1.1:
     normalize-path "^3.0.0"
     schema-utils "^4.0.0"
 
-eslint@^8.45.0:
+eslint@^8.3.0:
   version "8.46.0"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-8.46.0.tgz#a06a0ff6974e53e643acc42d1dcf2e7f797b3552"
   integrity sha512-cIO74PvbW0qU8e0mIvk5IV3ToWdCq5FYG6gWPHHkx6gNdjlbAYvtfHmlCMXxjcoVaIdwy/IAt3+mDkZkfvb2Dg==
@@ -8943,9 +8943,9 @@ rc-upload@~4.3.0:
     rc-util "^5.2.0"
 
 rc-util@^5.0.1, rc-util@^5.0.6, rc-util@^5.15.0, rc-util@^5.16.0, rc-util@^5.16.1, rc-util@^5.17.0, rc-util@^5.18.1, rc-util@^5.19.2, rc-util@^5.2.0, rc-util@^5.2.1, rc-util@^5.20.1, rc-util@^5.21.0, rc-util@^5.21.2, rc-util@^5.22.5, rc-util@^5.23.0, rc-util@^5.24.4, rc-util@^5.25.2, rc-util@^5.26.0, rc-util@^5.27.0, rc-util@^5.32.2, rc-util@^5.4.0, rc-util@^5.6.1, rc-util@^5.9.4:
-  version "5.36.0"
-  resolved "https://registry.yarnpkg.com/rc-util/-/rc-util-5.36.0.tgz#be21995071e148f81141edb6f767062db5170224"
-  integrity sha512-a4uUvT+UNHvYL+awzbN8H8zAjfduwY4KAp2wQy40wOz3NyBdo3Xhx/EAAPyDkHLoGm535jIACaMhIqExGiAjHw==
+  version "5.35.1"
+  resolved "https://registry.yarnpkg.com/rc-util/-/rc-util-5.35.1.tgz#69589375058a4b03bb6471f998272610196be162"
+  integrity sha512-TFB8FMe/lLB8Bv97PNRShfueayQ7oXqfKC9Y6wtxKvjSQvqlPbSG+xjUqZYppdvtMrukZfX4/xKbLV3ldwT1YQ==
   dependencies:
     "@babel/runtime" "^7.18.3"
     react-is "^16.12.0"
