@@ -4,9 +4,8 @@ import { Typography } from "neetoui";
 import { values, prop } from "ramda";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useHistory } from "react-router-dom";
+import routes from "routes";
 import useCartItemsStore from "stores/useCartItemsStore";
-
-import routes from "../../routes";
 
 const Header = ({ title }) => {
   const history = useHistory();

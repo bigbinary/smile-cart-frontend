@@ -2,6 +2,7 @@ import React from "react";
 
 import Header from "components/commons/Header";
 import PageLoader from "components/commons/PageLoader";
+import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
 import { NoData } from "neetoui";
 import { sum, pipe, map, isEmpty, keys } from "ramda";
 import { useTranslation } from "react-i18next";
@@ -9,8 +10,6 @@ import useCartItemsStore from "stores/useCartItemsStore";
 
 import PriceCard from "./PriceCard";
 import ProductCard from "./ProductCard";
-
-import { useFetchCartProducts } from "../../hooks/reactQuery/useProductsApi";
 
 const Cart = () => {
   const { t } = useTranslation();
