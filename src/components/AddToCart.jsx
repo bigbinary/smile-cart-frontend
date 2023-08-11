@@ -22,7 +22,10 @@ const AddToCart = ({ id, availableQuantity }) => {
         className="bg-neutral-800 hover:bg-neutral-950"
         label={t("product.addToCart")}
         size="large"
-        onClick={() => setSelectedQuantity(id, 1)}
+        onClick={e => {
+          e.stopPropagation();
+          setSelectedQuantity(id, 1);
+        }}
       />
     );
   }

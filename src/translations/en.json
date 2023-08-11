@@ -1,5 +1,6 @@
 {
   "product": {
+    "search": "Search products",
     "addToCart": "Add to cart",
     "buyNow": "Buy now",
     "mrp": "MRP: ${{mrp}}",
@@ -10,5 +11,10 @@
       "quantityLimit_one": "Only {{availableQuantity}} unit is available",
       "quantityLimit_other": "Only {{availableQuantity}} units are available"
     }
-  }
+  },
+  "pageNotFound": {
+    "title": "The page you're looking for can't be found",
+    "label": "Back to home"
+  },
+  "pageLoading": "Loading Please Wait"
 }
