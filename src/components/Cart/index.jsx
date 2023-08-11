@@ -45,7 +45,6 @@ const Cart = () => {
   return (
     <>
       <Header title={t("cart.title")} />
-      <hr className="neeto-ui-bg-black h-1" />
       <div className="mt-10 flex justify-center space-x-10">
         <div className="w-1/3 space-y-5">
           {products.map(product => (
