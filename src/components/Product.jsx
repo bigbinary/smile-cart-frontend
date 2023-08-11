@@ -1,28 +1,38 @@
 import React from "react";
 
-import Carousel from "components/commons/Carousel";
-import Header from "components/commons/Header";
+import { useShowProductBySlug } from "hooks/reactQuery/useProductsApi";
 import { Button, Typography } from "neetoui";
+import { isNil } from "ramda";
 import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
 
 import AddToCart from "./AddToCart";
+import { Carousel, Header, PageNotFound, PageLoader } from "./commons";
 
-const Product = ({
-  slug,
-  name,
-  description,
-  mrp,
-  offerPrice,
-  discountRate,
-  availableQuantity,
-  images,
-}) => {
+const Product = () => {
+  const { slug } = useParams();
+
+  const { data: product, isLoading } = useShowProductBySlug(slug);
+
   const { t } = useTranslation();
+
+  if (isLoading) return <PageLoader />;
+
+  if (isNil(product)) return <PageNotFound />;
+
+  const {
+    name,
+    images,
+    description,
+    mrp,
+    offerPrice,
+    discountRate,
+    availableQuantity,
+  } = product;
 
   return (
     <>
       <Header title={name} />
-      <hr className="neeto-ui-bg-black h-1" />
       <div className="mt-6 flex gap-6">
         <Carousel className="basis-2/5" {...{ images }} />
         <div className="basis-3/5 space-y-4">

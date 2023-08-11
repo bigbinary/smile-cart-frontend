@@ -45,7 +45,10 @@ const ProductQuantity = ({ slug, availableQuantity }) => {
         className="focus-within:ring-0"
         label="-"
         style="text"
-        onClick={() => setSelectedQuantity(slug, parsedSelectedQuantity - 1)}
+        onClick={e => {
+          e.stopPropagation();
+          setSelectedQuantity(slug, parsedSelectedQuantity - 1);
+        }}
       />
       <Input
         nakedInput
@@ -54,6 +57,7 @@ const ProductQuantity = ({ slug, availableQuantity }) => {
         ref={countInputFocus}
         value={selectedQuantity}
         onChange={handleSetCount}
+        onClick={e => e.stopPropagation()}
       />
       <TooltipWrapper
         content={t("product.maximumUnits")}
@@ -65,7 +69,10 @@ const ProductQuantity = ({ slug, availableQuantity }) => {
           disabled={isNotValidQuantity}
           label="+"
           style="text"
-          onClick={() => setSelectedQuantity(slug, parsedSelectedQuantity + 1)}
+          onClick={e => {
+            e.stopPropagation();
+            setSelectedQuantity(slug, parsedSelectedQuantity + 1);
+          }}
         />
       </TooltipWrapper>
     </div>

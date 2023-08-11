@@ -1,5 +1,6 @@
 {
   "product": {
+    "search": "Search products",
     "addToCart": "Add to cart",
     "buyNow": "Buy now",
     "mrp": "MRP: ${{mrp}}",
@@ -17,5 +18,10 @@
     "totalMrp": "Total MRP: <span>${{mrp}}</span>",
     "totalDiscounts": "Total discounts: <span>${{discounts}} ({{discountPercentage}}%)</span>",
     "offerPrice": "Total offer price: <span>${{offerPrice}}</span>"
-  }
+  },
+  "pageNotFound": {
+    "title": "The page you're looking for can't be found",
+    "label": "Back to home"
+  },
+  "pageLoading": "Loading Please Wait"
 }
