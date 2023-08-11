@@ -4,6 +4,7 @@ const routes = {
   product: {
     show: "/products/:slug",
   },
+  checkout: "/checkout",
 };
 
 export default routes;

@@ -5,6 +5,7 @@ import { Button, Typography } from "neetoui";
 import { isNil } from "ramda";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
+import routes from "routes";
 
 import AddToCart from "./AddToCart";
 import { Carousel, Header, PageNotFound, PageLoader } from "./commons";
@@ -54,6 +55,7 @@ const Product = () => {
               className="bg-neutral-800 hover:bg-neutral-950"
               label={t("product.buyNow")}
               size="large"
+              to={routes.checkout}
             />
           </div>
         </div>
