@@ -3,9 +3,13 @@ import React from "react";
 import { Typography } from "neetoui";
 import { values, prop } from "ramda";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { useHistory } from "react-router-dom";
+import routes from "routes";
 import useCartItemsStore from "stores/useCartItemsStore";
 
 const Header = ({ title, actionBlock }) => {
+  const history = useHistory();
+
   const cartItemsCount = useCartItemsStore(
     store => values(prop("cartItems", store)).length
   );
@@ -24,7 +28,11 @@ const Header = ({ title, actionBlock }) => {
                 {cartItemsCount}
               </span>
             )}
-            <AiOutlineShoppingCart size="2rem" />
+            <AiOutlineShoppingCart
+              className="cursor-pointer"
+              size="2rem"
+              onClick={() => history.push(routes.cart)}
+            />
           </div>
         </div>
       </div>

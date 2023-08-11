@@ -8,11 +8,11 @@ import { shallow } from "zustand/shallow";
 
 import ProductQuantity from "./ProductQuantity";
 
-const AddToCart = ({ id, availableQuantity }) => {
+const AddToCart = ({ slug, availableQuantity }) => {
   const { t } = useTranslation();
 
   const [selectedQuantity, setSelectedQuantity] = useCartItemsStore(
-    paths([["cartItems", id], ["setSelectedQuantity"]]),
+    paths([["cartItems", slug], ["setSelectedQuantity"]]),
     shallow
   );
 
@@ -24,13 +24,13 @@ const AddToCart = ({ id, availableQuantity }) => {
         size="large"
         onClick={e => {
           e.stopPropagation();
-          setSelectedQuantity(id, 1);
+          setSelectedQuantity(slug, 1);
         }}
       />
     );
   }
 
-  return <ProductQuantity {...{ availableQuantity, id }} />;
+  return <ProductQuantity {...{ availableQuantity, slug }} />;
 };
 
 export default AddToCart;

@@ -2,7 +2,7 @@
 
 export const SAMPLE_PRODUCTS = [
   {
-    id: 1,
+    id: "1",
     name: "Sneakers",
     slug: "sneakers",
     description:
@@ -19,7 +19,7 @@ export const SAMPLE_PRODUCTS = [
     ],
   },
   {
-    id: 2,
+    id: "2",
     name: "Rainbow T-shirt",
     slug: "rainbow-t-shirt",
     description:
@@ -35,7 +35,7 @@ export const SAMPLE_PRODUCTS = [
     ],
   },
   {
-    id: 3,
+    id: "3",
     name: "Cheers T-shirt",
     slug: "cheers-t-shirt",
     description:
@@ -51,7 +51,7 @@ export const SAMPLE_PRODUCTS = [
     ],
   },
   {
-    id: 4,
+    id: "4",
     name: "Friends T-shirt",
     slug: "friends-t-shirt",
     description:
@@ -67,7 +67,7 @@ export const SAMPLE_PRODUCTS = [
     ],
   },
   {
-    id: 5,
+    id: "5",
     name: "Paw T-shirt",
     slug: "paw-t-shirt",
     description:

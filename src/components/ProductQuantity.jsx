@@ -9,13 +9,13 @@ import { shallow } from "zustand/shallow";
 
 import { VALID_COUNT_REGEX } from "./constants";
 
-const ProductQuantity = ({ id, availableQuantity }) => {
+const ProductQuantity = ({ slug, availableQuantity }) => {
   const { t } = useTranslation();
 
   const countInputFocus = useRef(null);
 
   const [selectedQuantity, setSelectedQuantity] = useCartItemsStore(
-    paths([["cartItems", id], ["setSelectedQuantity"]]),
+    paths([["cartItems", slug], ["setSelectedQuantity"]]),
     shallow
   );
   const parsedSelectedQuantity = parseInt(selectedQuantity) || 0;
@@ -32,10 +32,10 @@ const ProductQuantity = ({ id, availableQuantity }) => {
       });
 
       Toastr.error(errorMessage, { autoClose: 2000 });
-      setSelectedQuantity(id, availableQuantity);
+      setSelectedQuantity(slug, availableQuantity);
       countInputFocus.current.blur();
     } else if (VALID_COUNT_REGEX.test(value)) {
-      setSelectedQuantity(id, value);
+      setSelectedQuantity(slug, value);
     }
   };
 
@@ -47,7 +47,7 @@ const ProductQuantity = ({ id, availableQuantity }) => {
         style="text"
         onClick={e => {
           e.stopPropagation();
-          setSelectedQuantity(id, parsedSelectedQuantity - 1);
+          setSelectedQuantity(slug, parsedSelectedQuantity - 1);
         }}
       />
       <Input
@@ -71,7 +71,7 @@ const ProductQuantity = ({ id, availableQuantity }) => {
           style="text"
           onClick={e => {
             e.stopPropagation();
-            setSelectedQuantity(id, parsedSelectedQuantity + 1);
+            setSelectedQuantity(slug, parsedSelectedQuantity + 1);
           }}
         />
       </TooltipWrapper>

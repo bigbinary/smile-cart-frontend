@@ -10,7 +10,6 @@ const ProductListItem = ({
   imageUrl,
   name,
   offerPrice,
-  id,
   availableQuantity,
   slug,
 }) => {
@@ -24,7 +23,7 @@ const ProductListItem = ({
       <div className="relative">
         <img alt={name} className="aspect-square h-40 w-40" src={imageUrl} />
         <div className="absolute inset-x-4 bottom-4">
-          <AddToCart {...{ availableQuantity, id }} />
+          <AddToCart {...{ availableQuantity, slug }} />
         </div>
       </div>
       <Typography weight="semibold">{name}</Typography>

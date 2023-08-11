@@ -1,18 +1,19 @@
 import { isNotEmpty } from "neetocommons/pure";
-import { assoc, dissoc } from "ramda";
+import { assoc, dissoc, evolve } from "ramda";
 import { create } from "zustand";
 
 // eslint-disable-next-line @bigbinary/neeto/ensure-zustand-stores-are-type-annotated, @bigbinary/neeto/zustand-use-with-immutable-actions-wrapper-inside-create
 const useCartItemsStore = create(set => ({
   cartItems: {},
-  setSelectedQuantity: (id, quantity) =>
+  setSelectedQuantity: (slug, quantity) =>
     set(({ cartItems }) => {
       if (quantity <= 0 && isNotEmpty(quantity)) {
-        return { cartItems: dissoc(id, cartItems) };
+        return { cartItems: dissoc(slug, cartItems) };
       }
 
-      return { cartItems: assoc(id, String(quantity), cartItems) };
+      return { cartItems: assoc(slug, String(quantity), cartItems) };
     }),
+  removeCartItem: slug => set(evolve({ cartItems: dissoc(slug) })),
 }));
 
 export default useCartItemsStore;

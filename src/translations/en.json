@@ -12,6 +12,13 @@
       "quantityLimit_other": "Only {{availableQuantity}} units are available"
     }
   },
+  "cart": {
+    "title": "My cart",
+    "empty": "Your cart is empty!",
+    "totalMrp": "Total MRP: <span>${{mrp}}</span>",
+    "totalDiscounts": "Total discounts: <span>${{discounts}} ({{discountPercentage}}%)</span>",
+    "offerPrice": "Total offer price: <span>${{offerPrice}}</span>"
+  },
   "pageNotFound": {
     "title": "The page you're looking for can't be found",
     "label": "Back to home"

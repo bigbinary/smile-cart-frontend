@@ -28,7 +28,6 @@ const Product = () => {
     offerPrice,
     discountRate,
     availableQuantity,
-    id,
   } = product;
 
   return (
@@ -50,7 +49,7 @@ const Product = () => {
             {t("product.discountRate", { discountRate })}
           </Typography>
           <div className="flex space-x-10">
-            <AddToCart {...{ availableQuantity, id }} />
+            <AddToCart {...{ availableQuantity, slug }} />
             <Button
               className="bg-neutral-800 hover:bg-neutral-950"
               label={t("product.buyNow")}
