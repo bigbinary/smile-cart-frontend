@@ -6,11 +6,11 @@ import { Search } from "neetoicons";
 import { Input, Pagination } from "neetoui";
 import { useTranslation } from "react-i18next";
 
-import Thumbnail from "./Thumbnail";
+import ProductListItem from "./ProductListItem";
 
 import { Header } from "../commons";
 
-const Products = () => {
+const ProductsList = () => {
   const [searchKey, setSearchKey] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -38,22 +38,9 @@ const Products = () => {
         }
       />
       <div className="grid grid-cols-2 justify-items-center gap-y-8 p-4 md:grid-cols-3 lg:grid-cols-4">
-        {products?.map(
-          ({
-            slug: key,
-            id,
-            offerPrice: price,
-            name: title,
-            slug,
-            images: [imageUrl],
-            availableQuantity,
-          }) => (
-            // eslint-disable-next-line react/jsx-key, react/react-in-jsx-scope
-            <Thumbnail
-              {...{ availableQuantity, id, imageUrl, key, price, slug, title }}
-            />
-          )
-        )}
+        {products?.map(product => (
+          <ProductListItem key={product.slug} {...product} />
+        ))}
       </div>
       <div className="self-end">
         <Pagination
@@ -66,4 +53,4 @@ const Products = () => {
     </div>
   );
 };
-export default Products;
+export default ProductsList;

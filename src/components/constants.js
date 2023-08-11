@@ -11,8 +11,9 @@ export const SAMPLE_PRODUCTS = [
     offerPrice: 100,
     discountRate: 33,
     availableQuantity: 10,
-    images: [
+    imageUrl:
       "https://lh3.googleusercontent.com/pw/AIL4fc9Jic7uD7Q_tURCT5RqBr4MXXcPEVG9lXD5eYNz3c7Dyu6ZLpX27UDFEvSNShlwiWpPjDb6dDtnRV76OmvnwIDXTWjTEG6aM58jDpBmrccE-BMSjQ=w2400",
+    images: [
       "https://lh3.googleusercontent.com/pw/AIL4fc9VT6pPl7wuMp0pNSdLFRZNQ9_iE8vIqU73NTMo6Ch0GuxJid9Hwo9QsvVmOQDqvtXK3ji6nBj1heR8tBHil7YCo2tkB-wd71W-zjnhMOiIjm2_cw=w2400",
       "https://lh3.googleusercontent.com/pw/AIL4fc__R_ToKSm1oU85FgCMemHGSfEPbcnKOovBDKPtmHnqa2NozFbdYuH86UYddT7oOwLxBn-yIj8yxhAgDY894D3sYXjSU6ZPopz4-KilQUvlWHl0Cg=w2400",
     ],
@@ -27,8 +28,9 @@ export const SAMPLE_PRODUCTS = [
     offerPrice: 100,
     discountRate: 33,
     availableQuantity: 10,
-    images: [
+    imageUrl:
       "https://lh3.googleusercontent.com/pw/AIL4fc9cXxznpb2r1sKjOIwHwJaWSyCYC9kCEKqogeso6jxp49Rg0ex5JfwzYHOMuNvsvmkIc4FB_C1rXRt7ojNSNl5Zyj6VRQY1_nRLIgOjDp90EkTcsw=w2400",
+    images: [
       "https://lh3.googleusercontent.com/pw/AIL4fc-sJMoLeDm8jTO4YE05sq1IPS9ZG6OdIlk7mNiybmjYFRieaUM-404hFDtyvZwMs4bAo27RMfW3nj8LORda37sz6abTnL2UZ3NpT8pbkYNPx6tFPg=w2400",
     ],
   },
@@ -42,8 +44,9 @@ export const SAMPLE_PRODUCTS = [
     offerPrice: 100,
     discountRate: 33,
     availableQuantity: 10,
-    images: [
+    imageUrl:
       "https://lh3.googleusercontent.com/pw/AIL4fc_RP1j_MFDGXSy58ZSg5HfLRHcNbudDqQbfZRKax8dQn74xVa8s6QG4tfEOrgUYFlLDtR5Eqi89q_R4vzyMlYxMuAs88-tbz_mzVfxzTByU6eNYUA=w2400",
+    images: [
       "https://lh3.googleusercontent.com/pw/AIL4fc9AObB7ZbfPnhQaaEtG6js21UnfPW7jdBQr2UFzOQDQHaeDkRYhisa7B7-XUbYr50QrEP0hTJHms6F579w17vcr1ZKsJdh3LchkqPyhpF2z7MI-qw=w2400",
     ],
   },
@@ -57,8 +60,9 @@ export const SAMPLE_PRODUCTS = [
     offerPrice: 100,
     discountRate: 33,
     availableQuantity: 10,
-    images: [
+    imageUrl:
       "https://lh3.googleusercontent.com/pw/AIL4fc82nI4IIV5nN6_KtI6DnHetYBbaNqC68P6Nhr44gKIdVUvodlW3TpCnrA8hy4YslioD3YSf4TTf60hexujenl_KiRcSx61lTKIgQ6LTynxz-F2ANw=w2400",
+    images: [
       "https://lh3.googleusercontent.com/pw/AIL4fc9AObB7ZbfPnhQaaEtG6js21UnfPW7jdBQr2UFzOQDQHaeDkRYhisa7B7-XUbYr50QrEP0hTJHms6F579w17vcr1ZKsJdh3LchkqPyhpF2z7MI-qw=w2400",
     ],
   },
@@ -72,8 +76,9 @@ export const SAMPLE_PRODUCTS = [
     offerPrice: 100,
     discountRate: 33,
     availableQuantity: 10,
-    images: [
+    imageUrl:
       "https://lh3.googleusercontent.com/pw/AIL4fc_0ihj5C4EKB55egTknDBDYDSp1IHNF0oE9guhulwMLHlXD60WE2W9lLl3X6pmTM1azW8N3MsYDrDZtNEh2eExzp-PNGE6r5Xwo5ix014Q1qGEa_g=w2400",
+    images: [
       "https://lh3.googleusercontent.com/pw/AIL4fc9AObB7ZbfPnhQaaEtG6js21UnfPW7jdBQr2UFzOQDQHaeDkRYhisa7B7-XUbYr50QrEP0hTJHms6F579w17vcr1ZKsJdh3LchkqPyhpF2z7MI-qw=w2400",
     ],
   },

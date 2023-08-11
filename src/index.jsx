@@ -10,10 +10,10 @@ import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
-    <React.StrictMode>
+  <React.StrictMode>
+    <BrowserRouter>
       <ToastContainer />
       <App />
-    </React.StrictMode>
-  </BrowserRouter>
+    </BrowserRouter>
+  </React.StrictMode>
 );

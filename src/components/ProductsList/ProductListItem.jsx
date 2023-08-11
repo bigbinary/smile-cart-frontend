@@ -6,7 +6,14 @@ import { useHistory } from "react-router-dom";
 
 import AddToCart from "../AddToCart";
 
-const Thumbnail = ({ imageUrl, title, price, id, availableQuantity, slug }) => {
+const ProductListItem = ({
+  imageUrl,
+  name,
+  offerPrice,
+  id,
+  availableQuantity,
+  slug,
+}) => {
   const history = useHistory();
 
   return (
@@ -15,15 +22,15 @@ const Thumbnail = ({ imageUrl, title, price, id, availableQuantity, slug }) => {
       onClick={() => history.push(`products/${slug}`)}
     >
       <div className="relative">
-        <img alt={title} className="aspect-square h-40 w-40" src={imageUrl} />
+        <img alt={name} className="aspect-square h-40 w-40" src={imageUrl} />
         <div className="absolute inset-x-4 bottom-4">
           <AddToCart {...{ availableQuantity, id }} />
         </div>
       </div>
-      <Typography weight="semibold">{title}</Typography>
-      <Typography>${price}</Typography>
+      <Typography weight="semibold">{name}</Typography>
+      <Typography>${offerPrice}</Typography>
     </div>
   );
 };
 
-export default Thumbnail;
+export default ProductListItem;
