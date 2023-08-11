@@ -25,7 +25,7 @@ const Cart = () => {
     sum
   )(products);
 
-  const offerPrice = pipe(
+  const totalOfferPrice = pipe(
     map(({ offerPrice, slug }) => offerPrice * cartItems[slug]),
     sum
   )(products);
@@ -53,7 +53,7 @@ const Cart = () => {
         </div>
         {totalMrp > 0 && (
           <div className="w-1/4">
-            <PriceCard {...{ offerPrice, totalMrp }} />
+            <PriceCard {...{ totalMrp, totalOfferPrice }} />
           </div>
         )}
       </div>

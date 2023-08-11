@@ -5,10 +5,10 @@ import { Typography, Button } from "neetoui";
 import { gt } from "ramda";
 import { useTranslation, Trans } from "react-i18next";
 
-const PriceCard = ({ totalMrp, offerPrice }) => {
+const PriceCard = ({ totalMrp, totalOfferPrice }) => {
   const { t } = useTranslation();
 
-  const totalDiscounts = totalMrp - offerPrice;
+  const totalDiscounts = totalMrp - totalOfferPrice;
   const isDiscountPresent = gt(totalDiscounts, 0);
   const discountPercentage = ((totalDiscounts / totalMrp) * 100).toFixed(1);
 
@@ -38,7 +38,7 @@ const PriceCard = ({ totalMrp, offerPrice }) => {
             <Trans
               components={{ span: <span /> }}
               i18nKey="cart.offerPrice"
-              values={{ offerPrice }}
+              values={{ offerPrice: totalOfferPrice }}
             />
           </Typography>
         </>
