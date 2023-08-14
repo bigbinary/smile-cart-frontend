@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 
 import classNames from "classnames";
 import { Left, Right } from "neetoicons";
@@ -15,7 +15,13 @@ const Carousel = ({ title, images }) => {
       prevIndex => (prevIndex - 1 + images.length) % images.length
     );
 
-  const handleDotClick = index => setCurrentIndex(index);
+  useEffect(() => {
+    const interval = setInterval(handleNext, 3000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   return (
     <div className="flex flex-col items-center">
@@ -47,7 +53,7 @@ const Carousel = ({ title, images }) => {
               "neeto-ui-border-black neeto-ui-rounded-full h-3 w-3 border",
               { "neeto-ui-bg-black": index === currentIndex }
             )}
-            onClick={() => handleDotClick(index)}
+            onClick={() => setCurrentIndex(index)}
           />
         ))}
       </div>
