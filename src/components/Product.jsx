@@ -11,6 +11,7 @@ import { shallow } from "zustand/shallow";
 
 import AddToCart from "./AddToCart";
 import { Carousel, Header, PageNotFound, PageLoader } from "./commons";
+import { SINGLE_QUANTITY } from "./constants";
 
 const Product = () => {
   const { t } = useTranslation();
@@ -63,7 +64,9 @@ const Product = () => {
               label={t("product.buyNow")}
               size="large"
               to={routes.checkout}
-              onClick={() => setSelectedQuantity(slug, selectedQuantity || 1)}
+              onClick={() =>
+                setSelectedQuantity(slug, selectedQuantity || SINGLE_QUANTITY)
+              }
             />
           </div>
         </div>

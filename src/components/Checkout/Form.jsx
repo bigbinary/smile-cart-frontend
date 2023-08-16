@@ -30,7 +30,6 @@ const Form = ({
       <Select
         required
         label={t("checkout.country")}
-        labelProps={{ className: "w-full" }}
         name="country"
         options={COUNTRY_LIST}
         placeholder={t("checkout.selectCountry")}
@@ -77,7 +76,6 @@ const Form = ({
         <Select
           required
           label={t("checkout.state")}
-          labelProps={{ className: "w-full" }}
           name="state"
           options={STATE_LIST}
           placeholder={t("checkout.selectState")}
