@@ -11,10 +11,12 @@ export const useFetchCheckoutForm = () => {
   });
 };
 
-export const useConfirmOrder = () => {
+export const useConfirmOrder = ({ isInformationSavedForNextTime }) => {
   const queryClient = useQueryClient();
 
-  return useMutation(payload =>
-    queryClient.setQueryData(QUERY_KEYS.CHECKOUT, payload)
+  return useMutation(
+    payload =>
+      isInformationSavedForNextTime &&
+      queryClient.setQueryData(QUERY_KEYS.CHECKOUT, payload)
   );
 };

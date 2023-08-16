@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { PageLoader, PageNotFound } from "components/commons";
 import { totalPrice } from "components/utils";
@@ -23,15 +23,19 @@ import Form from "./Form";
 import Items from "./Items";
 
 const Checkout = () => {
+  const [isInformationSavedForNextTime, setIsInformationSavedForNextTime] =
+    useState(false);
+
   const { t } = useTranslation();
 
   const history = useHistory();
 
   const { cartItems, clearCart } = useCartItemsStore.pick();
-  const { mutate: confirmOrder } = useConfirmOrder();
 
+  const { mutate: confirmOrder } = useConfirmOrder({
+    isInformationSavedForNextTime,
+  });
   const { data: checkoutFormData } = useFetchCheckoutForm();
-
   const { data: products = [], isLoading } = useFetchCartProducts(
     keys(cartItems)
   );
@@ -71,8 +75,13 @@ const Checkout = () => {
           >
             {t("checkout.title")}
           </Typography>
-          <div className="mt-10 space-y-4">
-            <Form />
+          <div className="mt-8 space-y-4">
+            <Form
+              {...{
+                isInformationSavedForNextTime,
+                setIsInformationSavedForNextTime,
+              }}
+            />
           </div>
         </div>
         <div className="neeto-ui-bg-gray-300 h-screen w-1/2 pt-10">

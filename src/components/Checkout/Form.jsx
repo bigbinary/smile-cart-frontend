@@ -6,7 +6,10 @@ import { useTranslation } from "react-i18next";
 
 import { COUNTRY_LIST, STATE_LIST } from "./constants";
 
-const Form = () => {
+const Form = ({
+  isInformationSavedForNextTime,
+  setIsInformationSavedForNextTime,
+}) => {
   const { t } = useTranslation();
 
   return (
@@ -90,10 +93,13 @@ const Form = () => {
         />
       </div>
       <Checkbox
-        checked
-        id="checkbox_name"
+        checked={isInformationSavedForNextTime}
         label={t("checkout.checkboxTitle")}
-        onChange={function noRefCheck() {}}
+        onChange={() =>
+          setIsInformationSavedForNextTime(
+            isInformationSavedForNextTime => !isInformationSavedForNextTime
+          )
+        }
       />
     </>
   );
