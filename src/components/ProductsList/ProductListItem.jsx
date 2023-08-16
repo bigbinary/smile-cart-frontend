@@ -20,14 +20,12 @@ const ProductListItem = ({
       className="border neeto-ui-border-black neeto-ui-rounded-xl h-60 flex w-48 flex-col items-center p-4"
       onClick={() => history.push(`products/${slug}`)}
     >
-      <div>
-        <img alt={name} className="aspect-square h-40 w-40" src={imageUrl} />
-        <div className="bottom-4 text-center">
-          <AddToCart {...{ availableQuantity, slug }} />
-        </div>
-      </div>
+      <img alt={name} className="aspect-square h-40 w-40" src={imageUrl} />
       <Typography weight="semibold">{name}</Typography>
       <Typography>${offerPrice}</Typography>
+      <div className="bottom-4 text-center">
+        <AddToCart {...{ availableQuantity, slug }} />
+      </div>
     </div>
   );
 };
