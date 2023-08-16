@@ -2,6 +2,7 @@ import React from "react";
 
 import Header from "components/commons/Header";
 import PageLoader from "components/commons/PageLoader";
+import { totalPrice } from "components/utils";
 import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
 import { NoData } from "neetoui";
 import { sum, pipe, map, isEmpty, keys } from "ramda";
@@ -25,10 +26,7 @@ const Cart = () => {
     sum
   )(products);
 
-  const totalOfferPrice = pipe(
-    map(({ offerPrice, slug }) => offerPrice * cartItems[slug]),
-    sum
-  )(products);
+  const totalOfferPrice = totalPrice(cartItems, products);
 
   if (isLoading) {
     return <PageLoader />;

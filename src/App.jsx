@@ -11,7 +11,7 @@ import ProductsList from "./components/ProductsList";
 import routes from "./routes";
 
 const App = () => (
-  <div className="p-8">
+  <>
     <Switch>
       <Route exact component={Product} path={routes.product.show} />
       <Route exact component={ProductsList} path={routes.root} />
@@ -20,7 +20,7 @@ const App = () => (
       <Route component={PageNotFound} path="*" />
     </Switch>
     <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
-  </div>
+  </>
 );
 
 export default App;

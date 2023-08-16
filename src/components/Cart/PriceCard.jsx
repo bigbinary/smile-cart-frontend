@@ -4,6 +4,7 @@ import classNames from "classnames";
 import { Typography, Button } from "neetoui";
 import { gt } from "ramda";
 import { useTranslation, Trans } from "react-i18next";
+import routes from "routes";
 
 const PriceCard = ({ totalMrp, totalOfferPrice }) => {
   const { t } = useTranslation();
@@ -44,7 +45,11 @@ const PriceCard = ({ totalMrp, totalOfferPrice }) => {
         </>
       )}
       <div className="flex flex-col items-center pt-4">
-        <Button className="bg-neutral-800" label={t("product.buyNow")} />
+        <Button
+          className="bg-neutral-800"
+          label={t("product.buyNow")}
+          to={routes.checkout}
+        />
       </div>
     </div>
   );

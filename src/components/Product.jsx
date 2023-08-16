@@ -2,24 +2,26 @@ import React from "react";
 
 import { useShowProductBySlug } from "hooks/reactQuery/useProductsApi";
 import { Button, Typography } from "neetoui";
-import { isNil } from "ramda";
+import { isNil, paths } from "ramda";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import routes from "routes";
+import useCartItemsStore from "stores/useCartItemsStore";
+import { shallow } from "zustand/shallow";
 
 import AddToCart from "./AddToCart";
 import { Carousel, Header, PageNotFound, PageLoader } from "./commons";
 
 const Product = () => {
-  const { slug } = useParams();
-
-  const { data: product, isLoading } = useShowProductBySlug(slug);
-
   const { t } = useTranslation();
 
-  if (isLoading) return <PageLoader />;
+  const { slug } = useParams();
 
-  if (isNil(product)) return <PageNotFound />;
+  const [selectedQuantity, setSelectedQuantity] = useCartItemsStore(
+    paths([["cartItems", slug], ["setSelectedQuantity"]]),
+    shallow
+  );
+  const { data: product = [], isLoading } = useShowProductBySlug(slug);
 
   const {
     name,
@@ -30,6 +32,10 @@ const Product = () => {
     discountRate,
     availableQuantity,
   } = product;
+
+  if (isLoading) return <PageLoader />;
+
+  if (isNil(product)) return <PageNotFound />;
 
   return (
     <>
@@ -56,6 +62,7 @@ const Product = () => {
               label={t("product.buyNow")}
               size="large"
               to={routes.checkout}
+              onClick={() => setSelectedQuantity(slug, selectedQuantity || 1)}
             />
           </div>
         </div>
