@@ -40,7 +40,7 @@ const ProductQuantity = ({ slug, availableQuantity }) => {
   };
 
   return (
-    <div className="neeto-ui-border-black neeto-ui-rounded border flex items-center">
+    <div className="border neeto-ui-border-black neeto-ui-rounded flex items-center">
       <Button
         className="focus-within:ring-0"
         label="-"
@@ -52,7 +52,7 @@ const ProductQuantity = ({ slug, availableQuantity }) => {
       />
       <Input
         nakedInput
-        className="pl-1.5"
+        className="ml-2"
         contentSize="2"
         ref={countInputFocus}
         value={selectedQuantity}
