@@ -13,7 +13,7 @@ const PriceCard = ({ totalMrp, totalOfferPrice }) => {
   const discountPercentage = ((totalDiscounts / totalMrp) * 100).toFixed(1);
 
   return (
-    <div className="neeto-ui-rounded neeto-ui-border-black space-y-2 border p-3">
+    <div className="neeto-ui-rounded neeto-ui-border-black border space-y-2 p-3">
       <Typography
         className={classNames("flex justify-between", {
           "line-through": isDiscountPresent,
@@ -27,7 +27,7 @@ const PriceCard = ({ totalMrp, totalOfferPrice }) => {
       </Typography>
       {isDiscountPresent && (
         <>
-          <Typography className="flex justify-between text-lime-700">
+          <Typography className="text-lime-700 flex justify-between">
             <Trans
               components={{ span: <span /> }}
               i18nKey="cart.totalDiscounts"

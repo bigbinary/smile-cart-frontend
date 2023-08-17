@@ -27,7 +27,7 @@ const Carousel = ({ title, images }) => {
     <div className="flex flex-col items-center">
       <div className="flex items-center">
         <Button
-          className="shrink-0 focus-within:ring-0 hover:bg-transparent"
+          className="focus-within:ring-0 shrink-0 hover:bg-transparent"
           icon={Left}
           style="text"
           onClick={handlePrevious}
@@ -39,7 +39,7 @@ const Carousel = ({ title, images }) => {
           width="350px"
         />
         <Button
-          className="shrink-0 focus-within:ring-0 hover:bg-transparent"
+          className="focus-within:ring-0 shrink-0 hover:bg-transparent"
           icon={Right}
           style="text"
           onClick={handleNext}
@@ -50,7 +50,7 @@ const Carousel = ({ title, images }) => {
           <span
             key={index}
             className={classNames(
-              "neeto-ui-border-black neeto-ui-rounded-full h-3 w-3 border",
+              "neeto-ui-border-black neeto-ui-rounded-full border h-3 w-3",
               { "neeto-ui-bg-black": index === currentIndex }
             )}
             onClick={() => setCurrentIndex(index)}

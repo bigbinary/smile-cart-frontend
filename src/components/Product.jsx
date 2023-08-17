@@ -35,8 +35,8 @@ const Product = () => {
     <>
       <Header title={name} />
       <div className="mt-6 flex gap-6">
-        <Carousel className="basis-2/5" images={[imageUrl, ...images]} />
-        <div className="basis-3/5 space-y-4">
+        <Carousel className="w-2/5" images={[imageUrl, ...images]} />
+        <div className="w-3/5 space-y-4">
           <Typography style="body1">{description}</Typography>
           <Typography style="body1">{t("product.mrp", { mrp })}</Typography>
           <Typography weight="bold">
