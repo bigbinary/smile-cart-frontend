@@ -33,7 +33,7 @@ const Checkout = () => {
 
   const {
     countries,
-    stateList,
+    states,
     products,
     isLoading,
     setSelectedCountry,
@@ -79,7 +79,7 @@ const Checkout = () => {
                 isInformationSavedForNextTime,
                 setIsInformationSavedForNextTime,
                 setSelectedCountry,
-                stateList,
+                states,
               }}
             />
           </div>

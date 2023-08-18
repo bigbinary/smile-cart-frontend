@@ -11,7 +11,7 @@ const Form = ({
   setIsInformationSavedForNextTime,
   countries,
   setSelectedCountry,
-  stateList,
+  states,
 }) => {
   const { t } = useTranslation();
 
@@ -92,7 +92,7 @@ const Form = ({
           name="state"
           placeholder={t("checkout.selectState")}
           size="large"
-          options={stateList?.map(({ name, code }) => ({
+          options={states?.map(({ name, code }) => ({
             label: name,
             value: code,
           }))}

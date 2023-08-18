@@ -24,7 +24,7 @@ const useCheckout = ({ country }) => {
   const { data: { data: countries } = [], isFetching: isLoadingCountries } =
     useFetchCountries();
 
-  const { data: { states: stateList } = [] } = useFetchStates({
+  const { data: { states } = [] } = useFetchStates({
     selectedCountry,
   });
 
@@ -41,7 +41,7 @@ const useCheckout = ({ country }) => {
 
   return {
     countries,
-    stateList,
+    states,
     products,
     isLoading,
     setSelectedCountry,
