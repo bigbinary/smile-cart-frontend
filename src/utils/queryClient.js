@@ -21,7 +21,9 @@ persistQueryClient({
   maxAge: Infinity,
   dehydrateOptions: {
     shouldDehydrateQuery: ({ queryKey }) =>
-      queryKey.includes(QUERY_KEYS.COUNTRIES, QUERY_KEYS.STATES),
+      [QUERY_KEYS.COUNTRIES, QUERY_KEYS.STATES].some(key =>
+        queryKey.includes(key)
+      ),
   },
 });
 

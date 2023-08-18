@@ -17,6 +17,12 @@ const Form = ({
 
   const { setFieldValue, values } = useFormikContext();
 
+  const handleChangeCountry = country => {
+    setSelectedCountry(country);
+    setFieldValue("country", country);
+    setFieldValue("state", null);
+  };
+
   return (
     <>
       <Typography style="h3" weight="semibold">
@@ -40,10 +46,7 @@ const Form = ({
         placeholder={t("checkout.selectCountry")}
         size="large"
         value={values.country}
-        onChange={country => {
-          setSelectedCountry(country);
-          setFieldValue("country", country);
-        }}
+        onChange={country => handleChangeCountry(country)}
       />
       <div className="flex space-x-2">
         <Input
