@@ -2,15 +2,9 @@ import React, { useState } from "react";
 
 import { PageLoader } from "components/commons";
 import { totalPrice } from "components/utils";
-import {
-  useFetchCountries,
-  useFetchStates,
-} from "hooks/reactQuery/useCheckoutApi";
-import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
-import { toLabelAndValue } from "neetocommons/pure";
 import { Toastr, Typography } from "neetoui";
 import { Form as NeetoUIForm } from "neetoui/formik";
-import { isEmpty, keys } from "ramda";
+import { isEmpty } from "ramda";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import routes from "routes";
@@ -23,40 +17,28 @@ import {
   CHECKOUT_LOCAL_STORAGE_KEY,
 } from "./constants";
 import Form from "./Form";
+import useCheckout from "./hooks/useCheckout";
 import Items from "./Items";
 
 const Checkout = () => {
   const [isInformationSavedForNextTime, setIsInformationSavedForNextTime] =
     useState(false);
 
-  const checkoutFormData = getFromLocalStorage(CHECKOUT_LOCAL_STORAGE_KEY);
-
-  const [selectedCountry, setSelectedCountry] = useState(
-    checkoutFormData["country"] || toLabelAndValue("United States")
-  );
-
   const { t } = useTranslation();
-
   const history = useHistory();
 
-  const { cartItems, clearCart } = useCartItemsStore.pick();
+  const checkoutFormData = getFromLocalStorage(CHECKOUT_LOCAL_STORAGE_KEY);
 
-  const { data: { data: countries } = [], isFetching: isLoadingCountries } =
-    useFetchCountries();
+  const { cartItems } = useCartItemsStore.pick();
 
-  const { data: { states: stateList } = [] } = useFetchStates({
-    selectedCountry,
-  });
-
-  const { data: products = [], isLoading } = useFetchCartProducts(
-    keys(cartItems)
-  );
-
-  const redirectToHome = () =>
-    setTimeout(() => {
-      history.push(routes.root);
-      clearCart();
-    }, 1500);
+  const {
+    countries,
+    stateList,
+    products,
+    isLoading,
+    setSelectedCountry,
+    redirectToHome,
+  } = useCheckout({ country: checkoutFormData.country });
 
   const handleSubmit = values => {
     isInformationSavedForNextTime
@@ -67,7 +49,7 @@ const Checkout = () => {
     redirectToHome();
   };
 
-  if (isLoading || isLoadingCountries) return <PageLoader />;
+  if (isLoading) return <PageLoader />;
 
   if (isEmpty(cartItems)) return history.push(routes.root);
 
@@ -95,7 +77,6 @@ const Checkout = () => {
               {...{
                 countries,
                 isInformationSavedForNextTime,
-                selectedCountry,
                 setIsInformationSavedForNextTime,
                 setSelectedCountry,
                 stateList,

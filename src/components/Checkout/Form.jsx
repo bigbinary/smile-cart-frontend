@@ -11,12 +11,11 @@ const Form = ({
   setIsInformationSavedForNextTime,
   countries,
   setSelectedCountry,
-  selectedCountry,
   stateList,
 }) => {
   const { t } = useTranslation();
 
-  const { setFieldValue } = useFormikContext();
+  const { setFieldValue, values } = useFormikContext();
 
   return (
     <>
@@ -40,7 +39,7 @@ const Form = ({
         options={countries.data.map(({ name }) => toLabelAndValue(name))}
         placeholder={t("checkout.selectCountry")}
         size="large"
-        value={selectedCountry}
+        value={values.country}
         onChange={country => {
           setSelectedCountry(country);
           setFieldValue("country", country);
