@@ -2,25 +2,26 @@ import React from "react";
 
 import { Typography, Button, Tag } from "neetoui";
 import { Trans, useTranslation } from "react-i18next";
+import useCartItemsStore from "stores/useCartItemsStore";
 
-const Items = ({ products, totalPrice, cartItems }) => {
+const Items = ({ products, totalPrice }) => {
   const { t } = useTranslation();
+
+  const { cartItems } = useCartItemsStore.pick();
 
   return (
     <div className="flex h-full flex-col p-10">
       {products.map(({ images, name, slug, offerPrice }) => (
         <div className="mt-3 flex" key={slug}>
-          <div className="relative">
-            <div className="neeto-ui-rounded neeto-ui-border-gray-500 border">
-              <img
-                alt={name}
-                className="neeto-ui-rounded"
-                height="60px"
-                src={images[0]}
-                width="60px"
-              />
-            </div>
-            <div className="absolute -right-2 -top-2">
+          <div className="neeto-ui-rounded neeto-ui-border-gray-500 border relative">
+            <img
+              alt={name}
+              className="neeto-ui-rounded"
+              height="60px"
+              src={images[0]}
+              width="60px"
+            />
+            <div className="absolute right-0 top-0 -mr-2 -mt-2">
               <Tag className="w-2" label={cartItems[slug]} type="solid" />
             </div>
           </div>
@@ -42,7 +43,7 @@ const Items = ({ products, totalPrice, cartItems }) => {
         </Typography>
         <Typography className="flex justify-between" style="h5">
           <Trans
-            components={{ span: <span className="text-lime-700" /> }}
+            components={{ span: <span className="text-green-700" /> }}
             i18nKey="checkout.deliveryCharges"
             values={{ totalPrice }}
           />
@@ -58,7 +59,7 @@ const Items = ({ products, totalPrice, cartItems }) => {
       </div>
       <div className="mt-auto flex justify-center">
         <Button
-          className="w-1/3 justify-center bg-neutral-800"
+          className="bg-neutral-800 w-1/3 justify-center"
           label={t("checkout.confirmOrder")}
           type="submit"
         />

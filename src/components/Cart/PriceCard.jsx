@@ -28,7 +28,7 @@ const PriceCard = ({ totalMrp, totalOfferPrice }) => {
       </Typography>
       {isDiscountPresent && (
         <>
-          <Typography className="text-lime-700 flex justify-between">
+          <Typography className="flex justify-between text-green-700">
             <Trans
               components={{ span: <span /> }}
               i18nKey="cart.totalDiscounts"

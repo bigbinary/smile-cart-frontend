@@ -18,9 +18,10 @@ const localStoragePersistor = createWebStoragePersistor({
 persistQueryClient({
   queryClient,
   persistor: localStoragePersistor,
+  maxAge: Infinity,
   dehydrateOptions: {
     shouldDehydrateQuery: ({ queryKey }) =>
-      QUERY_KEYS.CHECKOUT.includes(queryKey),
+      queryKey.includes(QUERY_KEYS.COUNTRIES, QUERY_KEYS.STATES),
   },
 });
 

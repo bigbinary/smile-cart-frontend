@@ -29,21 +29,9 @@ export const CHECKOUT_FORM_VALIDATION_SCHEMA = yup.object().shape({
   zipCode: yup.number().required(t("checkout.validations.zipCodeRequired")),
 });
 
-export const COUNTRY_LIST = [
-  { label: "USA", value: "usa" },
-  { label: "India", value: "india" },
-  { label: "France", value: "france" },
-];
-
-export const STATE_LIST = [
-  { label: "Kerala", value: "kerala" },
-  { label: "TamilNadu", value: "tamilNadu" },
-  { label: "Goa", value: "goa" },
-];
-
 export const CHECKOUT_FORM_INITIAL_VALUES = {
   email: "",
-  country: COUNTRY_LIST[0],
+  country: [],
   firstName: "",
   lastName: "",
   address: "",
@@ -52,3 +40,5 @@ export const CHECKOUT_FORM_INITIAL_VALUES = {
   state: [],
   zipCode: "",
 };
+
+export const CHECKOUT_LOCAL_STORAGE_KEY = "checkoutUserDetails";

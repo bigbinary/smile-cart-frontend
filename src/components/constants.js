@@ -87,3 +87,22 @@ export const SAMPLE_PRODUCTS = [
 export const VALID_COUNT_REGEX = /^(?:\d*|)$/;
 
 export const SINGLE_QUANTITY = 1;
+
+export const STATE_LIST = [
+  {
+    country: "India",
+    states: [
+      { name: "Kerala", code: "KL" },
+      { name: "TamilNadu", code: "TN" },
+      { name: "Goa", code: "GA" },
+    ],
+  },
+  {
+    country: "United States",
+    states: [
+      { name: "Alabama", code: "AL" },
+      { name: "Arizona", code: "AZ" },
+      { name: "California", code: "CA" },
+    ],
+  },
+];

@@ -1,16 +1,22 @@
 import React from "react";
 
+import { useFormikContext } from "formik";
+import { toLabelAndValue } from "neetocommons/pure";
 import { Typography, Checkbox } from "neetoui";
 import { Input, Select } from "neetoui/formik";
 import { useTranslation } from "react-i18next";
 
-import { COUNTRY_LIST, STATE_LIST } from "./constants";
-
 const Form = ({
   isInformationSavedForNextTime,
   setIsInformationSavedForNextTime,
+  countries,
+  setSelectedCountry,
+  selectedCountry,
+  stateList,
 }) => {
   const { t } = useTranslation();
+
+  const { setFieldValue } = useFormikContext();
 
   return (
     <>
@@ -31,9 +37,14 @@ const Form = ({
         required
         label={t("checkout.country")}
         name="country"
-        options={COUNTRY_LIST}
+        options={countries.data.map(({ name }) => toLabelAndValue(name))}
         placeholder={t("checkout.selectCountry")}
         size="large"
+        value={selectedCountry}
+        onChange={country => {
+          setSelectedCountry(country);
+          setFieldValue("country", country);
+        }}
       />
       <div className="flex space-x-2">
         <Input
@@ -77,9 +88,12 @@ const Form = ({
           required
           label={t("checkout.state")}
           name="state"
-          options={STATE_LIST}
           placeholder={t("checkout.selectState")}
           size="large"
+          options={stateList?.map(({ name, code }) => ({
+            label: name,
+            value: code,
+          }))}
         />
         <Input
           required
@@ -93,11 +107,7 @@ const Form = ({
       <Checkbox
         checked={isInformationSavedForNextTime}
         label={t("checkout.checkboxTitle")}
-        onChange={() =>
-          setIsInformationSavedForNextTime(
-            isInformationSavedForNextTime => !isInformationSavedForNextTime
-          )
-        }
+        onChange={() => setIsInformationSavedForNextTime(isSaved => !isSaved)}
       />
     </>
   );
