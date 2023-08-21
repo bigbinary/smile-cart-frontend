@@ -17,13 +17,15 @@ const ProductListItem = ({
 
   return (
     <div
-      className="border neeto-ui-border-black neeto-ui-rounded-xl h-60 flex w-48 flex-col items-center p-4"
+      className="border neeto-ui-border-black neeto-ui-rounded-xl flex w-48 flex-col items-center justify-between p-4"
       onClick={() => history.push(`products/${slug}`)}
     >
       <img alt={name} className="aspect-square h-40 w-40" src={imageUrl} />
-      <Typography weight="semibold">{name}</Typography>
+      <Typography className="text-center" weight="semibold">
+        {name}
+      </Typography>
       <Typography>${offerPrice}</Typography>
-      <div className="bottom-4 text-center">
+      <div className="flex items-center justify-end">
         <AddToCart {...{ availableQuantity, slug }} />
       </div>
     </div>

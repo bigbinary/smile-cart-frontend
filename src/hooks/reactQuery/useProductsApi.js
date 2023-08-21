@@ -10,17 +10,17 @@ export const useFetchCartProducts = slugs =>
     staleTime: DEFAULT_STALE_TIME,
   });
 
-export const useSearchedProducts = (searchKey, page) =>
+export const useFetchProducts = params =>
   useQuery({
-    queryKey: [QUERY_KEYS.PRODUCTS, searchKey, page],
-    queryFn: () => productsApi.getSearchedProducts(searchKey, page),
+    queryKey: [QUERY_KEYS.PRODUCTS, params],
+    queryFn: () => productsApi.fetchProducts(params),
     staleTime: DEFAULT_STALE_TIME,
     keepPreviousData: true,
   });
 
-export const useShowProductBySlug = slug =>
+export const useFetchProduct = slug =>
   useQuery({
     queryKey: [QUERY_KEYS.PRODUCTS, slug],
-    queryFn: () => productsApi.show(slug),
+    queryFn: () => productsApi.fetchProduct(slug),
     staleTime: DEFAULT_STALE_TIME,
   });

@@ -34,9 +34,9 @@ const Carousel = ({ title, images }) => {
         />
         <img
           alt={title}
-          height="350px"
+          height="250px"
           src={images[currentIndex]}
-          width="350px"
+          width="250px"
         />
         <Button
           className="focus-within:ring-0 shrink-0 hover:bg-transparent"

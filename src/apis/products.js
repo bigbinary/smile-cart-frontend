@@ -1,30 +1,28 @@
-/* TODO: Connect to backend
+import { SMILE_CART_BASE_URL } from "constants";
 
+// eslint-disable-next-line @bigbinary/neeto/no-axios-import-outside-apis
 import axios from "axios";
 
-const getSearchedProducts = (searchKey, page) =>
-  axios.get("api/products", {
-    params: { search_key: searchKey, page_number: page },
-  });
+const fetchProducts = params =>
+  axios.get(`${SMILE_CART_BASE_URL}/products`, { params });
 
-const show = slug => axios.get(`api/products/${slug}`);
+const fetchProduct = slug =>
+  axios.get(`${SMILE_CART_BASE_URL}/products/${slug}`);
 
-*/
+// import { buildProducts } from "components/utils";
+// import { filterBy, findBy } from "neetocommons/pure";
+// import { includes, toLower } from "ramda";
 
-import { buildProducts } from "components/utils";
-import { filterBy, findBy } from "neetocommons/pure";
-import { includes, toLower } from "ramda";
+// const products = buildProducts();
 
-const products = buildProducts();
+// const getSearchedProducts = (searchKey, page) =>
+//   filterBy(
+//     { name: name => includes(toLower(searchKey), toLower(name)) },
+//     products
+//   ).slice((page - 1) * 8, page * 8);
 
-const getSearchedProducts = (searchKey, page) =>
-  filterBy(
-    { name: name => includes(toLower(searchKey), toLower(name)) },
-    products
-  ).slice((page - 1) * 8, page * 8);
+// const show = slug => findBy({ slug }, products);
 
-const show = slug => findBy({ slug }, products);
-
-const productsApi = { getSearchedProducts, show };
+const productsApi = { fetchProducts, fetchProduct };
 
 export default productsApi;

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useShowProductBySlug } from "hooks/reactQuery/useProductsApi";
+import { useFetchProduct } from "hooks/reactQuery/useProductsApi";
 import { Button, Typography } from "neetoui";
 import { isNil, paths } from "ramda";
 import { useTranslation } from "react-i18next";
@@ -10,8 +10,8 @@ import useCartItemsStore from "stores/useCartItemsStore";
 import { shallow } from "zustand/shallow";
 
 import AddToCart from "./AddToCart";
-import { Carousel, Header, PageNotFound, PageLoader } from "./commons";
-import { SINGLE_QUANTITY } from "./constants";
+import { Header, PageNotFound, PageLoader, Carousel } from "./commons";
+import { SAMPLE_PRODUCTS, SINGLE_QUANTITY } from "./constants";
 
 const Product = () => {
   const { t } = useTranslation();
@@ -22,18 +22,22 @@ const Product = () => {
     paths([["cartItems", slug], ["setSelectedQuantity"]]),
     shallow
   );
-  const { data: product = [], isLoading } = useShowProductBySlug(slug);
+
+  const { data: { data: product = {} } = [], isLoading } =
+    useFetchProduct(slug);
 
   const {
     name,
     imageUrl,
-    images,
+    // imageUrls,
     description,
     mrp,
     offerPrice,
-    discountRate,
     availableQuantity,
   } = product;
+
+  const discount = mrp - offerPrice;
+  const discountPercentage = ((discount / mrp) * 100).toFixed(1);
 
   if (isLoading) return <PageLoader />;
 
@@ -42,8 +46,11 @@ const Product = () => {
   return (
     <>
       <Header title={name} />
-      <div className="mt-6 flex gap-6">
-        <Carousel className="w-2/5" images={[imageUrl, ...images]} />
+      <div className="m-16 flex gap-10">
+        <Carousel
+          className="w-2/5"
+          images={[imageUrl, ...SAMPLE_PRODUCTS[0].images]}
+        />
         <div className="w-3/5 space-y-4">
           <Typography style="body1">{description}</Typography>
           <Typography style="body1">{t("product.mrp", { mrp })}</Typography>
@@ -55,7 +62,7 @@ const Product = () => {
             style="body1"
             weight="extrabold"
           >
-            {t("product.discountRate", { discountRate })}
+            {t("product.discountRate", { discountRate: discountPercentage })}
           </Typography>
           <div className="flex space-x-10">
             <AddToCart {...{ availableQuantity, slug }} />

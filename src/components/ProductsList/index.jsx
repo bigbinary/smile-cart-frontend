@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 
-import { useSearchedProducts } from "hooks/reactQuery/useProductsApi";
+import { Header, PageLoader } from "components/commons";
+import { useFetchProducts } from "hooks/reactQuery/useProductsApi";
 import useDebounce from "hooks/useDebounce";
 import { Search } from "neetoicons";
 import { Input, Pagination } from "neetoui";
 import { useTranslation } from "react-i18next";
 
 import ProductListItem from "./ProductListItem";
-
-import { Header } from "../commons";
 
 const ProductsList = () => {
   const [searchKey, setSearchKey] = useState("");
@@ -18,10 +17,18 @@ const ProductsList = () => {
 
   const debouncedSearchKey = useDebounce(searchKey, 300);
 
-  const { data: products } = useSearchedProducts(
-    debouncedSearchKey,
-    currentPage
-  );
+  const productsParams = {
+    searchedProductName: debouncedSearchKey,
+    page: currentPage,
+    recordsPerPage: 8,
+  };
+
+  const { data: { data: productsList = [] } = [], isLoading } =
+    useFetchProducts(productsParams);
+
+  const { products } = productsList;
+
+  if (isLoading) return <PageLoader />;
 
   return (
     <div className="flex flex-col">
@@ -42,7 +49,7 @@ const ProductsList = () => {
           <ProductListItem key={product.slug} {...product} />
         ))}
       </div>
-      <div className="self-end">
+      <div className="mb-5 self-end">
         <Pagination
           count={50}
           navigate={page => setCurrentPage(page)}
