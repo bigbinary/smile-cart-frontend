@@ -2,26 +2,25 @@ import React from "react";
 
 import { useShowProductBySlug } from "hooks/reactQuery/useProductsApi";
 import { Button, Typography } from "neetoui";
-import { isNil, paths } from "ramda";
+import { isNil } from "ramda";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import routes from "routes";
-import useCartItemsStore from "stores/useCartItemsStore";
-import { shallow } from "zustand/shallow";
 
 import AddToCart from "./AddToCart";
 import { Carousel, Header, PageNotFound, PageLoader } from "./commons";
 import { SINGLE_QUANTITY } from "./constants";
+import useSelectedQuantity from "./hooks/useSelectedQuantity";
 
 const Product = () => {
   const { t } = useTranslation();
 
   const { slug } = useParams();
 
-  const [selectedQuantity, setSelectedQuantity] = useCartItemsStore(
-    paths([["cartItems", slug], ["setSelectedQuantity"]]),
-    shallow
-  );
+  const { selectedQuantity, setSelectedQuantity } = useSelectedQuantity({
+    slug,
+  });
+
   const { data: product = [], isLoading } = useShowProductBySlug(slug);
 
   const {

@@ -1,21 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { useFormikContext } from "formik";
+import {
+  useFetchStates,
+  useFetchCountries,
+} from "hooks/reactQuery/useCheckoutApi";
 import { toLabelAndValue } from "neetocommons/pure";
 import { Typography, Checkbox } from "neetoui";
 import { Input, Select } from "neetoui/formik";
 import { useTranslation } from "react-i18next";
+import { getFromLocalStorage } from "utils/storage";
+
+import {
+  CHECKOUT_FORM_INITIAL_VALUES,
+  CHECKOUT_LOCAL_STORAGE_KEY,
+} from "./constants";
 
 const Form = ({
   isInformationSavedForNextTime,
   setIsInformationSavedForNextTime,
-  countries,
-  setSelectedCountry,
-  states,
 }) => {
+  const checkoutFormData = getFromLocalStorage(CHECKOUT_LOCAL_STORAGE_KEY);
+
+  const [selectedCountry, setSelectedCountry] = useState(
+    checkoutFormData?.country || CHECKOUT_FORM_INITIAL_VALUES.country
+  );
+
   const { t } = useTranslation();
 
   const { setFieldValue, values } = useFormikContext();
+
+  const { data: { data: countries } = [] } = useFetchCountries();
+
+  const { data: { states } = [] } = useFetchStates({
+    selectedCountry,
+  });
 
   const handleChangeCountry = country => {
     setSelectedCountry(country);
@@ -114,4 +133,5 @@ const Form = ({
     </>
   );
 };
+
 export default Form;

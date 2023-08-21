@@ -25,7 +25,7 @@
   },
   "checkout": {
     "title": "Checkout",
-    "subtotal": "Subtotal  <span>${{totalPrice}}</span>",
+    "subtotal": "Subtotal <span>${{totalPrice}}</span>",
     "totalPrice": "Total Payable <span>${{totalPrice}}</span>",
     "deliveryCharges": "Delivery charges <span>FREE</span>",
     "contact": "Contact",
@@ -59,9 +59,7 @@
       "cityRequired": "City is required",
       "stateRequired": "State is required",
       "zipCodeRequired": "Zip code is required",
-      "error": {
-        "emailInvalid": "Email address is invalid"
-      }
+      "emailInvalid": "Email address is invalid"
     }
   },
   "pageLoading": "Loading Please Wait"

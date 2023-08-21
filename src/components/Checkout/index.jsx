@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
 import { PageLoader } from "components/commons";
-import { totalPrice } from "components/utils";
+import { useFetchCountries } from "hooks/reactQuery/useCheckoutApi";
 import { Toastr, Typography } from "neetoui";
 import { Form as NeetoUIForm } from "neetoui/formik";
-import { isEmpty } from "ramda";
+import { isEmpty, keys } from "ramda";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import routes from "routes";
@@ -17,33 +17,40 @@ import {
   CHECKOUT_LOCAL_STORAGE_KEY,
 } from "./constants";
 import Form from "./Form";
-import useCheckout from "./hooks/useCheckout";
 import Items from "./Items";
+
+import { useFetchCartProducts } from "../../hooks/reactQuery/useProductsApi";
 
 const Checkout = () => {
   const [isInformationSavedForNextTime, setIsInformationSavedForNextTime] =
     useState(false);
 
   const { t } = useTranslation();
+
   const history = useHistory();
 
   const checkoutFormData = getFromLocalStorage(CHECKOUT_LOCAL_STORAGE_KEY);
 
-  const { cartItems } = useCartItemsStore.pick();
+  const { cartItems, clearCart } = useCartItemsStore.pick();
 
-  const {
-    countries,
-    states,
-    products,
-    isLoading,
-    setSelectedCountry,
-    redirectToHome,
-  } = useCheckout({ country: checkoutFormData.country });
+  const { isLoading: isLoadingProducts } = useFetchCartProducts(
+    keys(cartItems)
+  );
+
+  const { isFetching: isLoadingCountries } = useFetchCountries();
+
+  const isLoading = isLoadingProducts || isLoadingCountries;
+
+  const redirectToHome = () =>
+    setTimeout(() => {
+      history.push(routes.root);
+      clearCart();
+    }, 1500);
 
   const handleSubmit = values => {
-    isInformationSavedForNextTime
-      ? setToLocalStorage(CHECKOUT_LOCAL_STORAGE_KEY, values)
-      : setToLocalStorage(CHECKOUT_LOCAL_STORAGE_KEY, null);
+    const dataToPersist = isInformationSavedForNextTime ? values : null;
+
+    setToLocalStorage(CHECKOUT_LOCAL_STORAGE_KEY, dataToPersist);
 
     Toastr.success("", { icon: "👍", className: "w-20" });
     redirectToHome();
@@ -75,20 +82,14 @@ const Checkout = () => {
           <div className="mt-8 space-y-4">
             <Form
               {...{
-                countries,
                 isInformationSavedForNextTime,
                 setIsInformationSavedForNextTime,
-                setSelectedCountry,
-                states,
               }}
             />
           </div>
         </div>
         <div className="neeto-ui-bg-gray-300 h-screen w-1/2 pt-10">
-          <Items
-            {...{ products }}
-            totalPrice={totalPrice(cartItems, products)}
-          />
+          <Items />
         </div>
       </div>
     </NeetoUIForm>

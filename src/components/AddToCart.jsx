@@ -1,20 +1,18 @@
 import React from "react";
 
 import { Button } from "neetoui";
-import { isNil, paths } from "ramda";
+import { isNil } from "ramda";
 import { useTranslation } from "react-i18next";
-import useCartItemsStore from "stores/useCartItemsStore";
-import { shallow } from "zustand/shallow";
 
+import useSelectedQuantity from "./hooks/useSelectedQuantity";
 import ProductQuantity from "./ProductQuantity";
 
 const AddToCart = ({ slug, availableQuantity }) => {
   const { t } = useTranslation();
 
-  const [selectedQuantity, setSelectedQuantity] = useCartItemsStore(
-    paths([["cartItems", slug], ["setSelectedQuantity"]]),
-    shallow
-  );
+  const { selectedQuantity, setSelectedQuantity } = useSelectedQuantity({
+    slug,
+  });
 
   if (isNil(selectedQuantity)) {
     return (
