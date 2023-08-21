@@ -1,8 +1,8 @@
+import { QUERY_KEYS } from "constants/query";
+
 import { QueryClient, QueryCache } from "react-query";
 import { createWebStoragePersistor } from "react-query/createWebStoragePersistor-experimental";
 import { persistQueryClient } from "react-query/persistQueryClient-experimental";
-
-import { QUERY_KEYS } from "../constants/query";
 
 const queryClient = new QueryClient({
   queryCache: new QueryCache(),

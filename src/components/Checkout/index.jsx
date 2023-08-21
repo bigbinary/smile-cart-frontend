@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { PageLoader } from "components/commons";
 import { useFetchCountries } from "hooks/reactQuery/useCheckoutApi";
+import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
 import { Toastr, Typography } from "neetoui";
 import { Form as NeetoUIForm } from "neetoui/formik";
 import { isEmpty, keys } from "ramda";
@@ -18,8 +19,6 @@ import {
 } from "./constants";
 import Form from "./Form";
 import Items from "./Items";
-
-import { useFetchCartProducts } from "../../hooks/reactQuery/useProductsApi";
 
 const Checkout = () => {
   const [isInformationSavedForNextTime, setIsInformationSavedForNextTime] =
