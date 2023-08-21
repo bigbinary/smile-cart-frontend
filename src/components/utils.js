@@ -1,5 +1,5 @@
 import { dynamicArray } from "neetocommons/pure";
-import { modify, concat, __, pipe, map, sum } from "ramda";
+import { modify, concat, __, sum } from "ramda";
 
 import { SAMPLE_PRODUCTS } from "./constants";
 
@@ -11,7 +11,4 @@ export const buildProducts = () =>
   ).flat();
 
 export const totalPrice = (cartItems, products) =>
-  pipe(
-    map(({ offerPrice, slug }) => offerPrice * cartItems[slug]),
-    sum
-  )(products);
+  sum(products.map(({ offerPrice, slug }) => offerPrice * cartItems[slug]));

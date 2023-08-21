@@ -5,7 +5,7 @@ import PageLoader from "components/commons/PageLoader";
 import { totalPrice } from "components/utils";
 import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
 import { NoData } from "neetoui";
-import { sum, pipe, map, isEmpty, keys } from "ramda";
+import { sum, isEmpty, keys } from "ramda";
 import { useTranslation } from "react-i18next";
 import useCartItemsStore from "stores/useCartItemsStore";
 
@@ -21,10 +21,7 @@ const Cart = () => {
     keys(cartItems)
   );
 
-  const totalMrp = pipe(
-    map(({ mrp, slug }) => mrp * cartItems[slug]),
-    sum
-  )(products);
+  const totalMrp = sum(products.map(({ mrp, slug }) => mrp * cartItems[slug]));
 
   const totalOfferPrice = totalPrice(cartItems, products);
 

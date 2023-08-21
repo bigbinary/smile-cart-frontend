@@ -5,7 +5,15 @@ const setToLocalStorage = (key, value) => {
 };
 
 const getFromLocalStorage = key => {
-  JSON.parse(localStorage.getItem(key));
+  let response = null;
+  try {
+    const value = localStorage.getItem(key);
+    response = value ? JSON.parse(value) : null;
+  } catch {
+    response = null;
+  }
+
+  return response;
 };
 
 export { setToLocalStorage, getFromLocalStorage };

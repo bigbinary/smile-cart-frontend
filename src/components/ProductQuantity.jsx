@@ -2,22 +2,20 @@ import React, { useRef } from "react";
 
 import TooltipWrapper from "components/commons/TooltipWrapper";
 import { Input, Button, Toastr } from "neetoui";
-import { paths } from "ramda";
 import { useTranslation } from "react-i18next";
-import useCartItemsStore from "stores/useCartItemsStore";
-import { shallow } from "zustand/shallow";
 
 import { VALID_COUNT_REGEX } from "./constants";
+import useSelectedQuantity from "./hooks/useSelectedQuantity";
 
 const ProductQuantity = ({ slug, availableQuantity }) => {
   const { t } = useTranslation();
 
   const countInputFocus = useRef(null);
 
-  const [selectedQuantity, setSelectedQuantity] = useCartItemsStore(
-    paths([["cartItems", slug], ["setSelectedQuantity"]]),
-    shallow
-  );
+  const { selectedQuantity, setSelectedQuantity } = useSelectedQuantity({
+    slug,
+  });
+
   const parsedSelectedQuantity = parseInt(selectedQuantity) || 0;
   const isNotValidQuantity = parsedSelectedQuantity >= availableQuantity;
 

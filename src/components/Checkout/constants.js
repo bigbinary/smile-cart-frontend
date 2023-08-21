@@ -5,7 +5,7 @@ import * as yup from "yup";
 export const CHECKOUT_FORM_VALIDATION_SCHEMA = yup.object().shape({
   email: yup
     .string()
-    .email(t("checkout.validations.error.emailInvalid"))
+    .email(t("checkout.validations.emailInvalid"))
     .required(t("checkout.validations.emailRequired")),
   country: yup
     .object()

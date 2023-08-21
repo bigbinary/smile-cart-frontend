@@ -1,13 +1,20 @@
 import React from "react";
 
+import { totalPrice } from "components/utils";
+import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
 import { Typography, Button, Tag } from "neetoui";
+import { keys } from "ramda";
 import { Trans, useTranslation } from "react-i18next";
 import useCartItemsStore from "stores/useCartItemsStore";
 
-const Items = ({ products, totalPrice }) => {
+const Items = () => {
   const { t } = useTranslation();
 
   const { cartItems } = useCartItemsStore.pick();
+
+  const { data: products = [] } = useFetchCartProducts(keys(cartItems));
+
+  const totalCheckoutPrice = totalPrice(cartItems, products);
 
   return (
     <div className="flex h-full flex-col p-10">
@@ -38,14 +45,14 @@ const Items = ({ products, totalPrice }) => {
           <Trans
             components={{ span: <span /> }}
             i18nKey="checkout.subtotal"
-            values={{ totalPrice }}
+            values={{ totalPrice: totalCheckoutPrice }}
           />
         </Typography>
         <Typography className="flex justify-between" style="h5">
           <Trans
             components={{ span: <span className="text-green-700" /> }}
             i18nKey="checkout.deliveryCharges"
-            values={{ totalPrice }}
+            values={{ totalPrice: totalCheckoutPrice }}
           />
         </Typography>
         <div className="neeto-ui-border-black border-t border-dashed" />
@@ -53,7 +60,7 @@ const Items = ({ products, totalPrice }) => {
           <Trans
             components={{ span: <span /> }}
             i18nKey="checkout.totalPrice"
-            values={{ totalPrice }}
+            values={{ totalPrice: totalCheckoutPrice }}
           />
         </Typography>
       </div>
