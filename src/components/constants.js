@@ -106,3 +106,7 @@ export const STATE_LIST = [
     ],
   },
 ];
+
+export const MRP = "mrp";
+
+export const OFFER_PRICE = "offerPrice";

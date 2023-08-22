@@ -17,9 +17,8 @@ const Product = () => {
 
   const { slug } = useParams();
 
-  const { selectedQuantity, setSelectedQuantity } = useSelectedQuantity({
-    slug,
-  });
+  const { selectedQuantity, updateSelectedQuantity } =
+    useSelectedQuantity(slug);
 
   const { data: product = [], isLoading } = useShowProductBySlug(slug);
 
@@ -64,7 +63,7 @@ const Product = () => {
               size="large"
               to={routes.checkout}
               onClick={() =>
-                setSelectedQuantity(slug, selectedQuantity || SINGLE_QUANTITY)
+                updateSelectedQuantity(selectedQuantity || SINGLE_QUANTITY)
               }
             />
           </div>

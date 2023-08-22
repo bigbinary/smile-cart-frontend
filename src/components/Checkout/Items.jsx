@@ -1,11 +1,14 @@
 import React from "react";
 
-import { totalPrice } from "components/utils";
+import { OFFER_PRICE } from "components/constants";
+import { cartTotalOf } from "components/utils";
 import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
 import { Typography, Button, Tag } from "neetoui";
 import { keys } from "ramda";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import useCartItemsStore from "stores/useCartItemsStore";
+
+import PriceEntry from "./PriceEntry";
 
 const Items = () => {
   const { t } = useTranslation();
@@ -14,7 +17,7 @@ const Items = () => {
 
   const { data: products = [] } = useFetchCartProducts(keys(cartItems));
 
-  const totalCheckoutPrice = totalPrice(cartItems, products);
+  const totalCheckoutPrice = cartTotalOf(products, OFFER_PRICE);
 
   return (
     <div className="flex h-full flex-col p-10">
@@ -41,28 +44,19 @@ const Items = () => {
         </div>
       ))}
       <div className="mt-5 w-3/4 space-y-3">
-        <Typography className="flex justify-between" style="h5">
-          <Trans
-            components={{ span: <span /> }}
-            i18nKey="checkout.subtotal"
-            values={{ totalPrice: totalCheckoutPrice }}
-          />
-        </Typography>
-        <Typography className="flex justify-between" style="h5">
-          <Trans
-            components={{ span: <span className="text-green-700" /> }}
-            i18nKey="checkout.deliveryCharges"
-            values={{ totalPrice: totalCheckoutPrice }}
-          />
-        </Typography>
+        <PriceEntry
+          i18nKey="checkout.subtotal"
+          totalPrice={totalCheckoutPrice}
+        />
+        <PriceEntry
+          className="text-green-700"
+          i18nKey="checkout.deliveryCharges"
+        />
         <div className="neeto-ui-border-black border-t border-dashed" />
-        <Typography className="flex justify-between">
-          <Trans
-            components={{ span: <span /> }}
-            i18nKey="checkout.totalPrice"
-            values={{ totalPrice: totalCheckoutPrice }}
-          />
-        </Typography>
+        <PriceEntry
+          i18nKey="checkout.totalPrice"
+          totalPrice={totalCheckoutPrice}
+        />
       </div>
       <div className="mt-auto flex justify-center">
         <Button

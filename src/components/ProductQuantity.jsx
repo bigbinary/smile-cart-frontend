@@ -12,9 +12,8 @@ const ProductQuantity = ({ slug, availableQuantity }) => {
 
   const countInputFocus = useRef(null);
 
-  const { selectedQuantity, setSelectedQuantity } = useSelectedQuantity({
-    slug,
-  });
+  const { selectedQuantity, updateSelectedQuantity } =
+    useSelectedQuantity(slug);
 
   const parsedSelectedQuantity = parseInt(selectedQuantity) || 0;
   const isNotValidQuantity = parsedSelectedQuantity >= availableQuantity;
@@ -30,10 +29,10 @@ const ProductQuantity = ({ slug, availableQuantity }) => {
       });
 
       Toastr.error(errorMessage, { autoClose: 2000 });
-      setSelectedQuantity(slug, availableQuantity);
+      updateSelectedQuantity(availableQuantity);
       countInputFocus.current.blur();
     } else if (VALID_COUNT_REGEX.test(value)) {
-      setSelectedQuantity(slug, value);
+      updateSelectedQuantity(value);
     }
   };
 
@@ -45,7 +44,7 @@ const ProductQuantity = ({ slug, availableQuantity }) => {
         style="text"
         onClick={e => {
           e.stopPropagation();
-          setSelectedQuantity(slug, parsedSelectedQuantity - 1);
+          updateSelectedQuantity(parsedSelectedQuantity - 1);
         }}
       />
       <Input
@@ -69,7 +68,7 @@ const ProductQuantity = ({ slug, availableQuantity }) => {
           style="text"
           onClick={e => {
             e.stopPropagation();
-            setSelectedQuantity(slug, parsedSelectedQuantity + 1);
+            updateSelectedQuantity(parsedSelectedQuantity + 1);
           }}
         />
       </TooltipWrapper>

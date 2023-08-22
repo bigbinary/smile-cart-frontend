@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 
 import { PageLoader } from "components/commons";
 import { useFetchCountries } from "hooks/reactQuery/useCheckoutApi";
 import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
-import { Toastr, Typography } from "neetoui";
+import { Toastr, Typography, Checkbox } from "neetoui";
 import { Form as NeetoUIForm } from "neetoui/formik";
 import { isEmpty, keys } from "ramda";
 import { useTranslation } from "react-i18next";
@@ -21,10 +21,9 @@ import Form from "./Form";
 import Items from "./Items";
 
 const Checkout = () => {
-  const [isInformationSavedForNextTime, setIsInformationSavedForNextTime] =
-    useState(false);
-
   const { t } = useTranslation();
+
+  const checkboxRef = useRef(null);
 
   const history = useHistory();
 
@@ -47,7 +46,7 @@ const Checkout = () => {
     }, 1500);
 
   const handleSubmit = values => {
-    const dataToPersist = isInformationSavedForNextTime ? values : null;
+    const dataToPersist = checkboxRef.current.checked ? values : null;
 
     setToLocalStorage(CHECKOUT_LOCAL_STORAGE_KEY, dataToPersist);
 
@@ -79,12 +78,8 @@ const Checkout = () => {
             {t("checkout.title")}
           </Typography>
           <div className="mt-8 space-y-4">
-            <Form
-              {...{
-                isInformationSavedForNextTime,
-                setIsInformationSavedForNextTime,
-              }}
-            />
+            <Form />
+            <Checkbox label={t("checkout.checkboxTitle")} ref={checkboxRef} />
           </div>
         </div>
         <div className="neeto-ui-bg-gray-300 h-screen w-1/2 pt-10">

@@ -6,12 +6,12 @@ import { useQuery } from "react-query";
 
 export const useFetchCountries = () =>
   useQuery({
-    queryKey: [QUERY_KEYS.COUNTRIES],
+    queryKey: QUERY_KEYS.COUNTRIES,
     queryFn: () => countriesApi.fetchCounties(),
     staleTime: Infinity,
   });
 
-export const useFetchStates = ({ selectedCountry }) =>
+export const useFetchStates = selectedCountry =>
   useQuery({
     queryKey: [QUERY_KEYS.STATES, selectedCountry],
     queryFn: () => statesApi.fetchStates({ country: selectedCountry.label }),
