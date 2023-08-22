@@ -11,7 +11,7 @@ const useSelectedQuantity = slug => {
   const updateSelectedQuantity = quantity =>
     setSelectedQuantity(slug, quantity);
 
-  return { selectedQuantity, updateSelectedQuantity };
+  return { selectedQuantity, setSelectedQuantity: updateSelectedQuantity };
 };
 
 export default useSelectedQuantity;

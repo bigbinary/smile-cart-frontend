@@ -10,8 +10,7 @@ import ProductQuantity from "./ProductQuantity";
 const AddToCart = ({ slug, availableQuantity }) => {
   const { t } = useTranslation();
 
-  const { selectedQuantity, updateSelectedQuantity } =
-    useSelectedQuantity(slug);
+  const { selectedQuantity, setSelectedQuantity } = useSelectedQuantity(slug);
 
   if (isNil(selectedQuantity)) {
     return (
@@ -20,7 +19,7 @@ const AddToCart = ({ slug, availableQuantity }) => {
         size="large"
         onClick={e => {
           e.stopPropagation();
-          updateSelectedQuantity(1);
+          setSelectedQuantity(1);
         }}
       />
     );
