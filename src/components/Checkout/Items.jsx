@@ -3,7 +3,7 @@ import React from "react";
 import { totalPrice } from "components/utils";
 import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
 import { Typography, Button, Tag } from "neetoui";
-import { keys } from "ramda";
+import { keys, map, path } from "ramda";
 import { Trans, useTranslation } from "react-i18next";
 import useCartItemsStore from "stores/useCartItemsStore";
 
@@ -12,20 +12,21 @@ const Items = () => {
 
   const { cartItems } = useCartItemsStore.pick();
 
-  const { data: products = [] } = useFetchCartProducts(keys(cartItems));
+  const productsResponse = useFetchCartProducts(keys(cartItems));
 
+  const products = map(path(["data", "data"]), productsResponse);
   const totalCheckoutPrice = totalPrice(cartItems, products);
 
   return (
     <div className="flex h-full flex-col p-10">
-      {products.map(({ images, name, slug, offerPrice }) => (
+      {products.map(({ imageUrl, name, slug, offerPrice }) => (
         <div className="mt-3 flex" key={slug}>
           <div className="neeto-ui-rounded neeto-ui-border-gray-500 border relative">
             <img
               alt={name}
               className="neeto-ui-rounded"
               height="60px"
-              src={images[0]}
+              src={imageUrl}
               width="60px"
             />
             <div className="absolute right-0 top-0 -mr-2 -mt-2">
@@ -52,7 +53,6 @@ const Items = () => {
           <Trans
             components={{ span: <span className="text-green-700" /> }}
             i18nKey="checkout.deliveryCharges"
-            values={{ totalPrice: totalCheckoutPrice }}
           />
         </Typography>
         <div className="neeto-ui-border-black border-t border-dashed" />

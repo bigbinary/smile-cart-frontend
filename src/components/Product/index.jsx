@@ -1,16 +1,17 @@
 import React from "react";
 
+import AddToCart from "components/AddToCart";
+import { Header, PageNotFound, PageLoader } from "components/commons";
+import { SINGLE_QUANTITY } from "components/constants";
+import useSelectedQuantity from "components/hooks/useSelectedQuantity";
 import { useFetchProduct } from "hooks/reactQuery/useProductsApi";
 import { Button, Typography } from "neetoui";
-import { isNil } from "ramda";
+import { isNil, isNotNil } from "ramda";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import routes from "routes";
 
-import AddToCart from "./AddToCart";
-import { Carousel, Header, PageNotFound, PageLoader } from "./commons";
-import { SAMPLE_PRODUCTS, SINGLE_QUANTITY } from "./constants";
-import useSelectedQuantity from "./hooks/useSelectedQuantity";
+import Carousel from "./Carousel";
 
 const Product = () => {
   const { t } = useTranslation();
@@ -21,12 +22,13 @@ const Product = () => {
     slug,
   });
 
-  const { data: product = [], isLoading } = useFetchProduct(slug);
+  const { data: { data: product = {} } = {}, isLoading } =
+    useFetchProduct(slug);
 
   const {
     name,
     imageUrl,
-    // imageUrls,
+    imageUrls,
     description,
     mrp,
     offerPrice,
@@ -43,11 +45,12 @@ const Product = () => {
   return (
     <>
       <Header title={name} />
-      <div className="m-16 flex gap-10">
-        <Carousel
-          className="w-2/5"
-          images={[imageUrl, ...SAMPLE_PRODUCTS[0].images]}
-        />
+      <div className="m-16 flex justify-center gap-16">
+        {isNotNil(imageUrls) ? (
+          <Carousel className="w-2/5" />
+        ) : (
+          <img alt={name} height="200px" src={imageUrl} width="200px" />
+        )}
         <div className="w-3/5 space-y-4">
           <Typography style="body1">{description}</Typography>
           <Typography style="body1">{t("product.mrp", { mrp })}</Typography>

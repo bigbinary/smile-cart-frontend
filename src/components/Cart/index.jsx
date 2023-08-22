@@ -5,7 +5,7 @@ import PageLoader from "components/commons/PageLoader";
 import { totalPrice } from "components/utils";
 import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
 import { NoData } from "neetoui";
-import { sum, isEmpty, keys } from "ramda";
+import { prop, sum, isEmpty, keys, map, path } from "ramda";
 import { useTranslation } from "react-i18next";
 import useCartItemsStore from "stores/useCartItemsStore";
 
@@ -17,17 +17,18 @@ const Cart = () => {
 
   const { cartItems } = useCartItemsStore.pick();
 
-  const { data: products = [], isLoading } = useFetchCartProducts(
-    keys(cartItems)
-  );
+  const productsResponse = useFetchCartProducts(keys(cartItems));
 
+  const isLoading = productsResponse.some(prop("isLoading"));
+
+  const products = map(path(["data", "data"]), productsResponse).filter(
+    Boolean
+  );
   const totalMrp = sum(products.map(({ mrp, slug }) => mrp * cartItems[slug]));
 
   const totalOfferPrice = totalPrice(cartItems, products);
 
-  if (isLoading) {
-    return <PageLoader />;
-  }
+  if (isLoading) return <PageLoader />;
 
   if (isEmpty(products)) {
     return (
@@ -42,7 +43,7 @@ const Cart = () => {
       <Header title={t("cart.title")} />
       <div className="mt-10 flex justify-center space-x-10">
         <div className="w-1/3 space-y-5">
-          {products.map(product => (
+          {products?.map(product => (
             <ProductCard key={product.slug} {...product} />
           ))}
         </div>

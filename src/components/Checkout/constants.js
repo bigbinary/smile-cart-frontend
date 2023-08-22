@@ -1,5 +1,4 @@
 import { t } from "i18next";
-import { toLabelAndValue } from "neetocommons/pure";
 import * as yup from "yup";
 
 export const CHECKOUT_FORM_VALIDATION_SCHEMA = yup.object().shape({
@@ -32,7 +31,7 @@ export const CHECKOUT_FORM_VALIDATION_SCHEMA = yup.object().shape({
 
 export const CHECKOUT_FORM_INITIAL_VALUES = {
   email: "",
-  country: toLabelAndValue("United States"),
+  country: [{ value: "US", label: "United States" }],
   firstName: "",
   lastName: "",
   address: "",

@@ -1,11 +1,21 @@
 import { React, useState, useEffect } from "react";
 
 import classNames from "classnames";
+import { useFetchProduct } from "hooks/reactQuery/useProductsApi";
 import { Left, Right } from "neetoicons";
 import { Button } from "neetoui";
+import { useParams } from "react-router-dom";
 
-const Carousel = ({ title, images }) => {
+const Carousel = ({ title }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const { slug } = useParams();
+
+  const { data: { data: product = {} } = {} } = useFetchProduct(slug);
+
+  const { imageUrl, imageUrls } = product;
+
+  const images = [imageUrl, ...imageUrls];
 
   const handleNext = () =>
     setCurrentIndex(prevIndex => (prevIndex + 1) % images.length);

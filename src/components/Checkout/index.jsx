@@ -5,7 +5,7 @@ import { useFetchCountries } from "hooks/reactQuery/useCheckoutApi";
 import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
 import { Toastr, Typography } from "neetoui";
 import { Form as NeetoUIForm } from "neetoui/formik";
-import { isEmpty, keys } from "ramda";
+import { isEmpty, keys, prop } from "ramda";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import routes from "routes";
@@ -32,9 +32,9 @@ const Checkout = () => {
 
   const { cartItems, clearCart } = useCartItemsStore.pick();
 
-  const { isLoading: isLoadingProducts } = useFetchCartProducts(
-    keys(cartItems)
-  );
+  const productsResponse = useFetchCartProducts(keys(cartItems));
+
+  const isLoadingProducts = productsResponse.some(prop("isLoading"));
 
   const { isFetching: isLoadingCountries } = useFetchCountries();
 

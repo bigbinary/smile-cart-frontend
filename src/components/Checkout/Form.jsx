@@ -5,7 +5,6 @@ import {
   useFetchStates,
   useFetchCountries,
 } from "hooks/reactQuery/useCheckoutApi";
-import { toLabelAndValue } from "neetocommons/pure";
 import { Typography, Checkbox } from "neetoui";
 import { Input, Select } from "neetoui/formik";
 import { useTranslation } from "react-i18next";
@@ -30,7 +29,7 @@ const Form = ({
 
   const { setFieldValue, values } = useFormikContext();
 
-  const { data: { data: countries } = [] } = useFetchCountries();
+  const { data: { data: { countries } } = [] } = useFetchCountries();
 
   const { data: { states } = [] } = useFetchStates({
     selectedCountry,
@@ -61,10 +60,13 @@ const Form = ({
         required
         label={t("checkout.country")}
         name="country"
-        options={countries.data.map(({ name }) => toLabelAndValue(name))}
         placeholder={t("checkout.selectCountry")}
         size="large"
         value={values.country}
+        options={countries?.map(({ name, code }) => ({
+          label: name,
+          value: code,
+        }))}
         onChange={country => handleChangeCountry(country)}
       />
       <div className="flex space-x-2">
