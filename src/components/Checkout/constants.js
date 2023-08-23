@@ -31,13 +31,13 @@ export const CHECKOUT_FORM_VALIDATION_SCHEMA = yup.object().shape({
 
 export const CHECKOUT_FORM_INITIAL_VALUES = {
   email: "",
-  country: [{ value: "US", label: "United States" }],
+  country: { value: "US", label: "United States" },
   firstName: "",
   lastName: "",
   address: "",
   apartment: "",
   city: "",
-  state: [],
+  state: null,
   zipCode: "",
 };
 
