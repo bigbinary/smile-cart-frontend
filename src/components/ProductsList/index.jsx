@@ -23,10 +23,7 @@ const ProductsList = () => {
     recordsPerPage: 8,
   };
 
-  const { data: { data: productsList = [] } = [], isLoading } =
-    useFetchProducts(productsParams);
-
-  const { products } = productsList;
+  const { data: products = [], isLoading } = useFetchProducts(productsParams);
 
   if (isLoading) return <PageLoader />;
 

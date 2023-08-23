@@ -1,10 +1,6 @@
 // eslint-disable-next-line @bigbinary/neeto/no-axios-import-outside-apis
 import axios from "axios";
-import {
-  keysToCamelCase,
-  serializeKeysToSnakeCase,
-  matches,
-} from "neetocommons/pure";
+import { keysToCamelCase, serializeKeysToSnakeCase } from "neetocommons/pure";
 import { Toastr } from "neetoui";
 import { evolve } from "ramda";
 
@@ -22,14 +18,16 @@ const setHttpHeaders = (setLoading = () => null) => {
   setLoading(false);
 };
 
+const shouldShowToastr = response =>
+  typeof response === "string" ||
+  (typeof response === "object" && (response?.notice || response?.noticeCode));
+
 const showSuccessToastr = response => {
   const { showToastr = true } = response.config;
   if (!showToastr) return response;
 
-  if (matches({ showThumbsUpToastr: true }, response.data)) {
-    Toastr.success("", { icon: "👍", className: "w-20" });
-  } else if (matches({ noticeCode: "thumbs_up" }, response.data)) {
-    Toastr.success("", { icon: "👍", className: "w-20" });
+  if (shouldShowToastr(response.data)) {
+    Toastr.success(response.data);
   }
 
   return response;

@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 
 import { PageLoader } from "components/commons";
-import { useFetchCountries } from "hooks/reactQuery/useCheckoutApi";
+import {
+  useFetchCountries,
+  useCreateOrder,
+} from "hooks/reactQuery/useCheckoutApi";
 import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
-import { Toastr, Typography } from "neetoui";
+import { Typography } from "neetoui";
 import { Form as NeetoUIForm } from "neetoui/formik";
 import { isEmpty, keys, prop } from "ramda";
 import { useTranslation } from "react-i18next";
@@ -34,9 +37,10 @@ const Checkout = () => {
 
   const productsResponse = useFetchCartProducts(keys(cartItems));
 
-  const isLoadingProducts = productsResponse.some(prop("isLoading"));
-
   const { isFetching: isLoadingCountries } = useFetchCountries();
+  const { mutate: createOrder } = useCreateOrder();
+
+  const isLoadingProducts = productsResponse.some(prop("isLoading"));
 
   const isLoading = isLoadingProducts || isLoadingCountries;
 
@@ -49,10 +53,15 @@ const Checkout = () => {
   const handleSubmit = values => {
     const dataToPersist = isInformationSavedForNextTime ? values : null;
 
-    setToLocalStorage(CHECKOUT_LOCAL_STORAGE_KEY, dataToPersist);
-
-    Toastr.success("", { icon: "👍", className: "w-20" });
-    redirectToHome();
+    createOrder(
+      { payload: dataToPersist },
+      {
+        onSuccess: () => {
+          setToLocalStorage(CHECKOUT_LOCAL_STORAGE_KEY, dataToPersist);
+          redirectToHome();
+        },
+      }
+    );
   };
 
   if (isLoading) return <PageLoader />;
