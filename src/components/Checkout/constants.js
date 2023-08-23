@@ -38,7 +38,7 @@ export const CHECKOUT_FORM_INITIAL_VALUES = {
   address: "",
   apartment: "",
   city: "",
-  state: [],
+  state: null,
   zipCode: "",
 };
 
