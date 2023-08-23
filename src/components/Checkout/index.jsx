@@ -35,7 +35,7 @@ const Checkout = () => {
     keys(cartItems)
   );
 
-  const { isFetching: isLoadingCountries } = useFetchCountries();
+  const { isLoading: isLoadingCountries } = useFetchCountries();
 
   const isLoading = isLoadingProducts || isLoadingCountries;
 
