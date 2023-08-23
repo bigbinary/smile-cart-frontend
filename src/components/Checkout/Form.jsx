@@ -17,9 +17,11 @@ const Form = () => {
 
   const { country } = values;
 
+  const stateParams = { country: country.label };
+
   const { data: { data: countries = {} } = {} } = useFetchCountries();
 
-  const { data: { states = [] } = {} } = useFetchStates(country);
+  const { data: { states = [] } = {} } = useFetchStates(stateParams);
 
   const handleChangeCountry = country => {
     setFieldValue("country", country);

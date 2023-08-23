@@ -11,9 +11,9 @@ export const useFetchCountries = () =>
     staleTime: Infinity,
   });
 
-export const useFetchStates = selectedCountry =>
+export const useFetchStates = stateParams =>
   useQuery({
-    queryKey: [QUERY_KEYS.STATES, selectedCountry],
-    queryFn: () => statesApi.fetchStates({ country: selectedCountry.label }),
+    queryKey: [QUERY_KEYS.STATES, stateParams],
+    queryFn: () => statesApi.fetchStates(stateParams),
     staleTime: Infinity,
   });
