@@ -336,6 +336,9 @@ module.exports = function (webpackEnv) {
         neetoicons: "@bigbinary/neeto-icons",
         images: path.resolve(__dirname, "../../../../../", "app/assets/images"),
       },
+      fallback: {
+        util: require.resolve("util/"),
+      },
       plugins: [
         // Prevents users from importing files from outside of src/ (or node_modules/).
         // This often causes confusion because we only process files within src/ with babel.
