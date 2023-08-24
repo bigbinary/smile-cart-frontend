@@ -13,15 +13,15 @@ import { useTranslation } from "react-i18next";
 const Form = () => {
   const { t } = useTranslation();
 
-  const { setFieldValue, values } = useFormikContext();
-
-  const { country } = values;
-
-  const stateParams = { country: country.label };
+  const {
+    setFieldValue,
+    values: { country },
+  } = useFormikContext();
 
   const { data: { data: countries = {} } = {} } = useFetchCountries();
-
-  const { data: { states = [] } = {} } = useFetchStates(stateParams);
+  const { data: { states = [] } = {} } = useFetchStates({
+    country: country.label,
+  });
 
   const handleChangeCountry = country => {
     setFieldValue("country", country);

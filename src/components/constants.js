@@ -86,8 +86,6 @@ export const SAMPLE_PRODUCTS = [
 
 export const VALID_COUNT_REGEX = /^(?:\d*|)$/;
 
-export const SINGLE_QUANTITY = 1;
-
 export const STATE_LIST = [
   {
     country: "India",

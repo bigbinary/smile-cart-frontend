@@ -9,7 +9,6 @@ import routes from "routes";
 
 import AddToCart from "./AddToCart";
 import { Carousel, Header, PageNotFound, PageLoader } from "./commons";
-import { SINGLE_QUANTITY } from "./constants";
 import useSelectedQuantity from "./hooks/useSelectedQuantity";
 
 const Product = () => {
@@ -61,9 +60,7 @@ const Product = () => {
               label={t("product.buyNow")}
               size="large"
               to={routes.checkout}
-              onClick={() =>
-                setSelectedQuantity(selectedQuantity || SINGLE_QUANTITY)
-              }
+              onClick={() => setSelectedQuantity(selectedQuantity || 1)}
             />
           </div>
         </div>

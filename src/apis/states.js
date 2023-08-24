@@ -1,8 +1,8 @@
 import { STATE_LIST } from "components/constants";
 import { findBy } from "neetocommons/pure";
 
-const fetchStates = params => findBy(params, STATE_LIST);
+const fetch = params => findBy(params, STATE_LIST);
 
-const statesApi = { fetchStates };
+const statesApi = { fetch };
 
 export default statesApi;
