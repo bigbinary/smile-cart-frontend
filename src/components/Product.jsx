@@ -5,20 +5,20 @@ import { Button, Typography } from "neetoui";
 import { isNil } from "ramda";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
+import routes from "routes";
 
 import AddToCart from "./AddToCart";
 import { Carousel, Header, PageNotFound, PageLoader } from "./commons";
+import useSelectedQuantity from "./hooks/useSelectedQuantity";
 
 const Product = () => {
-  const { slug } = useParams();
-
-  const { data: product, isLoading } = useShowProductBySlug(slug);
-
   const { t } = useTranslation();
 
-  if (isLoading) return <PageLoader />;
+  const { slug } = useParams();
 
-  if (isNil(product)) return <PageNotFound />;
+  const { selectedQuantity, setSelectedQuantity } = useSelectedQuantity(slug);
+
+  const { data: product = [], isLoading } = useShowProductBySlug(slug);
 
   const {
     name,
@@ -30,6 +30,10 @@ const Product = () => {
     discountRate,
     availableQuantity,
   } = product;
+
+  if (isLoading) return <PageLoader />;
+
+  if (isNil(product)) return <PageNotFound />;
 
   return (
     <>
@@ -55,6 +59,8 @@ const Product = () => {
               className="bg-neutral-800 hover:bg-neutral-950"
               label={t("product.buyNow")}
               size="large"
+              to={routes.checkout}
+              onClick={() => setSelectedQuantity(selectedQuantity || 1)}
             />
           </div>
         </div>
