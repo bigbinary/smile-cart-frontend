@@ -12,15 +12,18 @@ const AddToCart = ({ slug, availableQuantity }) => {
 
   const { selectedQuantity, setSelectedQuantity } = useSelectedQuantity(slug);
 
+  const handleClick = e => {
+    e.stopPropagation();
+    e.preventDefault();
+    setSelectedQuantity(1);
+  };
+
   if (isNil(selectedQuantity)) {
     return (
       <Button
         label={t("product.addToCart")}
         size="large"
-        onClick={e => {
-          e.stopPropagation();
-          setSelectedQuantity(1);
-        }}
+        onClick={handleClick}
       />
     );
   }

@@ -35,14 +35,19 @@ const ProductQuantity = ({ slug, availableQuantity }) => {
     }
   };
 
+  const preventNavigation = e => {
+    e.stopPropagation();
+    e.preventDefault();
+  };
+
   return (
-    <div className="border neeto-ui-border-black neeto-ui-rounded flex items-center">
+    <div className="neeto-ui-border-black neeto-ui-rounded border flex items-center">
       <Button
         className="focus-within:ring-0"
         label="-"
         style="text"
         onClick={e => {
-          e.stopPropagation();
+          preventNavigation(e);
           setSelectedQuantity(parsedSelectedQuantity - 1);
         }}
       />
@@ -53,7 +58,7 @@ const ProductQuantity = ({ slug, availableQuantity }) => {
         ref={countInputFocus}
         value={selectedQuantity}
         onChange={handleSetCount}
-        onClick={e => e.stopPropagation()}
+        onClick={preventNavigation}
       />
       <TooltipWrapper
         content={t("product.maximumUnits")}
@@ -66,7 +71,7 @@ const ProductQuantity = ({ slug, availableQuantity }) => {
           label="+"
           style="text"
           onClick={e => {
-            e.stopPropagation();
+            preventNavigation(e);
             setSelectedQuantity(parsedSelectedQuantity + 1);
           }}
         />
