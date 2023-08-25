@@ -69,5 +69,6 @@
     "noInternetConnection": "No Internet Connection",
     "networkError": "Network Error"
   },
+  "noData": "No products to show",
   "pageLoading": "Loading Please Wait"
 }
