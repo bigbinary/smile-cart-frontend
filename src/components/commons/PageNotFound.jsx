@@ -1,4 +1,3 @@
-/* eslint-disable @bigbinary/neeto/no-dumb-components-with-use-translation */
 import React from "react";
 
 import { NoData } from "neetoui";
