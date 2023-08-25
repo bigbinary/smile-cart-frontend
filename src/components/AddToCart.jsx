@@ -16,16 +16,18 @@ const AddToCart = ({ slug, availableQuantity }) => {
     shallow
   );
 
+  const handleClick = e => {
+    e.stopPropagation();
+    e.preventDefault();
+    setSelectedQuantity(slug, 1);
+  };
+
   if (isNil(selectedQuantity)) {
     return (
       <Button
-        className="bg-neutral-800 hover:bg-neutral-950"
         label={t("product.addToCart")}
         size="large"
-        onClick={e => {
-          e.stopPropagation();
-          setSelectedQuantity(slug, 1);
-        }}
+        onClick={handleClick}
       />
     );
   }
