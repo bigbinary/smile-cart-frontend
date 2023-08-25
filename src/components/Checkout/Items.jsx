@@ -1,32 +1,34 @@
 import React from "react";
 
-import { totalPrice } from "components/utils";
+import { OFFER_PRICE } from "components/constants";
+import { cartTotalOf } from "components/utils";
 import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
 import { Typography, Button, Tag } from "neetoui";
-import { keys, map, path } from "ramda";
-import { Trans, useTranslation } from "react-i18next";
+import { keys } from "ramda";
+import { useTranslation } from "react-i18next";
 import useCartItemsStore from "stores/useCartItemsStore";
+
+import PriceEntry from "./PriceEntry";
 
 const Items = () => {
   const { t } = useTranslation();
 
   const { cartItems } = useCartItemsStore.pick();
 
-  const productsResponse = useFetchCartProducts(keys(cartItems));
+  const { data: products = [] } = useFetchCartProducts(keys(cartItems));
 
-  const products = map(path(["data", "data"]), productsResponse);
-  const totalCheckoutPrice = totalPrice(cartItems, products);
+  const totalCheckoutPrice = cartTotalOf(products, OFFER_PRICE);
 
   return (
     <div className="flex h-full flex-col p-10">
-      {products.map(({ imageUrl, name, slug, offerPrice }) => (
+      {products.map(({ images, name, slug, offerPrice }) => (
         <div className="mt-3 flex" key={slug}>
           <div className="neeto-ui-rounded neeto-ui-border-gray-500 border relative">
             <img
               alt={name}
               className="neeto-ui-rounded"
               height="60px"
-              src={imageUrl}
+              src={images[0]}
               width="60px"
             />
             <div className="absolute right-0 top-0 -mr-2 -mt-2">
@@ -42,27 +44,19 @@ const Items = () => {
         </div>
       ))}
       <div className="mt-5 w-3/4 space-y-3">
-        <Typography className="flex justify-between" style="h5">
-          <Trans
-            components={{ span: <span /> }}
-            i18nKey="checkout.subtotal"
-            values={{ totalPrice: totalCheckoutPrice }}
-          />
-        </Typography>
-        <Typography className="flex justify-between" style="h5">
-          <Trans
-            components={{ span: <span className="text-green-700" /> }}
-            i18nKey="checkout.deliveryCharges"
-          />
-        </Typography>
+        <PriceEntry
+          i18nKey="checkout.subtotal"
+          totalPrice={totalCheckoutPrice}
+        />
+        <PriceEntry
+          className="text-green-700"
+          i18nKey="checkout.deliveryCharges"
+        />
         <div className="neeto-ui-border-black border-t border-dashed" />
-        <Typography className="flex justify-between">
-          <Trans
-            components={{ span: <span /> }}
-            i18nKey="checkout.totalPrice"
-            values={{ totalPrice: totalCheckoutPrice }}
-          />
-        </Typography>
+        <PriceEntry
+          i18nKey="checkout.totalPrice"
+          totalPrice={totalCheckoutPrice}
+        />
       </div>
       <div className="mt-auto flex justify-center">
         <Button

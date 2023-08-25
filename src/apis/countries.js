@@ -3,8 +3,8 @@ import axios from "axios";
 
 import { SMILE_CART_BASE_URL } from "../constants";
 
-const fetchCounties = () => axios.get(`${SMILE_CART_BASE_URL}/countries`);
+const fetch = () => axios.get(`${SMILE_CART_BASE_URL}/countries`);
 
-const countriesApi = { fetchCounties };
+const countriesApi = { fetch };
 
 export default countriesApi;

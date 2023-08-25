@@ -2,7 +2,6 @@ import React from "react";
 
 import AddToCart from "components/AddToCart";
 import { Header, PageNotFound, PageLoader } from "components/commons";
-import { SINGLE_QUANTITY } from "components/constants";
 import useSelectedQuantity from "components/hooks/useSelectedQuantity";
 import { useFetchProduct } from "hooks/reactQuery/useProductsApi";
 import { Button, Typography } from "neetoui";
@@ -18,12 +17,9 @@ const Product = () => {
 
   const { slug } = useParams();
 
-  const { selectedQuantity, setSelectedQuantity } = useSelectedQuantity({
-    slug,
-  });
+  const { selectedQuantity, setSelectedQuantity } = useSelectedQuantity(slug);
 
-  const { data: { data: product = {} } = {}, isLoading } =
-    useFetchProduct(slug);
+  const { data: product = [], isLoading } = useFetchProduct(slug);
 
   const {
     name,
@@ -33,10 +29,8 @@ const Product = () => {
     mrp,
     offerPrice,
     availableQuantity,
+    discountPercentage,
   } = product;
-
-  const discount = mrp - offerPrice;
-  const discountPercentage = ((discount / mrp) * 100).toFixed(1);
 
   if (isLoading) return <PageLoader />;
 
@@ -71,9 +65,7 @@ const Product = () => {
               label={t("product.buyNow")}
               size="large"
               to={routes.checkout}
-              onClick={() =>
-                setSelectedQuantity(slug, selectedQuantity || SINGLE_QUANTITY)
-              }
+              onClick={() => setSelectedQuantity(selectedQuantity || 1)}
             />
           </div>
         </div>

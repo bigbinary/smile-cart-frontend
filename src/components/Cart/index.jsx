@@ -2,10 +2,11 @@ import React from "react";
 
 import Header from "components/commons/Header";
 import PageLoader from "components/commons/PageLoader";
-import { totalPrice } from "components/utils";
+import { MRP, OFFER_PRICE } from "components/constants";
+import { cartTotalOf } from "components/utils";
 import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
 import { NoData } from "neetoui";
-import { prop, sum, isEmpty, keys, map, path } from "ramda";
+import { isEmpty, keys, path, map, prop } from "ramda";
 import { useTranslation } from "react-i18next";
 import useCartItemsStore from "stores/useCartItemsStore";
 
@@ -18,15 +19,12 @@ const Cart = () => {
   const { cartItems } = useCartItemsStore.pick();
 
   const productsResponse = useFetchCartProducts(keys(cartItems));
-
   const isLoading = productsResponse.some(prop("isLoading"));
-
   const products = map(path(["data", "data"]), productsResponse).filter(
     Boolean
   );
-  const totalMrp = sum(products.map(({ mrp, slug }) => mrp * cartItems[slug]));
-
-  const totalOfferPrice = totalPrice(cartItems, products);
+  const totalMrp = cartTotalOf(products, MRP);
+  const totalOfferPrice = cartTotalOf(products, OFFER_PRICE);
 
   if (isLoading) return <PageLoader />;
 

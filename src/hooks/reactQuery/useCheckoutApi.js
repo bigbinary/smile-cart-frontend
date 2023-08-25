@@ -16,14 +16,14 @@ export const useCreateOrder = options =>
 export const useFetchCountries = () =>
   useQuery({
     queryKey: QUERY_KEYS.COUNTRIES,
-    queryFn: () => countriesApi.fetchCounties(),
+    queryFn: () => countriesApi.fetch(),
     staleTime: Infinity,
   });
 
 export const useFetchStates = stateParams =>
   useQuery({
     queryKey: [QUERY_KEYS.STATES, stateParams],
-    queryFn: () => statesApi.fetchStates(stateParams),
+    queryFn: () => statesApi.fetch(stateParams),
     select: path(["data", "states"]),
     staleTime: Infinity,
   });

@@ -5,24 +5,22 @@ import {
   useFetchStates,
   useFetchCountries,
 } from "hooks/reactQuery/useCheckoutApi";
-import { Typography, Checkbox } from "neetoui";
+import { Typography } from "neetoui";
 import { Input, Select } from "neetoui/formik";
 import { useTranslation } from "react-i18next";
 
-const Form = ({
-  isInformationSavedForNextTime,
-  setIsInformationSavedForNextTime,
-}) => {
+const Form = () => {
   const { t } = useTranslation();
 
-  const { setFieldValue, values } = useFormikContext();
+  const {
+    setFieldValue,
+    values: { country },
+  } = useFormikContext();
 
-  const { country } = values;
-  const stateParams = { countryCode: country.value };
-
-  const { data: { data: { countries } } = [] } = useFetchCountries();
-
-  const { data: states = [] } = useFetchStates(stateParams);
+  const { data: { data: countries = {} } = {} } = useFetchCountries();
+  const { data: { states = [] } = {} } = useFetchStates({
+    country: country.label,
+  });
 
   const handleChangeCountry = country => {
     setFieldValue("country", country);
@@ -55,7 +53,7 @@ const Form = ({
           label: name,
           value: code,
         }))}
-        onChange={country => handleChangeCountry(country)}
+        onChange={handleChangeCountry(country)}
       />
       <div className="flex space-x-2">
         <Input
@@ -115,11 +113,6 @@ const Form = ({
           type="number"
         />
       </div>
-      <Checkbox
-        checked={isInformationSavedForNextTime}
-        label={t("checkout.checkboxTitle")}
-        onChange={() => setIsInformationSavedForNextTime(isSaved => !isSaved)}
-      />
     </>
   );
 };
