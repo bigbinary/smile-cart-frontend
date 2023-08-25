@@ -30,8 +30,10 @@ const Product = () => {
     mrp,
     offerPrice,
     availableQuantity,
-    discountPercentage,
   } = product;
+
+  const totalDiscounts = mrp - offerPrice;
+  const discountPercentage = ((totalDiscounts / mrp) * 100).toFixed(1);
 
   if (isLoading) return <PageLoader />;
 
@@ -57,7 +59,7 @@ const Product = () => {
             style="body1"
             weight="extrabold"
           >
-            {t("product.discountRate", { discountRate: discountPercentage })}
+            {t("product.discountRate", { discountPercentage })}
           </Typography>
           <div className="flex space-x-10">
             <AddToCart {...{ availableQuantity, slug }} />
