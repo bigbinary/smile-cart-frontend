@@ -53,7 +53,7 @@ const Form = () => {
           label: name,
           value: code,
         }))}
-        onChange={country => handleChangeCountry(country)}
+        onChange={handleChangeCountry}
       />
       <div className="flex space-x-2">
         <Input

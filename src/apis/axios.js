@@ -24,7 +24,7 @@ const showSuccessToastr = response => {
 };
 
 const showErrorToastr = error => {
-  if (error.message === "Network Error") {
+  if (error.message === t("error.networkError")) {
     Toastr.error(t("error.noInternetConnection"));
   } else if (error.response?.status !== 404) {
     Toastr.error(error);
