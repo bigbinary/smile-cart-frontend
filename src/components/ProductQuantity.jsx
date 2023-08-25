@@ -48,7 +48,7 @@ const ProductQuantity = ({ slug, availableQuantity }) => {
         style="text"
         onClick={e => {
           preventNavigation(e);
-          setSelectedQuantity(slug, parsedSelectedQuantity - 1);
+          setSelectedQuantity(parsedSelectedQuantity - 1);
         }}
       />
       <Input
@@ -72,7 +72,7 @@ const ProductQuantity = ({ slug, availableQuantity }) => {
           style="text"
           onClick={e => {
             preventNavigation(e);
-            setSelectedQuantity(slug, parsedSelectedQuantity + 1);
+            setSelectedQuantity(parsedSelectedQuantity + 1);
           }}
         />
       </TooltipWrapper>
