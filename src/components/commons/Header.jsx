@@ -14,7 +14,7 @@ const Header = ({ title, actionBlock }) => {
 
   return (
     <>
-      <div className="mx-6 mb-2 flex items-end justify-between">
+      <div className="mx-6 mb-2 mt-6 flex items-end justify-between">
         <Typography style="h1" weight="semibold">
           {title}
         </Typography>
