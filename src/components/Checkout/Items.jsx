@@ -1,7 +1,7 @@
 import React from "react";
 
 import { OFFER_PRICE } from "components/constants";
-import { cartTotalOf } from "components/utils";
+import { cartTotalOf, filterProducts } from "components/utils";
 import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
 import { Typography, Button, Tag } from "neetoui";
 import { keys } from "ramda";
@@ -15,20 +15,21 @@ const Items = () => {
 
   const { cartItems } = useCartItemsStore.pick();
 
-  const { data: products = [] } = useFetchCartProducts(keys(cartItems));
+  const productsResponse = useFetchCartProducts(keys(cartItems));
 
+  const products = filterProducts(productsResponse);
   const totalCheckoutPrice = cartTotalOf(products, OFFER_PRICE);
 
   return (
     <div className="flex h-full flex-col p-10">
-      {products.map(({ images, name, slug, offerPrice }) => (
+      {products?.map(({ imageUrl, name, slug, offerPrice }) => (
         <div className="mt-3 flex" key={slug}>
           <div className="neeto-ui-rounded neeto-ui-border-gray-500 border relative">
             <img
               alt={name}
               className="neeto-ui-rounded"
               height="60px"
-              src={images[0]}
+              src={imageUrl}
               width="60px"
             />
             <div className="absolute right-0 top-0 -mr-2 -mt-2">

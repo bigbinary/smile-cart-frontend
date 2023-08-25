@@ -17,6 +17,7 @@ export const useFetchCountries = () =>
   useQuery({
     queryKey: QUERY_KEYS.COUNTRIES,
     queryFn: () => countriesApi.fetch(),
+    select: path(["data", "countries"]),
     staleTime: Infinity,
   });
 

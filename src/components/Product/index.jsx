@@ -19,7 +19,8 @@ const Product = () => {
 
   const { selectedQuantity, setSelectedQuantity } = useSelectedQuantity(slug);
 
-  const { data: product = [], isLoading } = useFetchProduct(slug);
+  const { data: { data: product = [] } = {}, isLoading } =
+    useFetchProduct(slug);
 
   const {
     name,

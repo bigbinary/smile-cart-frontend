@@ -35,11 +35,10 @@ const Checkout = () => {
   const { cartItems, clearCart } = useCartItemsStore.pick();
 
   const productsResponse = useFetchCartProducts(keys(cartItems));
-  const isLoadingProducts = productsResponse.some(prop("isLoading"));
-
   const { isLoading: isLoadingCountries } = useFetchCountries();
   const { mutate: createOrder } = useCreateOrder();
 
+  const isLoadingProducts = productsResponse.some(prop("isLoading"));
   const isLoading = isLoadingProducts || isLoadingCountries;
 
   const redirectToHome = () =>

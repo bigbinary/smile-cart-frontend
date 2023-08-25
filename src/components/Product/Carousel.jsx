@@ -6,14 +6,14 @@ import { Left, Right } from "neetoicons";
 import { Button } from "neetoui";
 import { useParams } from "react-router-dom";
 
-const Carousel = ({ title }) => {
+const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const { slug } = useParams();
 
-  const { data: { data: product = {} } = {} } = useFetchProduct(slug);
+  const { data: { data: product = [] } = {} } = useFetchProduct(slug);
 
-  const { imageUrl, imageUrls } = product;
+  const { imageUrl, imageUrls, title } = product;
 
   const images = [imageUrl, ...imageUrls];
 

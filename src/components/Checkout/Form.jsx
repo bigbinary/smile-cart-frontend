@@ -17,9 +17,9 @@ const Form = () => {
     values: { country },
   } = useFormikContext();
 
-  const { data: { data: countries = {} } = {} } = useFetchCountries();
-  const { data: { states = [] } = {} } = useFetchStates({
-    country: country.label,
+  const { data: countries = [] } = useFetchCountries();
+  const { data: states = [] } = useFetchStates({
+    countryCode: country.value,
   });
 
   const handleChangeCountry = country => {
@@ -53,7 +53,7 @@ const Form = () => {
           label: name,
           value: code,
         }))}
-        onChange={handleChangeCountry(country)}
+        onChange={country => handleChangeCountry(country)}
       />
       <div className="flex space-x-2">
         <Input
@@ -99,7 +99,7 @@ const Form = () => {
           name="state"
           placeholder={t("checkout.selectState")}
           size="large"
-          options={states?.map(({ name, code }) => ({
+          options={states.map(({ name, code }) => ({
             label: name,
             value: code,
           }))}
