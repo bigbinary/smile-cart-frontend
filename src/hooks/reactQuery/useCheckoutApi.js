@@ -6,12 +6,7 @@ import statesApi from "apis/states";
 import { path } from "ramda";
 import { useQuery, useMutation } from "react-query";
 
-export const useCreateOrder = options =>
-  useMutation(ordersApi.create, {
-    onSuccess: () => {
-      options?.onSuccess?.();
-    },
-  });
+export const useCreateOrder = () => useMutation(ordersApi.create);
 
 export const useFetchCountries = () =>
   useQuery({
