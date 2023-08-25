@@ -15,7 +15,7 @@ const AddToCart = ({ slug, availableQuantity }) => {
   const handleClick = e => {
     e.stopPropagation();
     e.preventDefault();
-    setSelectedQuantity(slug, 1);
+    setSelectedQuantity(1);
   };
 
   if (isNil(selectedQuantity)) {
