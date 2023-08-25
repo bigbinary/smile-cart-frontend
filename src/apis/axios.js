@@ -1,48 +1,32 @@
 // eslint-disable-next-line @bigbinary/neeto/no-axios-import-outside-apis
 import axios from "axios";
+import { t } from "i18next";
 import { keysToCamelCase, serializeKeysToSnakeCase } from "neetocommons/pure";
 import { Toastr } from "neetoui";
 import { evolve } from "ramda";
-
-axios.defaults.baseURL = "/";
+import { SMILE_CART_BASE_URL } from "src/constants";
 
 const setHttpHeaders = (setLoading = () => null) => {
   axios.defaults.headers = {
     Accept: "application/json",
     "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
-    "X-CSRF-TOKEN": document
-      .querySelector('[name="csrf-token"]')
-      ?.getAttribute("content"),
   };
   setLoading(false);
 };
 
 const shouldShowToastr = response =>
-  typeof response === "string" ||
-  (typeof response === "object" && (response?.notice || response?.noticeCode));
+  typeof response === "object" && response?.noticeCode;
 
 const showSuccessToastr = response => {
-  const { showToastr = true } = response.config;
-  if (!showToastr) return response;
-
-  if (shouldShowToastr(response.data)) {
-    Toastr.success(response.data);
-  }
+  if (shouldShowToastr(response.data)) Toastr.success(response.data);
 
   return response;
 };
 
 const showErrorToastr = error => {
-  const { showToastr = true } = error.config ?? {};
-  if (!showToastr) return error;
-
   if (error.message === "Network Error") {
-    Toastr.error("No Internet Connection");
-  } else if (
-    ![403, 404].includes(error.response?.status) &&
-    !axios.isCancel(error)
-  ) {
+    Toastr.error(t("error.noInternetConnection"));
+  } else if (error.response?.status !== 404) {
     Toastr.error(error);
   }
 
@@ -50,11 +34,7 @@ const showErrorToastr = error => {
 };
 
 const transformResponseKeysToCamelCase = response => {
-  const { transformResponseCase = true } = response.config;
-
-  if (response.data && transformResponseCase) {
-    response.data = keysToCamelCase(response.data);
-  }
+  if (response.data) response.data = keysToCamelCase(response.data);
 
   return response;
 };
@@ -72,16 +52,12 @@ const responseInterceptors = () => {
 };
 
 const requestInterceptors = () => {
-  axios.interceptors.request.use(request => {
-    const { transformRequestCase = true } = request;
-
-    if (!transformRequestCase) return request;
-
-    return evolve(
+  axios.interceptors.request.use(request =>
+    evolve(
       { data: serializeKeysToSnakeCase, params: serializeKeysToSnakeCase },
       request
-    );
-  });
+    )
+  );
 };
 
 const registerIntercepts = () => {
@@ -90,6 +66,7 @@ const registerIntercepts = () => {
 };
 
 export default function initializeAxios(setLoading = () => null) {
+  axios.defaults.baseURL = SMILE_CART_BASE_URL;
   setHttpHeaders(setLoading);
   registerIntercepts();
 }

@@ -65,5 +65,8 @@
   "order": {
     "successfullyPlaced": "Order has been successfully placed"
   },
+  "error": {
+    "noInternetConnection": "No Internet Connection"
+  },
   "pageLoading": "Loading Please Wait"
 }

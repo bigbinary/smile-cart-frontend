@@ -49,7 +49,7 @@ const Form = () => {
         placeholder={t("checkout.selectCountry")}
         size="large"
         value={country}
-        options={countries?.map(({ name, code }) => ({
+        options={countries.map(({ name, code }) => ({
           label: name,
           value: code,
         }))}

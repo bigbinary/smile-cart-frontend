@@ -40,7 +40,7 @@ const Cart = () => {
       <Header title={t("cart.title")} />
       <div className="mt-10 flex justify-center space-x-10">
         <div className="w-1/3 space-y-5">
-          {products?.map(product => (
+          {products.map(product => (
             <ProductCard key={product.slug} {...product} />
           ))}
         </div>
