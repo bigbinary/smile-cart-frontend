@@ -1,3 +1,4 @@
+/* eslint-disable @bigbinary/neeto/no-dumb-components-with-use-translation */
 import React from "react";
 
 import { NoData } from "neetoui";
@@ -7,7 +8,7 @@ const PageNotFound = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="left-1/2 top-1/2 absolute -translate-x-1/2 -translate-y-1/2">
+    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
       <NoData
         title={t("pageNotFound.title")}
         primaryButtonProps={{

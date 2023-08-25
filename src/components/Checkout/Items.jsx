@@ -23,7 +23,7 @@ const Items = () => {
     <div className="flex h-full flex-col p-10">
       {products.map(({ images, name, slug, offerPrice }) => (
         <div className="mt-3 flex" key={slug}>
-          <div className="neeto-ui-rounded neeto-ui-border-gray-500 border relative">
+          <div className="neeto-ui-rounded neeto-ui-border-gray-500 relative border">
             <img
               alt={name}
               className="neeto-ui-rounded"
