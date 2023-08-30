@@ -4,6 +4,7 @@ import classNames from "classnames";
 import { useFetchProduct } from "hooks/reactQuery/useProductsApi";
 import { Left, Right } from "neetoicons";
 import { Button } from "neetoui";
+import { append } from "ramda";
 import { useParams } from "react-router-dom";
 
 const Carousel = () => {
@@ -14,7 +15,7 @@ const Carousel = () => {
   const { data: { data: product = {} } = {} } = useFetchProduct(slug);
 
   const { imageUrl, imageUrls, title } = product;
-  const images = [imageUrl, ...imageUrls];
+  const images = append(imageUrl, imageUrls);
 
   const handleNext = () =>
     setCurrentIndex(prevIndex => (prevIndex + 1) % images.length);
