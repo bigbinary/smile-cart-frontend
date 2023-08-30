@@ -10,7 +10,7 @@ import useCartItemsStore from "stores/useCartItemsStore";
 
 import PriceEntry from "./PriceEntry";
 
-const Items = () => {
+const Items = ({ isSubmitLoading }) => {
   const { t } = useTranslation();
 
   const { cartItems } = useCartItemsStore.pick();
@@ -61,6 +61,7 @@ const Items = () => {
       <div className="mt-auto flex justify-center">
         <Button
           className="bg-neutral-800 w-1/3 justify-center"
+          disabled={isSubmitLoading}
           label={t("checkout.confirmOrder")}
           type="submit"
         />

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 import { PageLoader } from "components/commons";
 import {
@@ -25,6 +25,8 @@ import Form from "./Form";
 import Items from "./Items";
 
 const Checkout = () => {
+  const [isSubmitLoading, setIsSubmitLoading] = useState(false);
+
   const { t } = useTranslation();
 
   const checkboxRef = useRef(null);
@@ -46,11 +48,13 @@ const Checkout = () => {
   const redirectToHome = () =>
     setTimeout(() => {
       history.push(routes.root);
+      setIsSubmitLoading(false);
       clearCart();
     }, 1500);
 
   const handleSubmit = values => {
     const dataToPersist = checkboxRef.current.checked ? values : null;
+    setIsSubmitLoading(true);
 
     createOrder(
       { payload: dataToPersist },
@@ -59,6 +63,7 @@ const Checkout = () => {
           setToLocalStorage(CHECKOUT_LOCAL_STORAGE_KEY, dataToPersist);
           redirectToHome();
         },
+        onError: () => setIsSubmitLoading(false),
       }
     );
   };
@@ -103,7 +108,7 @@ const Checkout = () => {
           </div>
         </div>
         <div className="neeto-ui-bg-gray-300 h-screen w-1/2 pt-10">
-          <Items />
+          <Items {...{ isSubmitLoading }} />
         </div>
       </div>
     </NeetoUIForm>
