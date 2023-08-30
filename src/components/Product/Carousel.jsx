@@ -44,9 +44,8 @@ const Carousel = () => {
         />
         <img
           alt={title}
-          height="250px"
+          className="w-48 object-cover"
           src={images[currentIndex]}
-          width="250px"
         />
         <Button
           className="focus-within:ring-0 shrink-0 hover:bg-transparent"
