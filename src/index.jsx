@@ -8,7 +8,7 @@ import queryClient from "utils/queryClient";
 
 import initializeAxios from "./apis/axios";
 import "./common/i18n";
-//i18n should load before App initialization. Hence disabling import/order rule.
+//i18n should load before App initialization. Hence, disabling import/order rule.
 // eslint-disable-next-line import/order
 import App from "./App";
 import "./index.css";
