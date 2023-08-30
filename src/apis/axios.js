@@ -1,4 +1,3 @@
-// eslint-disable-next-line @bigbinary/neeto/no-axios-import-outside-apis
 import axios from "axios";
 import { t } from "i18next";
 import { keysToCamelCase, serializeKeysToSnakeCase } from "neetocommons/pure";
