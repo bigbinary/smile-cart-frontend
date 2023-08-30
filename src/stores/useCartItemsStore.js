@@ -2,7 +2,6 @@ import { isNotEmpty } from "neetocommons/pure";
 import { assoc, dissoc, evolve } from "ramda";
 import { create } from "zustand";
 
-// eslint-disable-next-line @bigbinary/neeto/ensure-zustand-stores-are-type-annotated, @bigbinary/neeto/zustand-use-with-immutable-actions-wrapper-inside-create
 const useCartItemsStore = create(set => ({
   cartItems: {},
   setSelectedQuantity: (slug, quantity) =>

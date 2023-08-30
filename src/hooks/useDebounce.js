@@ -1,4 +1,3 @@
-/* eslint-disable @bigbinary/neeto/use-functions-and-hooks-from-neeto-commons-frontend */
 import { useState, useEffect } from "react";
 
 const useDebounce = (value, delay = 350) => {

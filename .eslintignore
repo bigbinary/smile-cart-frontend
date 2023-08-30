@@ -1,4 +1,6 @@
 public
+config
+scripts
 tmp
 .vscode
 babel.config.js

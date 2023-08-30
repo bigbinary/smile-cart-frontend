@@ -2,7 +2,7 @@ import React from "react";
 
 import { useShowProductBySlug } from "hooks/reactQuery/useProductsApi";
 import { Button, Typography } from "neetoui";
-import { isNil } from "ramda";
+import { append, isNil } from "ramda";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import routes from "routes";
@@ -39,7 +39,7 @@ const Product = () => {
     <>
       <Header title={name} />
       <div className="mt-6 flex gap-6">
-        <Carousel className="w-2/5" images={[imageUrl, ...images]} />
+        <Carousel className="w-2/5" images={append(imageUrl, images)} />
         <div className="w-3/5 space-y-4">
           <Typography style="body1">{description}</Typography>
           <Typography style="body1">{t("product.mrp", { mrp })}</Typography>
