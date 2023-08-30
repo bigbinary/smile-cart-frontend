@@ -38,7 +38,8 @@ const ProductsList = () => {
   return (
     <div className="flex h-screen flex-col">
       <Header
-        title="Smile Cart"
+        shouldShowBackButton={false}
+        title={t("title")}
         actionBlock={
           <Input
             placeholder={t("product.search")}
