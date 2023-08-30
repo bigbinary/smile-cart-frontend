@@ -18,7 +18,7 @@ const Cart = () => {
 
   const { cartItems } = useCartItemsStore.pick();
 
-  const { products, isLoading } = useFetchCartProducts(keys(cartItems));
+  const { data: products, isLoading } = useFetchCartProducts(keys(cartItems));
 
   const totalMrp = cartTotalOf(products, MRP);
   const totalOfferPrice = cartTotalOf(products, OFFER_PRICE);

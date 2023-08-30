@@ -13,9 +13,9 @@ export const useFetchCartProducts = slugs => {
     }))
   );
   const isLoading = responses.some(prop("isLoading"));
-  const products = responses.map(path(["data", "data"])).filter(Boolean);
+  const data = responses.map(path(["data", "data"])).filter(Boolean);
 
-  return { isLoading, products };
+  return { isLoading, data };
 };
 
 export const useFetchProducts = params =>
