@@ -1,4 +1,4 @@
-import { sum, path, map } from "ramda";
+import { sum } from "ramda";
 import useCartItemsStore from "stores/useCartItemsStore";
 
 export const cartTotalOf = (products, priceKey) => {
@@ -8,6 +8,3 @@ export const cartTotalOf = (products, priceKey) => {
     products.map(product => product[priceKey] * cartItems[product.slug])
   );
 };
-
-export const filterProducts = productsResponse =>
-  map(path(["data", "data"]), productsResponse).filter(Boolean);

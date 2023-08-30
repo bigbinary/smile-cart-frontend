@@ -6,12 +6,11 @@ import { Toastr } from "neetoui";
 import { evolve } from "ramda";
 import { SMILE_CART_BASE_URL } from "src/constants";
 
-const setHttpHeaders = (setLoading = () => null) => {
+const setHttpHeaders = () => {
   axios.defaults.headers = {
     Accept: "application/json",
     "Content-Type": "application/json",
   };
-  setLoading(false);
 };
 
 const shouldShowToastr = response =>
@@ -65,8 +64,8 @@ const registerIntercepts = () => {
   responseInterceptors();
 };
 
-export default function initializeAxios(setLoading = () => null) {
+export default function initializeAxios() {
   axios.defaults.baseURL = SMILE_CART_BASE_URL;
-  setHttpHeaders(setLoading);
+  setHttpHeaders();
   registerIntercepts();
 }

@@ -8,7 +8,7 @@ import {
 import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
 import { Typography, Checkbox } from "neetoui";
 import { Form as NeetoUIForm } from "neetoui/formik";
-import { isEmpty, keys, prop } from "ramda";
+import { isEmpty, keys } from "ramda";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import routes from "routes";
@@ -34,11 +34,12 @@ const Checkout = () => {
 
   const { cartItems, clearCart } = useCartItemsStore.pick();
 
-  const productsResponse = useFetchCartProducts(keys(cartItems));
+  const { isLoading: isLoadingProducts } = useFetchCartProducts(
+    keys(cartItems)
+  );
   const { isLoading: isLoadingCountries } = useFetchCountries();
   const { mutate: createOrder } = useCreateOrder();
 
-  const isLoadingProducts = productsResponse.some(prop("isLoading"));
   const isLoading = isLoadingProducts || isLoadingCountries;
 
   const redirectToHome = () =>

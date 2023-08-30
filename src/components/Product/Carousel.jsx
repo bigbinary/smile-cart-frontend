@@ -11,7 +11,7 @@ const Carousel = () => {
 
   const { slug } = useParams();
 
-  const { data: { data: product = [] } = {} } = useFetchProduct(slug);
+  const { data: { data: product = {} } = {} } = useFetchProduct(slug);
 
   const { imageUrl, imageUrls, title } = product;
   const images = [imageUrl, ...imageUrls];

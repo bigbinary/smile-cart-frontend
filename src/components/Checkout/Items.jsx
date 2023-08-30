@@ -1,7 +1,7 @@
 import React from "react";
 
 import { OFFER_PRICE } from "components/constants";
-import { cartTotalOf, filterProducts } from "components/utils";
+import { cartTotalOf } from "components/utils";
 import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
 import { Typography, Button, Tag } from "neetoui";
 import { keys } from "ramda";
@@ -15,9 +15,8 @@ const Items = () => {
 
   const { cartItems } = useCartItemsStore.pick();
 
-  const productsResponse = useFetchCartProducts(keys(cartItems));
+  const { products } = useFetchCartProducts(keys(cartItems));
 
-  const products = filterProducts(productsResponse);
   const totalCheckoutPrice = cartTotalOf(products, OFFER_PRICE);
 
   return (
