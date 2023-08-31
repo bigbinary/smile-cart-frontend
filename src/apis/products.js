@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const fetchProducts = params => axios.get("products", { params });
+const fetch = params => axios.get("products", { params });
 
-const fetchProduct = slug => axios.get(`products/${slug}`);
+const show = slug => axios.get(`products/${slug}`);
 
-const productsApi = { fetchProducts, fetchProduct };
+const productsApi = { fetch, show };
 
 export default productsApi;

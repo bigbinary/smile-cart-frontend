@@ -3,7 +3,7 @@ import React from "react";
 import AddToCart from "components/AddToCart";
 import { Header, PageNotFound, PageLoader } from "components/commons";
 import useSelectedQuantity from "components/hooks/useSelectedQuantity";
-import { useFetchProduct } from "hooks/reactQuery/useProductsApi";
+import { useShowProduct } from "hooks/reactQuery/useProductsApi";
 import { Button, Typography } from "neetoui";
 import { isNil } from "ramda";
 import { useTranslation } from "react-i18next";
@@ -19,8 +19,7 @@ const Product = () => {
 
   const { selectedQuantity, setSelectedQuantity } = useSelectedQuantity(slug);
 
-  const { data: { data: product = {} } = {}, isLoading } =
-    useFetchProduct(slug);
+  const { data: product = {}, isLoading } = useShowProduct(slug);
 
   const { name, description, mrp, offerPrice, availableQuantity } = product;
 
