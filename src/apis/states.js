@@ -1,7 +1,6 @@
-import { STATE_LIST } from "components/constants";
-import { findBy } from "neetocommons/pure";
+import axios from "axios";
 
-const fetch = params => findBy(params, STATE_LIST);
+const fetch = params => axios.get("states", { params });
 
 const statesApi = { fetch };
 

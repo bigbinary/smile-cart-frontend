@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const fetch = () =>
-  axios.get("https://countriesnow.space/api/v0.1/countries/iso");
+const fetch = () => axios.get("countries");
 
 const countriesApi = { fetch };
 

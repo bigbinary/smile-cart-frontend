@@ -1,9 +1,12 @@
 import React, { useRef } from "react";
 
 import { PageLoader } from "components/commons";
-import { useFetchCountries } from "hooks/reactQuery/useCheckoutApi";
+import {
+  useFetchCountries,
+  useCreateOrder,
+} from "hooks/reactQuery/useCheckoutApi";
 import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
-import { Toastr, Typography, Checkbox } from "neetoui";
+import { Typography, Checkbox } from "neetoui";
 import { Form as NeetoUIForm } from "neetoui/formik";
 import { isEmpty, keys } from "ramda";
 import { useTranslation } from "react-i18next";
@@ -34,8 +37,8 @@ const Checkout = () => {
   const { isLoading: isLoadingProducts } = useFetchCartProducts(
     keys(cartItems)
   );
-
   const { isLoading: isLoadingCountries } = useFetchCountries();
+  const { mutate: createOrder } = useCreateOrder();
 
   const isLoading = isLoadingProducts || isLoadingCountries;
 
@@ -48,10 +51,15 @@ const Checkout = () => {
   const handleSubmit = values => {
     const dataToPersist = checkboxRef.current.checked ? values : null;
 
-    setToLocalStorage(CHECKOUT_LOCAL_STORAGE_KEY, dataToPersist);
-
-    Toastr.success("", { icon: "👍", className: "w-20" });
-    redirectToHome();
+    createOrder(
+      { payload: dataToPersist },
+      {
+        onSuccess: () => {
+          setToLocalStorage(CHECKOUT_LOCAL_STORAGE_KEY, dataToPersist);
+          redirectToHome();
+        },
+      }
+    );
   };
 
   if (isLoading) return <PageLoader />;

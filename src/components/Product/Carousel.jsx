@@ -1,11 +1,21 @@
 import { React, useState, useEffect } from "react";
 
 import classNames from "classnames";
+import { useShowProduct } from "hooks/reactQuery/useProductsApi";
 import { Left, Right } from "neetoicons";
 import { Button } from "neetoui";
+import { append } from "ramda";
+import { useParams } from "react-router-dom";
 
-const Carousel = ({ title, images }) => {
+const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const { slug } = useParams();
+
+  const { data: product = {} } = useShowProduct(slug);
+
+  const { imageUrl, imageUrls, title } = product;
+  const images = append(imageUrl, imageUrls);
 
   const handleNext = () =>
     setCurrentIndex(prevIndex => (prevIndex + 1) % images.length);
@@ -32,12 +42,7 @@ const Carousel = ({ title, images }) => {
           style="text"
           onClick={handlePrevious}
         />
-        <img
-          alt={title}
-          height="350px"
-          src={images[currentIndex]}
-          width="350px"
-        />
+        <img alt={title} className="w-48" src={images[currentIndex]} />
         <Button
           className="shrink-0 focus-within:ring-0 hover:bg-transparent"
           icon={Right}

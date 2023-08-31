@@ -1,24 +1,33 @@
 import { DEFAULT_STALE_TIME, QUERY_KEYS } from "constants/query";
 
 import productsApi from "apis/products";
-import { useQuery } from "react-query";
+import { prop } from "ramda";
+import { useQuery, useQueries } from "react-query";
 
-export const useFetchCartProducts = slugs =>
-  useQuery({
-    queryKey: [QUERY_KEYS.PRODUCTS, slugs],
-    queryFn: () => Promise.all(slugs.map(slug => productsApi.show(slug))),
-    staleTime: DEFAULT_STALE_TIME,
-  });
+export const useFetchCartProducts = slugs => {
+  const responses = useQueries(
+    slugs.map(slug => ({
+      queryKey: [QUERY_KEYS.PRODUCTS, slug],
+      queryFn: () => productsApi.show(slug),
+      staleTime: DEFAULT_STALE_TIME,
+    }))
+  );
 
-export const useSearchedProducts = (searchKey, page) =>
+  const isLoading = responses.some(prop("isLoading"));
+  const data = responses.map(prop("data")).filter(Boolean);
+
+  return { isLoading, data };
+};
+
+export const useFetchProducts = params =>
   useQuery({
-    queryKey: [QUERY_KEYS.PRODUCTS, searchKey, page],
-    queryFn: () => productsApi.getSearchedProducts(searchKey, page),
-    staleTime: DEFAULT_STALE_TIME,
+    queryKey: [QUERY_KEYS.PRODUCTS, params],
+    queryFn: () => productsApi.fetch(params),
     keepPreviousData: true,
+    staleTime: DEFAULT_STALE_TIME,
   });
 
-export const useShowProductBySlug = slug =>
+export const useShowProduct = slug =>
   useQuery({
     queryKey: [QUERY_KEYS.PRODUCTS, slug],
     queryFn: () => productsApi.show(slug),

@@ -1,11 +1,12 @@
 {
+  "title": "Smile Cart",
   "product": {
     "search": "Search products",
     "addToCart": "Add to cart",
     "buyNow": "Buy now",
     "mrp": "MRP: ${{mrp}}",
     "offerPrice": "Offer price: ${{offerPrice}}",
-    "discountRate": "{{discountRate}}% off",
+    "discountRate": "{{discountPercentage}}% off",
     "maximumUnits": "Reached maximum units",
     "error": {
       "quantityLimit_one": "Only {{availableQuantity}} unit is available",
@@ -62,5 +63,13 @@
       "emailInvalid": "Email address is invalid"
     }
   },
+  "order": {
+    "successfullyPlaced": "Order has been successfully placed"
+  },
+  "error": {
+    "noInternetConnection": "No Internet Connection",
+    "networkError": "Network Error"
+  },
+  "noData": "No products to show",
   "pageLoading": "Loading Please Wait"
 }

@@ -13,7 +13,7 @@ const Header = ({ title, actionBlock }) => {
   );
 
   return (
-    <>
+    <div className="m-4">
       <div className="mx-6 mb-2 mt-6 flex items-end justify-between">
         <Typography style="h1" weight="semibold">
           {title}
@@ -33,7 +33,7 @@ const Header = ({ title, actionBlock }) => {
         </div>
       </div>
       <hr className="neeto-ui-bg-black h-1" />
-    </>
+    </div>
   );
 };
 

@@ -1,15 +1,16 @@
 import React from "react";
 
-import { useShowProductBySlug } from "hooks/reactQuery/useProductsApi";
+import AddToCart from "components/AddToCart";
+import { Header, PageNotFound, PageLoader } from "components/commons";
+import useSelectedQuantity from "components/hooks/useSelectedQuantity";
+import { useShowProduct } from "hooks/reactQuery/useProductsApi";
 import { Button, Typography } from "neetoui";
-import { append, isNil } from "ramda";
+import { isNil } from "ramda";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import routes from "routes";
 
-import AddToCart from "./AddToCart";
-import { Carousel, Header, PageNotFound, PageLoader } from "./commons";
-import useSelectedQuantity from "./hooks/useSelectedQuantity";
+import Carousel from "./Carousel";
 
 const Product = () => {
   const { t } = useTranslation();
@@ -18,18 +19,12 @@ const Product = () => {
 
   const { selectedQuantity, setSelectedQuantity } = useSelectedQuantity(slug);
 
-  const { data: product = [], isLoading } = useShowProductBySlug(slug);
+  const { data: product = {}, isLoading } = useShowProduct(slug);
 
-  const {
-    name,
-    imageUrl,
-    images,
-    description,
-    mrp,
-    offerPrice,
-    discountRate,
-    availableQuantity,
-  } = product;
+  const { name, description, mrp, offerPrice, availableQuantity } = product;
+
+  const totalDiscounts = mrp - offerPrice;
+  const discountPercentage = ((totalDiscounts / mrp) * 100).toFixed(1);
 
   if (isLoading) return <PageLoader />;
 
@@ -38,8 +33,8 @@ const Product = () => {
   return (
     <>
       <Header title={name} />
-      <div className="mt-6 flex gap-6">
-        <Carousel className="w-2/5" images={append(imageUrl, images)} />
+      <div className="m-16 flex justify-center gap-16">
+        <Carousel className="w-2/5" />
         <div className="w-3/5 space-y-4">
           <Typography style="body1">{description}</Typography>
           <Typography style="body1">{t("product.mrp", { mrp })}</Typography>
@@ -51,7 +46,7 @@ const Product = () => {
             style="body1"
             weight="extrabold"
           >
-            {t("product.discountRate", { discountRate })}
+            {t("product.discountRate", { discountPercentage })}
           </Typography>
           <div className="flex space-x-10">
             <AddToCart {...{ availableQuantity, slug }} />
