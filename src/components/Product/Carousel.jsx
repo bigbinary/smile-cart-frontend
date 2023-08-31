@@ -42,11 +42,7 @@ const Carousel = () => {
           style="text"
           onClick={handlePrevious}
         />
-        <img
-          alt={title}
-          className="w-48 object-cover"
-          src={images[currentIndex]}
-        />
+        <img alt={title} className="w-48" src={images[currentIndex]} />
         <Button
           className="shrink-0 focus-within:ring-0 hover:bg-transparent"
           icon={Right}
