@@ -23,17 +23,13 @@ const Carousel = () => {
     intervalRef.current = setInterval(handleNext, 3000);
   };
 
-  const handleNext = () => {
+  const handleNext = () =>
     setCurrentIndex(prevIndex => (prevIndex + 1) % images.length);
-    resetTimer();
-  };
 
-  const handlePrevious = () => {
+  const handlePrevious = () =>
     setCurrentIndex(
       prevIndex => (prevIndex - 1 + images.length) % images.length
     );
-    resetTimer();
-  };
 
   useEffect(() => {
     intervalRef.current = setInterval(handleNext, 3000);
@@ -50,7 +46,10 @@ const Carousel = () => {
           className="shrink-0 focus-within:ring-0 hover:bg-transparent"
           icon={Left}
           style="text"
-          onClick={handlePrevious}
+          onClick={() => {
+            handlePrevious();
+            resetTimer();
+          }}
         />
         <img
           alt={title}
@@ -61,7 +60,10 @@ const Carousel = () => {
           className="shrink-0 focus-within:ring-0 hover:bg-transparent"
           icon={Right}
           style="text"
-          onClick={handleNext}
+          onClick={() => {
+            handleNext();
+            resetTimer();
+          }}
         />
       </div>
       <div className="flex space-x-1">
