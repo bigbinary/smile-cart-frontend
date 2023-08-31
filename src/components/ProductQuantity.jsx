@@ -41,7 +41,7 @@ const ProductQuantity = ({ slug, availableQuantity }) => {
   };
 
   return (
-    <div className="neeto-ui-border-black neeto-ui-rounded border flex items-center">
+    <div className="neeto-ui-border-black neeto-ui-rounded flex items-center border">
       <Button
         className="focus-within:ring-0"
         label="-"
