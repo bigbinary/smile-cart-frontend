@@ -22,7 +22,7 @@ const Header = ({ title, actionBlock }) => {
           {actionBlock}
           <div className="flex flex-col">
             {cartItemsCount > 0 && (
-              <span className="neeto-ui-border-black neeto-ui-rounded-full min-w-fit border flex h-5 w-5 items-center self-end p-1">
+              <span className="neeto-ui-border-black neeto-ui-rounded-full min-w-fit flex h-5 w-5 items-center self-end border p-1">
                 {cartItemsCount}
               </span>
             )}
