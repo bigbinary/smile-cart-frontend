@@ -15,7 +15,7 @@ const Items = ({ isSubmitLoading }) => {
 
   const { cartItems } = useCartItemsStore.pick();
 
-  const { data: products } = useFetchCartProducts(keys(cartItems));
+  const { data: products = [] } = useFetchCartProducts(keys(cartItems));
 
   const totalCheckoutPrice = cartTotalOf(products, OFFER_PRICE);
 
