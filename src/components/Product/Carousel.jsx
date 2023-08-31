@@ -1,7 +1,7 @@
 import { React, useState, useEffect, useRef } from "react";
 
 import classNames from "classnames";
-import { useFetchProduct } from "hooks/reactQuery/useProductsApi";
+import { useShowProduct } from "hooks/reactQuery/useProductsApi";
 import { Left, Right } from "neetoicons";
 import { Button } from "neetoui";
 import { append } from "ramda";
@@ -11,9 +11,10 @@ const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const { slug } = useParams();
+
   const intervalRef = useRef(null);
 
-  const { data: { data: product = {} } = {} } = useFetchProduct(slug);
+  const { data: product = {} } = useShowProduct(slug);
 
   const { imageUrl, imageUrls, title } = product;
   const images = append(imageUrl, imageUrls);
@@ -51,11 +52,7 @@ const Carousel = () => {
             resetTimer();
           }}
         />
-        <img
-          alt={title}
-          className="w-48 object-cover"
-          src={images[currentIndex]}
-        />
+        <img alt={title} className="w-48" src={images[currentIndex]} />
         <Button
           className="shrink-0 focus-within:ring-0 hover:bg-transparent"
           icon={Right}

@@ -43,7 +43,7 @@ const responseInterceptors = () => {
       transformResponseKeysToCamelCase(response);
       showSuccessToastr(response);
 
-      return response;
+      return response.data;
     },
     error => showErrorToastr(error)
   );
