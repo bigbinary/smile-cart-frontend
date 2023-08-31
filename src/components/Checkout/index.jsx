@@ -86,7 +86,7 @@ const Checkout = () => {
           <div className="flex items-center">
             <LeftArrow
               className="hover:neeto-ui-bg-gray-400 neeto-ui-rounded-full mr-4"
-              onClick={() => history.goBack()}
+              onClick={history.goBack}
             />
             <Typography
               className="text-left"

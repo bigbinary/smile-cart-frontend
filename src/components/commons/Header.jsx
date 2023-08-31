@@ -22,7 +22,7 @@ const Header = ({ title, actionBlock, shouldShowBackButton = true }) => {
           {shouldShowBackButton && (
             <LeftArrow
               className="hover:neeto-ui-bg-gray-400 neeto-ui-rounded-full mr-6"
-              onClick={() => history.goBack()}
+              onClick={history.goBack}
             />
           )}
           <Typography style="h1" weight="semibold">
