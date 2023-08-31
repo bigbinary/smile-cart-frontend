@@ -5,7 +5,7 @@ import { Header, PageNotFound, PageLoader } from "components/commons";
 import useSelectedQuantity from "components/hooks/useSelectedQuantity";
 import { useShowProduct } from "hooks/reactQuery/useProductsApi";
 import { Button, Typography } from "neetoui";
-import { isNil } from "ramda";
+import { isNil, isNotNil } from "ramda";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import routes from "routes";
@@ -21,7 +21,15 @@ const Product = () => {
 
   const { data: product = {}, isLoading } = useShowProduct(slug);
 
-  const { name, description, mrp, offerPrice, availableQuantity } = product;
+  const {
+    name,
+    description,
+    mrp,
+    offerPrice,
+    availableQuantity,
+    imageUrl,
+    imageUrls,
+  } = product;
 
   const totalDiscounts = mrp - offerPrice;
   const discountPercentage = ((totalDiscounts / mrp) * 100).toFixed(1);
@@ -34,7 +42,11 @@ const Product = () => {
     <>
       <Header title={name} />
       <div className="m-16 flex justify-center gap-16">
-        <Carousel className="w-2/5" />
+        {isNotNil(imageUrls) ? (
+          <Carousel className="w-2/5" />
+        ) : (
+          <img alt={name} className="w-48" src={imageUrl} />
+        )}
         <div className="w-3/5 space-y-4">
           <Typography style="body1">{description}</Typography>
           <Typography style="body1">{t("product.mrp", { mrp })}</Typography>

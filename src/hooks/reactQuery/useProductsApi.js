@@ -30,6 +30,6 @@ export const useFetchProducts = params =>
 export const useShowProduct = slug =>
   useQuery({
     queryKey: [QUERY_KEYS.PRODUCTS, slug],
-    queryFn: () => productsApi.fetchProduct(slug),
+    queryFn: () => productsApi.show(slug),
     staleTime: DEFAULT_STALE_TIME,
   });

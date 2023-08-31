@@ -12,31 +12,33 @@ const Carousel = () => {
 
   const { slug } = useParams();
 
-  const intervalRef = useRef(null);
+  const timerRef = useRef(null);
 
   const { data: product = {} } = useShowProduct(slug);
 
   const { imageUrl, imageUrls, title } = product;
   const images = append(imageUrl, imageUrls);
 
-  const resetTimer = () => {
-    clearInterval(intervalRef.current);
-    intervalRef.current = setInterval(handleNext, 3000);
-  };
-
   const handleNext = () =>
     setCurrentIndex(prevIndex => (prevIndex + 1) % images.length);
 
-  const handlePrevious = () =>
+  const resetTimer = () => {
+    clearInterval(timerRef.current);
+    timerRef.current = setInterval(handleNext, 3000);
+  };
+
+  const handlePrevious = () => {
     setCurrentIndex(
       prevIndex => (prevIndex - 1 + images.length) % images.length
     );
+    resetTimer();
+  };
 
   useEffect(() => {
-    intervalRef.current = setInterval(handleNext, 3000);
+    timerRef.current = setInterval(handleNext, 3000);
 
     return () => {
-      clearInterval(intervalRef.current);
+      clearInterval(timerRef.current);
     };
   }, []);
 
@@ -47,10 +49,7 @@ const Carousel = () => {
           className="shrink-0 focus-within:ring-0 hover:bg-transparent"
           icon={Left}
           style="text"
-          onClick={() => {
-            handlePrevious();
-            resetTimer();
-          }}
+          onClick={() => handlePrevious()}
         />
         <img alt={title} className="w-48" src={images[currentIndex]} />
         <Button
