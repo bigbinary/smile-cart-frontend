@@ -37,9 +37,7 @@ const Carousel = () => {
   useEffect(() => {
     timerRef.current = setInterval(handleNext, 3000);
 
-    return () => {
-      clearInterval(timerRef.current);
-    };
+    return () => clearInterval(timerRef.current);
   }, []);
 
   return (
