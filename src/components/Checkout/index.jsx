@@ -81,7 +81,7 @@ const Checkout = () => {
 
   if (isLoading) return <PageLoader />;
 
-  if (isEmpty(cartItems) && !timerRef.current) return history.push(routes.root);
+  if (isEmpty(cartItems)) return history.push(routes.root);
 
   return (
     <NeetoUIForm
