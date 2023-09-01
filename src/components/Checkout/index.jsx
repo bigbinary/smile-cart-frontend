@@ -25,11 +25,12 @@ import Form from "./Form";
 import Items from "./Items";
 
 const Checkout = () => {
-  const [isSubmitLoading, setIsSubmitLoading] = useState(false);
+  const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
 
   const { t } = useTranslation();
 
   const checkboxRef = useRef(null);
+  const timerRef = useRef(null);
 
   const history = useHistory();
 
@@ -45,16 +46,26 @@ const Checkout = () => {
 
   const isLoading = isLoadingProducts || isLoadingCountries;
 
-  const redirectToHome = () =>
-    setTimeout(() => {
+  const redirectToHome = () => {
+    timerRef.current = setTimeout(() => {
       history.push(routes.root);
-      setIsSubmitLoading(false);
       clearCart();
     }, 1500);
+  };
+
+  const handleRedirect = () => {
+    if (timerRef.current) {
+      history.push(routes.root);
+      clearCart();
+      clearTimeout(timerRef.current);
+    } else {
+      history.goBack();
+    }
+  };
 
   const handleSubmit = values => {
     const dataToPersist = checkboxRef.current.checked ? values : null;
-    setIsSubmitLoading(true);
+    setIsSubmitDisabled(true);
 
     createOrder(
       { payload: dataToPersist },
@@ -63,14 +74,14 @@ const Checkout = () => {
           setToLocalStorage(CHECKOUT_LOCAL_STORAGE_KEY, dataToPersist);
           redirectToHome();
         },
-        onError: () => setIsSubmitLoading(false),
+        onError: () => setIsSubmitDisabled(false),
       }
     );
   };
 
   if (isLoading) return <PageLoader />;
 
-  if (isEmpty(cartItems)) return history.push(routes.root);
+  if (isEmpty(cartItems) && !timerRef.current) return history.push(routes.root);
 
   return (
     <NeetoUIForm
@@ -86,7 +97,7 @@ const Checkout = () => {
           <div className="flex items-center">
             <LeftArrow
               className="hover:neeto-ui-bg-gray-400 neeto-ui-rounded-full mr-4"
-              onClick={history.goBack}
+              onClick={handleRedirect}
             />
             <Typography
               className="text-left"
@@ -108,7 +119,7 @@ const Checkout = () => {
           </div>
         </div>
         <div className="neeto-ui-bg-gray-300 h-screen w-1/2 pt-10">
-          <Items {...{ isSubmitLoading }} />
+          <Items {...{ isSubmitDisabled }} />
         </div>
       </div>
     </NeetoUIForm>
