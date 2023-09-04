@@ -38,6 +38,7 @@ const ProductsList = () => {
   return (
     <div className="flex h-screen flex-col">
       <Header
+        shouldShowBackButton={false}
         title={t("title")}
         actionBlock={
           <Input

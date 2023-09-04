@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 import { PageLoader } from "components/commons";
 import {
@@ -6,6 +6,7 @@ import {
   useCreateOrder,
 } from "hooks/reactQuery/useCheckoutApi";
 import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
+import { LeftArrow } from "neetoicons";
 import { Typography, Checkbox } from "neetoui";
 import { Form as NeetoUIForm } from "neetoui/formik";
 import { isEmpty, keys } from "ramda";
@@ -24,9 +25,12 @@ import Form from "./Form";
 import Items from "./Items";
 
 const Checkout = () => {
+  const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
+
   const { t } = useTranslation();
 
   const checkboxRef = useRef(null);
+  const timerRef = useRef(null);
 
   const history = useHistory();
 
@@ -42,14 +46,26 @@ const Checkout = () => {
 
   const isLoading = isLoadingProducts || isLoadingCountries;
 
-  const redirectToHome = () =>
-    setTimeout(() => {
+  const redirectToHome = () => {
+    timerRef.current = setTimeout(() => {
       history.push(routes.root);
       clearCart();
     }, 1500);
+  };
+
+  const handleRedirect = () => {
+    if (timerRef.current) {
+      history.push(routes.root);
+      clearCart();
+      clearTimeout(timerRef.current);
+    } else {
+      history.goBack();
+    }
+  };
 
   const handleSubmit = values => {
     const dataToPersist = checkboxRef.current.checked ? values : null;
+    setIsSubmitDisabled(true);
 
     createOrder(
       { payload: dataToPersist },
@@ -58,6 +74,7 @@ const Checkout = () => {
           setToLocalStorage(CHECKOUT_LOCAL_STORAGE_KEY, dataToPersist);
           redirectToHome();
         },
+        onError: () => setIsSubmitDisabled(false),
       }
     );
   };
@@ -77,21 +94,32 @@ const Checkout = () => {
     >
       <div className="flex space-x-4">
         <div className="m-10 w-1/2">
-          <Typography
-            className="text-left"
-            style="h3"
-            textTransform="uppercase"
-            weight="bold"
-          >
-            {t("checkout.title")}
-          </Typography>
+          <div className="flex items-center">
+            <LeftArrow
+              className="hover:neeto-ui-bg-gray-400 neeto-ui-rounded-full mr-4"
+              onClick={handleRedirect}
+            />
+            <Typography
+              className="text-left"
+              component="u"
+              style="h3"
+              textTransform="uppercase"
+              weight="bold"
+            >
+              {t("checkout.title")}
+            </Typography>
+          </div>
           <div className="mt-8 space-y-4">
             <Form />
-            <Checkbox label={t("checkout.checkboxTitle")} ref={checkboxRef} />
+            <Checkbox
+              defaultChecked
+              label={t("checkout.checkboxTitle")}
+              ref={checkboxRef}
+            />
           </div>
         </div>
         <div className="neeto-ui-bg-gray-300 h-screen w-1/2 pt-10">
-          <Items />
+          <Items {...{ isSubmitDisabled }} />
         </div>
       </div>
     </NeetoUIForm>

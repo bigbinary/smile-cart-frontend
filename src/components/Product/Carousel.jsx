@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useRef } from "react";
 
 import classNames from "classnames";
 import { useShowProduct } from "hooks/reactQuery/useProductsApi";
@@ -12,6 +12,8 @@ const Carousel = () => {
 
   const { slug } = useParams();
 
+  const timerRef = useRef(null);
+
   const { data: product = {} } = useShowProduct(slug);
 
   const { imageUrl, imageUrls, title } = product;
@@ -20,17 +22,22 @@ const Carousel = () => {
   const handleNext = () =>
     setCurrentIndex(prevIndex => (prevIndex + 1) % images.length);
 
-  const handlePrevious = () =>
+  const resetTimer = () => {
+    clearInterval(timerRef.current);
+    timerRef.current = setInterval(handleNext, 3000);
+  };
+
+  const handlePrevious = () => {
     setCurrentIndex(
       prevIndex => (prevIndex - 1 + images.length) % images.length
     );
+    resetTimer();
+  };
 
   useEffect(() => {
-    const interval = setInterval(handleNext, 3000);
+    timerRef.current = setInterval(handleNext, 3000);
 
-    return () => {
-      clearInterval(interval);
-    };
+    return () => clearInterval(timerRef.current);
   }, []);
 
   return (
@@ -47,7 +54,10 @@ const Carousel = () => {
           className="shrink-0 focus-within:ring-0 hover:bg-transparent"
           icon={Right}
           style="text"
-          onClick={handleNext}
+          onClick={() => {
+            handleNext();
+            resetTimer();
+          }}
         />
       </div>
       <div className="flex space-x-1">
@@ -55,10 +65,13 @@ const Carousel = () => {
           <span
             key={index}
             className={classNames(
-              "neeto-ui-border-black neeto-ui-rounded-full h-3 w-3 border",
+              "neeto-ui-border-black neeto-ui-rounded-full h-3 w-3 cursor-pointer border",
               { "neeto-ui-bg-black": index === currentIndex }
             )}
-            onClick={() => setCurrentIndex(index)}
+            onClick={() => {
+              setCurrentIndex(index);
+              resetTimer();
+            }}
           />
         ))}
       </div>
