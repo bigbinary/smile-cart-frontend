@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 import { Typography } from "neetoui";
 import { Link } from "react-router-dom";
@@ -27,4 +27,4 @@ const ProductListItem = ({
   </Link>
 );
 
-export default ProductListItem;
+export default memo(ProductListItem);
