@@ -10,7 +10,8 @@
     "maximumUnits": "Reached maximum units",
     "error": {
       "quantityLimit_one": "Only {{availableQuantity}} unit is available",
-      "quantityLimit_other": "Only {{availableQuantity}} units are available"
+      "quantityLimit_other": "Only {{availableQuantity}} units are available",
+      "removedFromCart": "{{name}} is no longer available and has been removed from cart"
     }
   },
   "cart": {
