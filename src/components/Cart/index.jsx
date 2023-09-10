@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 import Header from "components/commons/Header";
 import PageLoader from "components/commons/PageLoader";
@@ -6,7 +6,7 @@ import { MRP, OFFER_PRICE } from "components/constants";
 import { cartTotalOf } from "components/utils";
 import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
 import { NoData } from "neetoui";
-import { isEmpty, keys } from "ramda";
+import { isEmpty, keys, prop } from "ramda";
 import { useTranslation } from "react-i18next";
 import useCartItemsStore from "stores/useCartItemsStore";
 
@@ -16,14 +16,15 @@ import ProductCard from "./ProductCard";
 const Cart = () => {
   const { t } = useTranslation();
 
-  const { cartItems } = useCartItemsStore.pick();
+  const slugs = useCartItemsStore(store => keys(prop("cartItems", store)));
 
-  const { data: products = [], isLoading } = useFetchCartProducts(
-    keys(cartItems)
+  const { data: products = [], isLoading } = useFetchCartProducts(slugs);
+
+  const totalMrp = useMemo(() => cartTotalOf(products, MRP), [products]);
+  const totalOfferPrice = useMemo(
+    () => cartTotalOf(products, OFFER_PRICE),
+    [products]
   );
-
-  const totalMrp = cartTotalOf(products, MRP);
-  const totalOfferPrice = cartTotalOf(products, OFFER_PRICE);
 
   if (isLoading) return <PageLoader />;
 

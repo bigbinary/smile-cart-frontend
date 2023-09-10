@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 import { LeftArrow } from "neetoicons";
 import { Typography } from "neetoui";
@@ -48,4 +48,4 @@ const Header = ({ title, actionBlock, shouldShowBackButton = true }) => {
   );
 };
 
-export default Header;
+export default memo(Header);
