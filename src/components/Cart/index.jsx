@@ -2,7 +2,6 @@ import React, { useMemo } from "react";
 
 import Header from "components/commons/Header";
 import PageLoader from "components/commons/PageLoader";
-import { MRP, OFFER_PRICE } from "components/constants";
 import { cartTotalOf } from "components/utils";
 import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
 import { NoData } from "neetoui";
@@ -20,9 +19,9 @@ const Cart = () => {
 
   const { data: products = [], isLoading } = useFetchCartProducts(slugs);
 
-  const totalMrp = useMemo(() => cartTotalOf(products, MRP), [products]);
+  const totalMrp = useMemo(() => cartTotalOf(products, "mrp"), [products]);
   const totalOfferPrice = useMemo(
-    () => cartTotalOf(products, OFFER_PRICE),
+    () => cartTotalOf(products, "offerPrice"),
     [products]
   );
 
