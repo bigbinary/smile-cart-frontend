@@ -9,12 +9,12 @@ import { Input, Pagination, NoData } from "neetoui";
 import { isEmpty } from "ramda";
 import { useTranslation } from "react-i18next";
 
-import { DEFAULT_PAGE_SIZE } from "./constants";
+import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from "./constants";
 import ProductListItem from "./ProductListItem";
 
 const ProductsList = () => {
   const [searchKey, setSearchKey] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(DEFAULT_PAGE_INDEX);
 
   const { t } = useTranslation();
 
@@ -30,7 +30,7 @@ const ProductsList = () => {
     useFetchProducts(productsParams);
 
   useEffect(() => {
-    setCurrentPage(1);
+    setCurrentPage(DEFAULT_PAGE_INDEX);
   }, [debouncedSearchKey]);
 
   if (isLoading) return <PageLoader />;
