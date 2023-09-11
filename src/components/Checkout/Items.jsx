@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 
 import { OFFER_PRICE } from "components/constants";
 import { cartTotalOf } from "components/utils";
@@ -18,10 +18,7 @@ const Items = ({ isSubmitDisabled }) => {
 
   const { data: products = [] } = useFetchCartProducts(keys(cartItems));
 
-  const totalCheckoutPrice = useMemo(
-    () => cartTotalOf(products, OFFER_PRICE),
-    [products]
-  );
+  const totalCheckoutPrice = cartTotalOf(products, OFFER_PRICE);
 
   return (
     <div className="flex h-full flex-col p-10">

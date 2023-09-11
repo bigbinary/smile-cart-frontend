@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 
 import Header from "components/commons/Header";
 import PageLoader from "components/commons/PageLoader";
@@ -20,11 +20,8 @@ const Cart = () => {
 
   const { data: products = [], isLoading } = useFetchCartProducts(slugs);
 
-  const totalMrp = useMemo(() => cartTotalOf(products, MRP), [products]);
-  const totalOfferPrice = useMemo(
-    () => cartTotalOf(products, OFFER_PRICE),
-    [products]
-  );
+  const totalMrp = cartTotalOf(products, MRP);
+  const totalOfferPrice = cartTotalOf(products, OFFER_PRICE);
 
   if (isLoading) return <PageLoader />;
 
