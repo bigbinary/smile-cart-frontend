@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 
+import { OFFER_PRICE } from "components/constants";
 import { cartTotalOf } from "components/utils";
 import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
 import { Button } from "neetoui";
@@ -18,7 +19,7 @@ const Items = ({ isSubmitDisabled }) => {
   const { data: products = [] } = useFetchCartProducts(keys(cartItems));
 
   const totalCheckoutPrice = useMemo(
-    () => cartTotalOf(products, "offerPrice"),
+    () => cartTotalOf(products, OFFER_PRICE),
     [products]
   );
 
