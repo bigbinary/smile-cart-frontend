@@ -4,7 +4,7 @@ import { OFFER_PRICE } from "components/constants";
 import { cartTotalOf } from "components/utils";
 import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
 import { Button } from "neetoui";
-import { keys } from "ramda";
+import { keys, prop } from "ramda";
 import { useTranslation } from "react-i18next";
 import useCartItemsStore from "stores/useCartItemsStore";
 
@@ -14,20 +14,16 @@ import Product from "./Product";
 const Items = ({ isSubmitDisabled }) => {
   const { t } = useTranslation();
 
-  const { cartItems } = useCartItemsStore.pick();
+  const slugs = useCartItemsStore(store => keys(prop("cartItems", store)));
 
-  const { data: products = [] } = useFetchCartProducts(keys(cartItems));
+  const { data: products = [] } = useFetchCartProducts(slugs);
 
   const totalCheckoutPrice = cartTotalOf(products, OFFER_PRICE);
 
   return (
     <div className="flex h-full flex-col p-10">
       {products.map(product => (
-        <Product
-          key={product.slug}
-          {...product}
-          selectedQuantity={cartItems[product.slug]}
-        />
+        <Product key={product.slug} {...product} />
       ))}
       <div className="mt-5 w-3/4 space-y-3">
         <PriceEntry
