@@ -6,7 +6,7 @@ import { MRP, OFFER_PRICE } from "components/constants";
 import { cartTotalOf } from "components/utils";
 import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
 import { NoData } from "neetoui";
-import { isEmpty, keys, prop } from "ramda";
+import { isEmpty, keys } from "ramda";
 import { useTranslation } from "react-i18next";
 import useCartItemsStore from "stores/useCartItemsStore";
 
@@ -16,7 +16,7 @@ import ProductCard from "./ProductCard";
 const Cart = () => {
   const { t } = useTranslation();
 
-  const slugs = useCartItemsStore(store => keys(prop("cartItems", store)));
+  const slugs = useCartItemsStore(store => keys(store.cartItems));
 
   const { data: products = [], isLoading } = useFetchCartProducts(slugs);
 
