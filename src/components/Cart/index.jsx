@@ -16,11 +16,9 @@ import ProductCard from "./ProductCard";
 const Cart = () => {
   const { t } = useTranslation();
 
-  const { cartItems } = useCartItemsStore.pick();
+  const slugs = useCartItemsStore(store => keys(store.cartItems));
 
-  const { data: products = [], isLoading } = useFetchCartProducts(
-    keys(cartItems)
-  );
+  const { data: products = [], isLoading } = useFetchCartProducts(slugs);
 
   const totalMrp = cartTotalOf(products, MRP);
   const totalOfferPrice = cartTotalOf(products, OFFER_PRICE);

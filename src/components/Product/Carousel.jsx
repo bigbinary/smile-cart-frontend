@@ -1,4 +1,4 @@
-import { React, useState, useEffect, useRef } from "react";
+import React, { memo, useState, useEffect, useRef } from "react";
 
 import classNames from "classnames";
 import { useShowProduct } from "hooks/reactQuery/useProductsApi";
@@ -79,4 +79,4 @@ const Carousel = () => {
   );
 };
 
-export default Carousel;
+export default memo(Carousel);
