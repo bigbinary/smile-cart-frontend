@@ -1,7 +1,7 @@
 const routes = {
   cart: "/cart",
   root: "/",
-  product: {
+  products: {
     show: "/products/:slug",
   },
   checkout: "/checkout",
