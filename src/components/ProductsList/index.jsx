@@ -8,6 +8,7 @@ import { Search } from "neetoicons";
 import { Input, Pagination, NoData } from "neetoui";
 import { isEmpty } from "ramda";
 import { useTranslation } from "react-i18next";
+import withTitle from "utils/withTitle";
 
 import { DEFAULT_PAGE_SIZE } from "./constants";
 import ProductListItem from "./ProductListItem";
@@ -72,4 +73,7 @@ const ProductsList = () => {
     </div>
   );
 };
-export default ProductsList;
+
+const ProductListWithTitle = withTitle(ProductsList);
+
+export default ProductListWithTitle;

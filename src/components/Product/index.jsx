@@ -4,11 +4,13 @@ import AddToCart from "components/AddToCart";
 import { Header, PageNotFound, PageLoader } from "components/commons";
 import useSelectedQuantity from "components/hooks/useSelectedQuantity";
 import { useShowProduct } from "hooks/reactQuery/useProductsApi";
+import i18n from "i18next";
 import { Button, Typography } from "neetoui";
 import { isNil, isNotNil } from "ramda";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import routes from "routes";
+import withTitle from "utils/withTitle";
 
 import Carousel from "./Carousel";
 
@@ -76,4 +78,6 @@ const Product = () => {
   );
 };
 
-export default Product;
+const ProductWithTitle = withTitle(Product, i18n.t("product.title"));
+
+export default ProductWithTitle;
