@@ -6,6 +6,7 @@ import {
   useCreateOrder,
 } from "hooks/reactQuery/useCheckoutApi";
 import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
+import i18n from "i18next";
 import { LeftArrow } from "neetoicons";
 import { Typography, Checkbox } from "neetoui";
 import { Form as NeetoUIForm } from "neetoui/formik";
@@ -15,6 +16,7 @@ import { useHistory } from "react-router-dom";
 import routes from "routes";
 import useCartItemsStore from "stores/useCartItemsStore";
 import { setToLocalStorage, getFromLocalStorage } from "utils/storage";
+import withTitle from "utils/withTitle";
 
 import {
   CHECKOUT_FORM_INITIAL_VALUES,
@@ -126,4 +128,4 @@ const Checkout = () => {
   );
 };
 
-export default Checkout;
+export default withTitle(Checkout, i18n.t("checkout.title"));
