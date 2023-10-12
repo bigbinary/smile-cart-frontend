@@ -74,6 +74,4 @@ const ProductsList = () => {
   );
 };
 
-const ProductListWithTitle = withTitle(ProductsList);
-
-export default ProductListWithTitle;
+export default withTitle(ProductsList);

@@ -128,6 +128,4 @@ const Checkout = () => {
   );
 };
 
-const CheckoutWithTitle = withTitle(Checkout, i18n.t("checkout.title"));
-
-export default CheckoutWithTitle;
+export default withTitle(Checkout, i18n.t("checkout.title"));

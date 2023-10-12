@@ -78,6 +78,4 @@ const Product = () => {
   );
 };
 
-const ProductWithTitle = withTitle(Product, i18n.t("product.title"));
-
-export default ProductWithTitle;
+export default withTitle(Product, i18n.t("product.title"));

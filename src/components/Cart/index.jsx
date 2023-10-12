@@ -54,6 +54,4 @@ const Cart = () => {
   );
 };
 
-const CartWithTitle = withTitle(Cart, i18n.t("cart.title"));
-
-export default CartWithTitle;
+export default withTitle(Cart, i18n.t("cart.title"));
