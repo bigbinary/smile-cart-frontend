@@ -5,7 +5,7 @@ import {
   useFetchStates,
   useFetchCountries,
 } from "hooks/reactQuery/useCheckoutApi";
-import { renameKeys } from "neetocommons/pure";
+import { renameKeys } from "neetocist";
 import { Typography } from "neetoui";
 import { Input, Select } from "neetoui/formik";
 import { useTranslation } from "react-i18next";

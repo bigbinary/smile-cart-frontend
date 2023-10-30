@@ -333,6 +333,7 @@ module.exports = function (webpackEnv) {
         src: absolutePath("src"),
         neetoui: "@bigbinary/neetoui",
         neetocommons: "@bigbinary/neeto-commons-frontend",
+        neetocist: "@bigbinary/neeto-cist",
         neetoicons: "@bigbinary/neeto-icons",
         images: path.resolve(__dirname, "../../../../../", "app/assets/images"),
       },

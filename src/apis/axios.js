@@ -1,6 +1,6 @@
 import axios from "axios";
 import { t } from "i18next";
-import { keysToCamelCase, serializeKeysToSnakeCase } from "neetocommons/pure";
+import { keysToCamelCase, serializeKeysToSnakeCase } from "neetocist";
 import { Toastr } from "neetoui";
 import { evolve } from "ramda";
 import { SMILE_CART_BASE_URL } from "src/constants";

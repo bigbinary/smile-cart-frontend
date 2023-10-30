@@ -47,6 +47,7 @@
     "@babel/preset-typescript": "^7.21.0",
     "@babel/runtime": "^7.19.0",
     "@bigbinary/babel-preset-neeto": "^1.0.3",
+    "@bigbinary/neeto-cist": "^1.0.3",
     "@bigbinary/neeto-commons-frontend": "^2.0.105",
     "@bigbinary/neeto-icons": "^1.14.0",
     "@bigbinary/neetoui": "^5.0.17",
