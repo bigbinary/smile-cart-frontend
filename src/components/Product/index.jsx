@@ -45,7 +45,7 @@ const Product = () => {
       <Header title={name} />
       <div className="m-16 flex justify-center gap-16">
         {isNotNil(imageUrls) ? (
-          <Carousel className="w-2/5" />
+          <Carousel />
         ) : (
           <img alt={name} className="w-48" src={imageUrl} />
         )}
