@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { Header, PageLoader } from "components/commons";
 import { useFetchProducts } from "hooks/reactQuery/useProductsApi";
@@ -9,16 +9,16 @@ import { isEmpty } from "ramda";
 import { useTranslation } from "react-i18next";
 import withTitle from "utils/withTitle";
 
-import { DEFAULT_PAGE_SIZE } from "./constants";
+import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from "./constants";
 import ProductListItem from "./ProductListItem";
 
 const ProductsList = () => {
   const [searchKey, setSearchKey] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(DEFAULT_PAGE_INDEX);
 
   const { t } = useTranslation();
 
-  const debouncedSearchKey = useDebounce(searchKey, 300);
+  const debouncedSearchKey = useDebounce(searchKey);
 
   const productsParams = {
     searchedProductName: debouncedSearchKey,
@@ -28,10 +28,6 @@ const ProductsList = () => {
 
   const { data: { products = [], totalProductsCount } = {}, isLoading } =
     useFetchProducts(productsParams);
-
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [debouncedSearchKey]);
 
   if (isLoading) return <PageLoader />;
 
@@ -46,7 +42,10 @@ const ProductsList = () => {
             prefix={<Search />}
             type="search"
             value={searchKey}
-            onChange={e => setSearchKey(e.target.value)}
+            onChange={e => {
+              setSearchKey(e.target.value);
+              setCurrentPage(DEFAULT_PAGE_INDEX);
+            }}
           />
         }
       />
