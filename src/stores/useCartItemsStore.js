@@ -1,4 +1,4 @@
-import { isNotEmpty } from "neetocommons/pure";
+import { isNotEmpty } from "neetocist";
 import { assoc, dissoc, evolve } from "ramda";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";

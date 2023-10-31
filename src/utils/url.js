@@ -1,4 +1,4 @@
-import { preprocessForSerialization } from "neetocommons/pure";
+import { preprocessForSerialization } from "neetocist";
 import { stringify } from "qs";
 import { isEmpty, toPairs, pipe, omit } from "ramda";
 

@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { Header, PageLoader } from "components/commons";
 import { useFetchProducts } from "hooks/reactQuery/useProductsApi";
 import useDebounce from "hooks/useDebounce";
-import { isNotEmpty } from "neetocommons/pure";
 import { Search } from "neetoicons";
 import { Input, Pagination, NoData } from "neetoui";
 import { isEmpty } from "ramda";
@@ -60,16 +59,14 @@ const ProductsList = () => {
           ))}
         </div>
       )}
-      {isNotEmpty(products) && (
-        <div className="mb-5 self-end">
-          <Pagination
-            count={totalProductsCount}
-            navigate={page => setCurrentPage(page)}
-            pageNo={currentPage}
-            pageSize={DEFAULT_PAGE_SIZE}
-          />
-        </div>
-      )}
+      <div className="mb-5 self-end">
+        <Pagination
+          count={totalProductsCount}
+          navigate={page => setCurrentPage(page)}
+          pageNo={currentPage}
+          pageSize={DEFAULT_PAGE_SIZE}
+        />
+      </div>
     </div>
   );
 };
