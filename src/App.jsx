@@ -17,7 +17,7 @@ const App = () => (
       <Route exact component={ProductsList} path={routes.products.index} />
       <Route exact component={Cart} path={routes.cart} />
       <Route exact component={Checkout} path={routes.checkout} />
-      <Redirect from={routes.root} to={routes.products.index} />
+      <Redirect exact from={routes.root} to={routes.products.index} />
       <Route component={PageNotFound} path="*" />
     </Switch>
     <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
