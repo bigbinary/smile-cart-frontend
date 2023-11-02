@@ -1,12 +1,7 @@
 import React from "react";
 
 import { ReactQueryDevtools } from "react-query/devtools";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import routes from "routes";
 
 import Cart from "./components/Cart";
@@ -22,7 +17,7 @@ const App = () => (
       <Route exact component={ProductsList} path={routes.root} />
       <Route exact component={Cart} path={routes.cart} />
       <Route exact component={Checkout} path={routes.checkout} />
-      <Redirect component={PageNotFound} path="*" />
+      <Route component={PageNotFound} path="*" />
     </Switch>
     <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
   </Router>
