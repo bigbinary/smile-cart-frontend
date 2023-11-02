@@ -1,33 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Header, PageLoader } from "components/commons";
 import { useFetchProducts } from "hooks/reactQuery/useProductsApi";
 import useDebounce from "hooks/useDebounce";
+import useQueryParams from "hooks/useQueryParams";
+import { keysToCamelCase, filterNonNull } from "neetocist";
 import { Search } from "neetoicons";
 import { Input, Pagination, NoData } from "neetoui";
 import { isEmpty } from "ramda";
 import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
+import routes from "routes";
+import { buildUrl } from "utils/url";
 import withTitle from "utils/withTitle";
 
 import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from "./constants";
 import ProductListItem from "./ProductListItem";
 
 const ProductsList = () => {
-  const [searchKey, setSearchKey] = useState("");
-  const [currentPage, setCurrentPage] = useState(DEFAULT_PAGE_INDEX);
-
   const { t } = useTranslation();
+
+  const history = useHistory();
+
+  const queryParams = useQueryParams();
+  const { page, recordsPerPage, searchedProductName } =
+    keysToCamelCase(queryParams);
+
+  const [searchKey, setSearchKey] = useState(searchedProductName);
 
   const debouncedSearchKey = useDebounce(searchKey);
 
   const productsParams = {
-    searchedProductName: debouncedSearchKey,
-    page: currentPage,
-    recordsPerPage: DEFAULT_PAGE_SIZE,
+    searchedProductName: debouncedSearchKey || null,
+    page: Number(page) || DEFAULT_PAGE_INDEX,
+    recordsPerPage: Number(recordsPerPage) || DEFAULT_PAGE_SIZE,
   };
 
   const { data: { products = [], totalProductsCount } = {}, isLoading } =
     useFetchProducts(productsParams);
+
+  const replaceUrl = page => {
+    const params = {
+      page: page || DEFAULT_PAGE_INDEX,
+      records_per_page: recordsPerPage || DEFAULT_PAGE_SIZE,
+      searched_product_name: debouncedSearchKey || null,
+    };
+
+    history.replace(buildUrl(routes.products.index, filterNonNull(params)));
+  };
+
+  useEffect(() => {
+    replaceUrl(page);
+  }, [debouncedSearchKey]);
 
   if (isLoading) return <PageLoader />;
 
@@ -44,7 +68,7 @@ const ProductsList = () => {
             value={searchKey}
             onChange={e => {
               setSearchKey(e.target.value);
-              setCurrentPage(DEFAULT_PAGE_INDEX);
+              replaceUrl(DEFAULT_PAGE_INDEX);
             }}
           />
         }
@@ -61,9 +85,9 @@ const ProductsList = () => {
       <div className="mb-5 self-end">
         <Pagination
           count={totalProductsCount}
-          navigate={page => setCurrentPage(page)}
-          pageNo={currentPage}
-          pageSize={DEFAULT_PAGE_SIZE}
+          navigate={page => replaceUrl(page)}
+          pageNo={Number(page) || DEFAULT_PAGE_INDEX}
+          pageSize={Number(recordsPerPage) || DEFAULT_PAGE_INDEX}
         />
       </div>
     </div>
