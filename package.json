@@ -126,6 +126,7 @@
     "sass": "^1.59.3",
     "sass-loader": "^12.3.0",
     "semver": "^7.3.5",
+    "serve": "^14.2.1",
     "shakapacker": "6.6.0",
     "source-map-loader": "^3.0.0",
     "style-loader": "^3.3.1",
@@ -149,7 +150,7 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "prepare": "husky install",
-    "serve": "http-server --proxy ./dist"
+    "serve": "serve -s ./dist"
   },
   "eslintConfig": {
     "parser": "@babel/eslint-parser",
