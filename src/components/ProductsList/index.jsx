@@ -7,7 +7,7 @@ import useQueryParams from "hooks/useQueryParams";
 import { keysToCamelCase, filterNonNull } from "neetocist";
 import { Search } from "neetoicons";
 import { Input, Pagination, NoData } from "neetoui";
-import { isEmpty } from "ramda";
+import { isEmpty, mergeLeft } from "ramda";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import routes from "routes";
@@ -39,7 +39,7 @@ const ProductsList = () => {
   const { data: { products = [], totalProductsCount } = {}, isLoading } =
     useFetchProducts(productsParams);
 
-  const replaceUrl = page => {
+  useEffect(() => {
     const params = {
       page: page || DEFAULT_PAGE_INDEX,
       records_per_page: recordsPerPage || DEFAULT_PAGE_SIZE,
@@ -47,10 +47,6 @@ const ProductsList = () => {
     };
 
     history.replace(buildUrl(routes.products.index, filterNonNull(params)));
-  };
-
-  useEffect(() => {
-    replaceUrl(page);
   }, [debouncedSearchKey]);
 
   if (isLoading) return <PageLoader />;
@@ -68,7 +64,12 @@ const ProductsList = () => {
             value={searchKey}
             onChange={e => {
               setSearchKey(e.target.value);
-              replaceUrl(DEFAULT_PAGE_INDEX);
+              history.replace(
+                buildUrl(
+                  routes.products.index,
+                  mergeLeft({ page: DEFAULT_PAGE_INDEX }, queryParams)
+                )
+              );
             }}
           />
         }
@@ -85,9 +86,13 @@ const ProductsList = () => {
       <div className="mb-5 self-end">
         <Pagination
           count={totalProductsCount}
-          navigate={page => replaceUrl(page)}
           pageNo={Number(page) || DEFAULT_PAGE_INDEX}
           pageSize={Number(recordsPerPage) || DEFAULT_PAGE_INDEX}
+          navigate={page =>
+            history.replace(
+              buildUrl(routes.products.index, mergeLeft({ page }, queryParams))
+            )
+          }
         />
       </div>
     </div>
