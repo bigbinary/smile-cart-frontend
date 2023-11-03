@@ -31,7 +31,7 @@ const ProductsList = () => {
   const debouncedSearchKey = useDebounce(searchKey);
 
   const productsParams = {
-    searchedProductName: debouncedSearchKey || null,
+    searchedProductName: debouncedSearchKey,
     page: Number(page) || DEFAULT_PAGE_INDEX,
     recordsPerPage: Number(recordsPerPage) || DEFAULT_PAGE_SIZE,
   };
