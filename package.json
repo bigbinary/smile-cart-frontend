@@ -149,7 +149,7 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "prepare": "husky install",
-    "serve": "http-server ./dist"
+    "serve": "http-server ./index.html"
   },
   "eslintConfig": {
     "parser": "@babel/eslint-parser",

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { ReactQueryDevtools } from "react-query/devtools";
-import { HashRouter, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import routes from "routes";
 
 import Cart from "./components/Cart";
@@ -11,7 +11,7 @@ import Product from "./components/Product";
 import ProductsList from "./components/ProductsList";
 
 const App = () => (
-  <HashRouter>
+  <>
     <Switch>
       <Route exact component={Product} path={routes.products.show} />
       <Route exact component={ProductsList} path={routes.root} />
@@ -20,7 +20,7 @@ const App = () => (
       <Route component={PageNotFound} path="*" />
     </Switch>
     <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
-  </HashRouter>
+  </>
 );
 
 export default App;
