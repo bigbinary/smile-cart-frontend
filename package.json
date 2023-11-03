@@ -87,7 +87,6 @@
     "formik": "2.2.0",
     "fs-extra": "^10.0.0",
     "html-webpack-plugin": "^5.5.0",
-    "http-server": "^14.1.1",
     "i18next": "21.7.0",
     "identity-obj-proxy": "^3.0.0",
     "ignore-loader": "^0.1.2",
