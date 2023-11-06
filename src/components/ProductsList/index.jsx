@@ -49,6 +49,22 @@ const ProductsList = () => {
     history.replace(buildUrl(routes.products.index, filterNonNull(params)));
   }, [debouncedSearchKey]);
 
+  const handleChange = e => {
+    setSearchKey(e.target.value);
+    history.replace(
+      buildUrl(
+        routes.products.index,
+        mergeLeft({ page: DEFAULT_PAGE_INDEX }, queryParams)
+      )
+    );
+  };
+
+  const handlePageNavigation = page => {
+    history.replace(
+      buildUrl(routes.products.index, mergeLeft({ page }, queryParams))
+    );
+  };
+
   if (isLoading) return <PageLoader />;
 
   return (
@@ -62,15 +78,7 @@ const ProductsList = () => {
             prefix={<Search />}
             type="search"
             value={searchKey}
-            onChange={e => {
-              setSearchKey(e.target.value);
-              history.replace(
-                buildUrl(
-                  routes.products.index,
-                  mergeLeft({ page: DEFAULT_PAGE_INDEX }, queryParams)
-                )
-              );
-            }}
+            onChange={handleChange}
           />
         }
       />
@@ -86,13 +94,9 @@ const ProductsList = () => {
       <div className="mb-5 self-end">
         <Pagination
           count={totalProductsCount}
+          navigate={handlePageNavigation}
           pageNo={Number(page) || DEFAULT_PAGE_INDEX}
-          pageSize={Number(recordsPerPage) || DEFAULT_PAGE_INDEX}
-          navigate={page =>
-            history.replace(
-              buildUrl(routes.products.index, mergeLeft({ page }, queryParams))
-            )
-          }
+          pageSize={Number(recordsPerPage) || DEFAULT_PAGE_SIZE}
         />
       </div>
     </div>
