@@ -23,17 +23,16 @@ const ProductsList = () => {
   const history = useHistory();
 
   const queryParams = useQueryParams();
-  const { page, recordsPerPage, searchedProductName } =
-    keysToCamelCase(queryParams);
+  const { page, pageSize, searchTerm } = keysToCamelCase(queryParams);
 
-  const [searchKey, setSearchKey] = useState(searchedProductName);
+  const [searchKey, setSearchKey] = useState(searchTerm);
 
   const debouncedSearchKey = useDebounce(searchKey);
 
   const productsParams = {
-    searchedProductName: debouncedSearchKey,
+    searchTerm: debouncedSearchKey,
     page: Number(page) || DEFAULT_PAGE_INDEX,
-    recordsPerPage: Number(recordsPerPage) || DEFAULT_PAGE_SIZE,
+    pageSize: Number(pageSize) || DEFAULT_PAGE_SIZE,
   };
 
   const { data: { products = [], totalProductsCount } = {}, isLoading } =
@@ -42,8 +41,8 @@ const ProductsList = () => {
   useEffect(() => {
     const params = {
       page: page || DEFAULT_PAGE_INDEX,
-      records_per_page: recordsPerPage || DEFAULT_PAGE_SIZE,
-      searched_product_name: debouncedSearchKey || null,
+      page_size: pageSize || DEFAULT_PAGE_SIZE,
+      search_term: debouncedSearchKey || null,
     };
 
     history.replace(buildUrl(routes.products.index, filterNonNull(params)));
@@ -96,7 +95,7 @@ const ProductsList = () => {
           count={totalProductsCount}
           navigate={handlePageNavigation}
           pageNo={Number(page) || DEFAULT_PAGE_INDEX}
-          pageSize={Number(recordsPerPage) || DEFAULT_PAGE_SIZE}
+          pageSize={Number(pageSize) || DEFAULT_PAGE_SIZE}
         />
       </div>
     </div>
