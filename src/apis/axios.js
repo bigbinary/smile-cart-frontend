@@ -45,7 +45,11 @@ const responseInterceptors = () => {
 
       return response.data;
     },
-    error => showErrorToastr(error)
+    error => {
+      showErrorToastr(error);
+
+      return Promise.reject(error);
+    }
   );
 };
 
