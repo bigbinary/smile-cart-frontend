@@ -87,7 +87,6 @@
     "formik": "2.2.0",
     "fs-extra": "^10.0.0",
     "html-webpack-plugin": "^5.5.0",
-    "http-server": "^14.1.1",
     "i18next": "21.7.0",
     "identity-obj-proxy": "^3.0.0",
     "ignore-loader": "^0.1.2",
@@ -126,6 +125,7 @@
     "sass": "^1.59.3",
     "sass-loader": "^12.3.0",
     "semver": "^7.3.5",
+    "serve": "^14.2.1",
     "shakapacker": "6.6.0",
     "source-map-loader": "^3.0.0",
     "style-loader": "^3.3.1",
@@ -149,7 +149,7 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "prepare": "husky install",
-    "serve": "http-server ./dist"
+    "serve": "serve -s ./dist"
   },
   "eslintConfig": {
     "parser": "@babel/eslint-parser",
