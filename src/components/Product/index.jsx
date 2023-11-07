@@ -6,7 +6,7 @@ import useSelectedQuantity from "components/hooks/useSelectedQuantity";
 import { useShowProduct } from "hooks/reactQuery/useProductsApi";
 import i18n from "i18next";
 import { Button, Typography } from "neetoui";
-import { isNil, isNotNil } from "ramda";
+import { isNotNil } from "ramda";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import routes from "routes";
@@ -21,7 +21,7 @@ const Product = () => {
 
   const { selectedQuantity, setSelectedQuantity } = useSelectedQuantity(slug);
 
-  const { data: product = {}, isLoading } = useShowProduct(slug);
+  const { data: product = {}, isLoading, isError } = useShowProduct(slug);
 
   const {
     name,
@@ -35,10 +35,9 @@ const Product = () => {
 
   const totalDiscounts = mrp - offerPrice;
   const discountPercentage = ((totalDiscounts / mrp) * 100).toFixed(1);
-
   if (isLoading) return <PageLoader />;
 
-  if (isNil(product)) return <PageNotFound />;
+  if (isError) return <PageNotFound />;
 
   return (
     <>
