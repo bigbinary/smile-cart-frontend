@@ -1,34 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Button } from "neetoui";
-import { isNil } from "ramda";
 import { useTranslation } from "react-i18next";
 
-import useSelectedQuantity from "./hooks/useSelectedQuantity";
-import ProductQuantity from "./ProductQuantity";
-
-const AddToCart = ({ slug, availableQuantity }) => {
+const AddToCart = () => {
   const { t } = useTranslation();
-
-  const { selectedQuantity, setSelectedQuantity } = useSelectedQuantity(slug);
+  const [isInCart, setIsInCart] = useState(false);
 
   const handleClick = e => {
     e.stopPropagation();
     e.preventDefault();
-    setSelectedQuantity(1);
+    setIsInCart(prevValue => !prevValue);
   };
 
-  if (isNil(selectedQuantity)) {
-    return (
-      <Button
-        label={t("product.addToCart")}
-        size="large"
-        onClick={handleClick}
-      />
-    );
-  }
-
-  return <ProductQuantity {...{ availableQuantity, slug }} />;
+  return (
+    <Button
+      label={isInCart ? t("product.removeFromCart") : t("product.addToCart")}
+      size="large"
+      onClick={handleClick}
+    />
+  );
 };
 
 export default AddToCart;

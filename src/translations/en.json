@@ -5,6 +5,7 @@
     "title": "Product",
     "search": "Search products",
     "addToCart": "Add to cart",
+    "removeFromCart": "Remove from cart",
     "buyNow": "Buy now",
     "mrp": "MRP: ${{mrp}}",
     "offerPrice": "Offer price: ${{offerPrice}}",
