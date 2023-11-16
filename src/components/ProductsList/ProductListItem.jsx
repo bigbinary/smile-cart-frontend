@@ -11,7 +11,8 @@ const ProductListItem = ({
   imageUrl,
   name,
   offerPrice,
-  availableQuantity,
+  isInCart,
+  toggleCartPresence,
   slug,
 }) => (
   <Link
@@ -23,7 +24,7 @@ const ProductListItem = ({
       {name}
     </Typography>
     <Typography>${offerPrice}</Typography>
-    <AddToCart {...{ availableQuantity, slug }} />
+    <AddToCart {...{ isInCart, toggleCartPresence }} />
   </Link>
 );
 

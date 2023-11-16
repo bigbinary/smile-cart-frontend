@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { Button } from "neetoui";
 import { useTranslation } from "react-i18next";
 
-const AddToCart = () => {
+const AddToCart = ({ isInCart, toggleCartPresence }) => {
   const { t } = useTranslation();
-  const [isInCart, setIsInCart] = useState(false);
 
   const handleClick = e => {
     e.stopPropagation();
     e.preventDefault();
-    setIsInCart(prevValue => !prevValue);
+    toggleCartPresence();
   };
 
   return (
