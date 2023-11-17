@@ -4,6 +4,7 @@ import ReactDOM from "react-dom/client";
 import { QueryClientProvider } from "react-query";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { initializeLogger } from "src/common/logger";
 import queryClient from "utils/queryClient";
 
 import initializeAxios from "./apis/axios";
@@ -14,6 +15,7 @@ import App from "./App";
 import "./index.css";
 
 initializeAxios();
+initializeLogger();
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
