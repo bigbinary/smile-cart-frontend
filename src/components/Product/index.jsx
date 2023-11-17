@@ -28,7 +28,7 @@ const Product = () => {
     description,
     mrp,
     offerPrice,
-    availableQuantity,
+    // availableQuantity,
     imageUrl,
     imageUrls,
   } = product;
@@ -62,7 +62,7 @@ const Product = () => {
             {t("product.discountRate", { discountPercentage })}
           </Typography>
           <div className="flex space-x-10">
-            <AddToCart {...{ availableQuantity, slug }} />
+            <AddToCart {...{ slug }} />
             <Button
               className="bg-neutral-800 hover:bg-neutral-950"
               label={t("product.buyNow")}

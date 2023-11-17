@@ -324,6 +324,7 @@ module.exports = function (webpackEnv) {
         assets: absolutePath("src/assets"),
         components: absolutePath("src/components"),
         constants: absolutePath("src/constants"),
+        contexts: absolutePath("src/contexts"),
         hooks: absolutePath("src/hooks"),
         reducers: absolutePath("src/reducers"),
         routes: absolutePath("src/routes"),
