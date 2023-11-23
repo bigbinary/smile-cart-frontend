@@ -38,7 +38,6 @@
   "subtotal": "Subtotal <span>${{totalPrice}}</span>",
   "totalPayablePrice": "Total Payable <span>${{totalPrice}}</span>",
   "deliveryCharges": "Delivery charges <span>FREE</span>",
-  "orderSuccessfullyPlaced": "Order has been successfully placed",
   "removeItemConfirmation": {
     "title": "Remove item?",
     "message": "You are removing <strong>{{name}}</strong> from cart. Do you want to continue?",
@@ -71,5 +70,8 @@
     "networkError": "Network Error"
   },
   "noData": "No products to show",
-  "pageLoading": "Loading Please Wait"
+  "pageLoading": "Loading Please Wait",
+  "order": {
+    "successfullyPlaced": "Order has been successfully placed"
+  }
 }

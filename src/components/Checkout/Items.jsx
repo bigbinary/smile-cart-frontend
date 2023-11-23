@@ -29,7 +29,10 @@ const Items = ({ isSubmitDisabled }) => {
         <PriceEntry i18nKey="subtotal" totalPrice={totalCheckoutPrice} />
         <PriceEntry className="text-green-700" i18nKey="deliveryCharges" />
         <div className="neeto-ui-border-black border-t border-dashed" />
-        <PriceEntry i18nKey="totalPrice" totalPrice={totalCheckoutPrice} />
+        <PriceEntry
+          i18nKey="totalPayablePrice"
+          totalPrice={totalCheckoutPrice}
+        />
       </div>
       <div className="mt-auto flex justify-center">
         <Button
