@@ -26,19 +26,10 @@ const Items = ({ isSubmitDisabled }) => {
         <Product key={product.slug} {...product} />
       ))}
       <div className="mt-5 w-3/4 space-y-3">
-        <PriceEntry
-          i18nKey="checkout.subtotal"
-          totalPrice={totalCheckoutPrice}
-        />
-        <PriceEntry
-          className="text-green-700"
-          i18nKey="checkout.deliveryCharges"
-        />
+        <PriceEntry i18nKey="subtotal" totalPrice={totalCheckoutPrice} />
+        <PriceEntry className="text-green-700" i18nKey="deliveryCharges" />
         <div className="neeto-ui-border-black border-t border-dashed" />
-        <PriceEntry
-          i18nKey="checkout.totalPrice"
-          totalPrice={totalCheckoutPrice}
-        />
+        <PriceEntry i18nKey="totalPrice" totalPrice={totalCheckoutPrice} />
       </div>
       <div className="mt-auto flex justify-center">
         <Button
