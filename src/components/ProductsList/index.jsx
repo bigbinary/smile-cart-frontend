@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import { Header, PageLoader } from "components/commons";
 import { useFetchProducts } from "hooks/reactQuery/useProductsApi";
-import useDebounce from "hooks/useDebounce";
+import useFuncDebounce from "hooks/useFuncDebounce";
 import useQueryParams from "hooks/useQueryParams";
 import { keysToCamelCase, filterNonNull } from "neetocist";
-import { Search } from "neetoicons";
-import { Input, Pagination, NoData } from "neetoui";
+import { Pagination, NoData } from "neetoui";
 import { isEmpty, mergeLeft } from "ramda";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
@@ -25,12 +24,8 @@ const ProductsList = () => {
   const queryParams = useQueryParams();
   const { page, pageSize, searchTerm } = keysToCamelCase(queryParams);
 
-  const [searchKey, setSearchKey] = useState(searchTerm);
-
-  const debouncedSearchKey = useDebounce(searchKey);
-
   const productsParams = {
-    searchTerm: debouncedSearchKey,
+    searchTerm,
     page: Number(page) || DEFAULT_PAGE_INDEX,
     pageSize: Number(pageSize) || DEFAULT_PAGE_SIZE,
   };
@@ -38,25 +33,15 @@ const ProductsList = () => {
   const { data: { products = [], totalProductsCount } = {}, isLoading } =
     useFetchProducts(productsParams);
 
-  useEffect(() => {
+  const handleChange = useFuncDebounce(({ target: { value } }) => {
     const params = {
-      page: page || DEFAULT_PAGE_INDEX,
+      page: DEFAULT_PAGE_INDEX,
       page_size: pageSize || DEFAULT_PAGE_SIZE,
-      search_term: debouncedSearchKey || null,
+      search_term: value || null,
     };
 
     history.replace(buildUrl(routes.products.index, filterNonNull(params)));
-  }, [debouncedSearchKey]);
-
-  const handleChange = e => {
-    setSearchKey(e.target.value);
-    history.replace(
-      buildUrl(
-        routes.products.index,
-        mergeLeft({ page: DEFAULT_PAGE_INDEX }, queryParams)
-      )
-    );
-  };
+  }, 350);
 
   const handlePageNavigation = page => {
     history.replace(
@@ -72,11 +57,10 @@ const ProductsList = () => {
         shouldShowBackButton={false}
         title={t("title")}
         actionBlock={
-          <Input
+          <input
             placeholder={t("product.search")}
-            prefix={<Search />}
+            // prefix={<Search />}
             type="search"
-            value={searchKey}
             onChange={handleChange}
           />
         }
