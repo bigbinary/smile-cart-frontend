@@ -11,6 +11,7 @@ import { isEmpty, keys } from "ramda";
 import { useTranslation } from "react-i18next";
 import useCartItemsStore from "stores/useCartItemsStore";
 import withTitle from "utils/withTitle";
+import { shallow } from "zustand/shallow";
 
 import PriceCard from "./PriceCard";
 import ProductCard from "./ProductCard";
@@ -18,7 +19,7 @@ import ProductCard from "./ProductCard";
 const Cart = () => {
   const { t } = useTranslation();
 
-  const slugs = useCartItemsStore(store => keys(store.cartItems));
+  const slugs = useCartItemsStore(store => keys(store.cartItems), shallow);
 
   const { data: products = [], isLoading } = useFetchCartProducts(slugs);
 
