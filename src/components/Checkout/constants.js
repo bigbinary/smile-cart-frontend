@@ -9,8 +9,8 @@ export const CHECKOUT_FORM_VALIDATION_SCHEMA = yup.object().shape({
   country: yup
     .object()
     .shape({
-      label: yup.string().required(),
-      value: yup.string().required(),
+      name: yup.string().required(),
+      code: yup.string().required(),
     })
     .nullable(),
   firstName: yup.string().required(t("checkout.validations.firstNameRequired")),
@@ -21,8 +21,8 @@ export const CHECKOUT_FORM_VALIDATION_SCHEMA = yup.object().shape({
   state: yup
     .object()
     .shape({
-      label: yup.string().required(),
-      value: yup.string().required(),
+      name: yup.string().required(),
+      code: yup.string().required(),
     })
     .nullable()
     .required(t("checkout.validations.stateRequired")),
@@ -31,7 +31,7 @@ export const CHECKOUT_FORM_VALIDATION_SCHEMA = yup.object().shape({
 
 export const CHECKOUT_FORM_INITIAL_VALUES = {
   email: "",
-  country: { value: "US", label: "United States" },
+  country: { code: "US", name: "United States" },
   firstName: "",
   lastName: "",
   address: "",
