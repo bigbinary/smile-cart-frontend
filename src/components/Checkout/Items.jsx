@@ -44,7 +44,7 @@ const Items = ({ isSubmitDisabled }) => {
         <Button
           className="bg-neutral-800 w-1/3 justify-center"
           disabled={isSubmitDisabled}
-          label={t("checkout.confirmOrder")}
+          label={t("confirmOrder")}
           type="submit"
         />
       </div>

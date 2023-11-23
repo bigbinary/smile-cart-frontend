@@ -22,7 +22,7 @@ const PriceCard = ({ totalMrp, totalOfferPrice }) => {
       >
         <Trans
           components={{ span: <span /> }}
-          i18nKey="cart.totalMrp"
+          i18nKey="totalMrp"
           values={{ mrp: totalMrp }}
         />
       </Typography>
@@ -31,14 +31,14 @@ const PriceCard = ({ totalMrp, totalOfferPrice }) => {
           <Typography className="flex justify-between text-green-700">
             <Trans
               components={{ span: <span /> }}
-              i18nKey="cart.totalDiscounts"
+              i18nKey="totalDiscounts"
               values={{ discounts: totalDiscounts, discountPercentage }}
             />
           </Typography>
           <Typography className="flex justify-between">
             <Trans
               components={{ span: <span /> }}
-              i18nKey="cart.offerPrice"
+              i18nKey="offerPrice"
               values={{ offerPrice: totalOfferPrice }}
             />
           </Typography>
@@ -47,7 +47,7 @@ const PriceCard = ({ totalMrp, totalOfferPrice }) => {
       <div className="flex flex-col items-center pt-4">
         <Button
           className="bg-neutral-800"
-          label={t("product.buyNow")}
+          label={t("buyNow")}
           to={routes.checkout}
         />
       </div>

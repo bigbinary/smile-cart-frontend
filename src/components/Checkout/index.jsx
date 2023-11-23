@@ -108,14 +108,14 @@ const Checkout = () => {
               textTransform="uppercase"
               weight="bold"
             >
-              {t("checkout.title")}
+              {t("checkout")}
             </Typography>
           </div>
           <div className="mt-8 space-y-4">
             <Form />
             <Checkbox
               defaultChecked
-              label={t("checkout.checkboxTitle")}
+              label={t("saveInformationForNextTime")}
               ref={checkboxRef}
             />
           </div>
@@ -128,4 +128,4 @@ const Checkout = () => {
   );
 };
 
-export default withTitle(Checkout, i18n.t("checkout.title"));
+export default withTitle(Checkout, i18n.t("checkout"));

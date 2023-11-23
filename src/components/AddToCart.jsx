@@ -19,13 +19,7 @@ const AddToCart = ({ slug, availableQuantity }) => {
   };
 
   if (isNil(selectedQuantity)) {
-    return (
-      <Button
-        label={t("product.addToCart")}
-        size="large"
-        onClick={handleClick}
-      />
-    );
+    return <Button label={t("addToCart")} size="large" onClick={handleClick} />;
   }
 
   return <ProductQuantity {...{ availableQuantity, slug }} />;

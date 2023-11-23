@@ -26,9 +26,9 @@ const ProductCard = ({
           <Typography className="mb-2" style="h4" weight="bold">
             {name}
           </Typography>
-          <Typography style="body2">{t("product.mrp", { mrp })}</Typography>
+          <Typography style="body2">{t("mrp", { mrp })}</Typography>
           <Typography style="body2">
-            {t("product.offerPrice", { offerPrice })}
+            {t("offerPrice", { offerPrice })}
           </Typography>
         </div>
         <div className="flex items-center space-x-2">

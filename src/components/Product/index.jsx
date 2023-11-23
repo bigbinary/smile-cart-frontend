@@ -50,22 +50,22 @@ const Product = () => {
         )}
         <div className="w-3/5 space-y-4">
           <Typography style="body1">{description}</Typography>
-          <Typography style="body1">{t("product.mrp", { mrp })}</Typography>
+          <Typography style="body1">{t("mrp", { mrp })}</Typography>
           <Typography weight="bold">
-            {t("product.offerPrice", { offerPrice })}
+            {t("offerPrice", { offerPrice })}
           </Typography>
           <Typography
             className="neeto-ui-text-success-800"
             style="body1"
             weight="extrabold"
           >
-            {t("product.discountRate", { discountPercentage })}
+            {t("discountRate", { discountPercentage })}
           </Typography>
           <div className="flex space-x-10">
             <AddToCart {...{ availableQuantity, slug }} />
             <Button
               className="bg-neutral-800 hover:bg-neutral-950"
-              label={t("product.buyNow")}
+              label={t("buyNow")}
               size="large"
               to={routes.checkout}
               onClick={() => setSelectedQuantity(selectedQuantity || 1)}
@@ -77,4 +77,4 @@ const Product = () => {
   );
 };
 
-export default withTitle(Product, i18n.t("product.title"));
+export default withTitle(Product, i18n.t("product"));
