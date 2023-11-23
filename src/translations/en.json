@@ -19,6 +19,11 @@
   "cart": {
     "title": "My cart",
     "empty": "Your cart is empty!",
+    "removeItem": {
+      "title": "Remove item?",
+      "message": "You are removing <strong>{{name}}</strong> from cart. Do you want to continue?",
+      "confirm": "Yes, remove"
+    },
     "totalMrp": "Total MRP: <span>${{mrp}}</span>",
     "totalDiscounts": "Total discounts: <span>${{discounts}} ({{discountPercentage}}%)</span>",
     "offerPrice": "Total offer price: <span>${{offerPrice}}</span>"

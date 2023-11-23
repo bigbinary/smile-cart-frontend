@@ -1,9 +1,9 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 
 import ProductQuantity from "components/ProductQuantity";
 import { Delete } from "neetoicons";
-import { Typography } from "neetoui";
-import { useTranslation } from "react-i18next";
+import { Alert, Typography } from "neetoui";
+import { Trans, useTranslation } from "react-i18next";
 import useCartItemsStore from "stores/useCartItemsStore";
 
 const ProductCard = ({
@@ -17,6 +17,8 @@ const ProductCard = ({
   const { t } = useTranslation();
 
   const { removeCartItem } = useCartItemsStore.pick();
+
+  const [shouldShowDeleteAlert, setShouldShowDeleteAlert] = useState(false);
 
   return (
     <div className="neeto-ui-rounded neeto-ui-border-black border p-2">
@@ -35,7 +37,17 @@ const ProductCard = ({
           <ProductQuantity {...{ availableQuantity, slug }} />
           <Delete
             className="cursor-pointer"
-            onClick={() => removeCartItem(slug)}
+            onClick={() => setShouldShowDeleteAlert(true)}
+          />
+          <Alert
+            isOpen={shouldShowDeleteAlert}
+            submitButtonLabel={t("cart.removeItem.confirm")}
+            title={t("cart.removeItem.title")}
+            message={
+              <Trans i18nKey="cart.removeItem.message" values={{ name }} />
+            }
+            onClose={() => setShouldShowDeleteAlert(false)}
+            onSubmit={() => removeCartItem(slug)}
           />
         </div>
       </div>
