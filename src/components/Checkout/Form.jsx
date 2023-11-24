@@ -5,7 +5,6 @@ import {
   useFetchStates,
   useFetchCountries,
 } from "hooks/reactQuery/useCheckoutApi";
-import { renameKeys } from "neetocist";
 import { Typography } from "neetoui";
 import { Input, Select } from "neetoui/formik";
 import { useTranslation } from "react-i18next";
@@ -20,7 +19,7 @@ const Form = () => {
 
   const { data: countries = [] } = useFetchCountries();
   const { data: states = [] } = useFetchStates({
-    countryCode: country.value,
+    countryCode: country.code,
   });
 
   const handleChangeCountry = country => {
@@ -47,7 +46,8 @@ const Form = () => {
         required
         label={t("country")}
         name="country"
-        options={renameKeys({ name: "label", code: "value" }, countries)}
+        optionRemapping={{ label: "name", value: "code" }}
+        options={countries}
         placeholder={t("selectCountry")}
         size="large"
         value={country}
@@ -95,7 +95,8 @@ const Form = () => {
           required
           label={t("state")}
           name="state"
-          options={renameKeys({ name: "label", code: "value" }, states)}
+          optionRemapping={{ label: "name", value: "code" }}
+          options={states}
           placeholder={t("selectState")}
           size="large"
         />

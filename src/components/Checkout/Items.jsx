@@ -7,6 +7,7 @@ import { Button } from "neetoui";
 import { keys } from "ramda";
 import { useTranslation } from "react-i18next";
 import useCartItemsStore from "stores/useCartItemsStore";
+import { shallow } from "zustand/shallow";
 
 import PriceEntry from "./PriceEntry";
 import Product from "./Product";
@@ -14,7 +15,7 @@ import Product from "./Product";
 const Items = ({ isSubmitDisabled }) => {
   const { t } = useTranslation();
 
-  const slugs = useCartItemsStore(store => keys(store.cartItems));
+  const slugs = useCartItemsStore(store => keys(store.cartItems), shallow);
 
   const { data: products = [] } = useFetchCartProducts(slugs);
 
