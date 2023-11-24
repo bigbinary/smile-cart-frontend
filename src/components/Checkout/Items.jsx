@@ -27,17 +27,11 @@ const Items = ({ isSubmitDisabled }) => {
         <Product key={product.slug} {...product} />
       ))}
       <div className="mt-5 w-3/4 space-y-3">
-        <PriceEntry
-          i18nKey="checkout.subtotal"
-          totalPrice={totalCheckoutPrice}
-        />
-        <PriceEntry
-          className="text-green-700"
-          i18nKey="checkout.deliveryCharges"
-        />
+        <PriceEntry i18nKey="subtotal" totalPrice={totalCheckoutPrice} />
+        <PriceEntry className="text-green-700" i18nKey="deliveryCharges" />
         <div className="neeto-ui-border-black border-t border-dashed" />
         <PriceEntry
-          i18nKey="checkout.totalPrice"
+          i18nKey="totalPayablePrice"
           totalPrice={totalCheckoutPrice}
         />
       </div>
@@ -45,7 +39,7 @@ const Items = ({ isSubmitDisabled }) => {
         <Button
           className="bg-neutral-800 w-1/3 justify-center"
           disabled={isSubmitDisabled}
-          label={t("checkout.confirmOrder")}
+          label={t("confirmOrder")}
           type="submit"
         />
       </div>

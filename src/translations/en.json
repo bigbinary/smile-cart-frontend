@@ -1,83 +1,77 @@
 {
   "title": "Smile Cart",
   "pageTitle": "{{title}} | Smile Cart",
-  "product": {
-    "title": "Product",
-    "search": "Search products",
-    "addToCart": "Add to cart",
-    "buyNow": "Buy now",
-    "mrp": "MRP: ${{mrp}}",
-    "offerPrice": "Offer price: ${{offerPrice}}",
-    "discountRate": "{{discountPercentage}}% off",
-    "maximumUnits": "Reached maximum units",
-    "error": {
-      "quantityLimit_one": "Only {{availableQuantity}} unit is available",
-      "quantityLimit_other": "Only {{availableQuantity}} units are available",
-      "removedFromCart": "{{name}} is no longer available and has been removed from cart"
-    }
+  "addToCart": "Add to cart",
+  "buyNow": "Buy now",
+  "checkout": "Checkout",
+  "product": "Product",
+  "searchProducts": "Search Products",
+  "contact": "Contact",
+  "email": "Email",
+  "enterYourEmail": "Enter your email",
+  "shippingAddress": "Shipping address",
+  "country": "Country",
+  "selectCountry": "Select the country",
+  "firstName": "First name",
+  "enterFirstName": "Enter first name",
+  "lastName": "Last name",
+  "enterLastName": "Enter last name",
+  "address": "Address",
+  "enterAddress": "Enter address",
+  "apartment": "Apartment",
+  "enterApartmentNumber": "Enter apartment number",
+  "city": "City",
+  "enterCity": "Enter city name",
+  "state": "State",
+  "selectState": "Select the state",
+  "zipCode": "Zip code",
+  "enterZipCode": "Enter zip code",
+  "saveInformationForNextTime": "Save this information for next time",
+  "confirmOrder": "Confirm order",
+  "mrp": "MRP: ${{mrp}}",
+  "offerPrice": "Offer price: ${{offerPrice}}",
+  "discountRate": "{{discountPercentage}}% off",
+  "reachedMaximumUnits": "Reached maximum units",
+  "totalMrp": "Total MRP: <span>${{mrp}}</span>",
+  "totalDiscounts": "Total discounts: <span>${{discounts}} ({{discountPercentage}}%)</span>",
+  "totalOfferPrice": "Total offer price: <span>${{offerPrice}}</span>",
+  "subtotal": "Subtotal <span>${{totalPrice}}</span>",
+  "totalPayablePrice": "Total Payable <span>${{totalPrice}}</span>",
+  "deliveryCharges": "Delivery charges <span>FREE</span>",
+  "removeItemConfirmation": {
+    "title": "Remove item?",
+    "message": "You are removing <strong>{{name}}</strong> from cart. Do you want to continue?",
+    "button": "Yes, remove"
   },
   "cart": {
     "title": "My cart",
-    "empty": "Your cart is empty!",
-    "removeItem": {
-      "title": "Remove item?",
-      "message": "You are removing <strong>{{name}}</strong> from cart. Do you want to continue?",
-      "confirm": "Yes, remove"
-    },
-    "totalMrp": "Total MRP: <span>${{mrp}}</span>",
-    "totalDiscounts": "Total discounts: <span>${{discounts}} ({{discountPercentage}}%)</span>",
-    "offerPrice": "Total offer price: <span>${{offerPrice}}</span>"
+    "empty": "Your cart is empty!"
   },
   "pageNotFound": {
     "title": "The page you're looking for can't be found",
     "label": "Back to home"
   },
-  "checkout": {
-    "title": "Checkout",
-    "subtotal": "Subtotal <span>${{totalPrice}}</span>",
-    "totalPrice": "Total Payable <span>${{totalPrice}}</span>",
-    "deliveryCharges": "Delivery charges <span>FREE</span>",
-    "contact": "Contact",
-    "email": "Email",
-    "enterYourEmail": "Enter your email",
-    "shippingAddress": "Shipping address",
-    "country": "Country",
-    "selectCountry": "Select the country",
-    "firstName": "First name",
-    "enterFirstName": "Enter first name",
-    "lastName": "Last name",
-    "enterLastName": "Enter last name",
-    "address": "Address",
-    "enterAddress": "Enter address",
-    "apartment": "Apartment",
-    "enterApartmentNumber": "Enter apartment number",
-    "city": "City",
-    "enterCity": "Enter city name",
-    "state": "State",
-    "selectState": "Select the state",
-    "zipCode": "Zip code",
-    "enterZipCode": "Enter zip code",
-    "checkboxTitle": "Save this information for next time",
-    "confirmOrder": "Confirm order",
-    "validations": {
-      "emailRequired": "Email address is required",
-      "firstNameRequired": "First name is required",
-      "lastNameRequired": "Last name is required",
-      "addressRequired": "Address is required",
-      "apartmentRequired": "Apartment is required",
-      "cityRequired": "City is required",
-      "stateRequired": "State is required",
-      "zipCodeRequired": "Zip code is required",
-      "emailInvalid": "Email address is invalid"
-    }
-  },
-  "order": {
-    "successfullyPlaced": "Order has been successfully placed"
+  "validations": {
+    "emailRequired": "Email address is required",
+    "firstNameRequired": "First name is required",
+    "lastNameRequired": "Last name is required",
+    "addressRequired": "Address is required",
+    "apartmentRequired": "Apartment is required",
+    "cityRequired": "City is required",
+    "stateRequired": "State is required",
+    "zipCodeRequired": "Zip code is required",
+    "emailInvalid": "Email address is invalid"
   },
   "error": {
+    "quantityLimit_one": "Only {{availableQuantity}} unit is available",
+    "quantityLimit_other": "Only {{availableQuantity}} units are available",
+    "removedFromCart": "{{name}} is no longer available and has been removed from cart",
     "noInternetConnection": "No Internet Connection",
     "networkError": "Network Error"
   },
   "noData": "No products to show",
-  "pageLoading": "Loading Please Wait"
+  "pageLoading": "Loading Please Wait",
+  "order": {
+    "successfullyPlaced": "Order has been successfully placed"
+  }
 }

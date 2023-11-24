@@ -28,9 +28,9 @@ const ProductCard = ({
           <Typography className="mb-2" style="h4" weight="bold">
             {name}
           </Typography>
-          <Typography style="body2">{t("product.mrp", { mrp })}</Typography>
+          <Typography style="body2">{t("mrp", { mrp })}</Typography>
           <Typography style="body2">
-            {t("product.offerPrice", { offerPrice })}
+            {t("offerPrice", { offerPrice })}
           </Typography>
         </div>
         <div className="flex items-center space-x-2">
@@ -41,10 +41,13 @@ const ProductCard = ({
           />
           <Alert
             isOpen={shouldShowDeleteAlert}
-            submitButtonLabel={t("cart.removeItem.confirm")}
-            title={t("cart.removeItem.title")}
+            submitButtonLabel={t("removeItemConfirmation.button")}
+            title={t("removeItemConfirmation.title")}
             message={
-              <Trans i18nKey="cart.removeItem.message" values={{ name }} />
+              <Trans
+                i18nKey="removeItemConfirmation.message"
+                values={{ name }}
+              />
             }
             onClose={() => setShouldShowDeleteAlert(false)}
             onSubmit={() => removeCartItem(slug)}
