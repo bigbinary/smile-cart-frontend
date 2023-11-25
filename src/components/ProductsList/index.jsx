@@ -5,7 +5,8 @@ import { useFetchProducts } from "hooks/reactQuery/useProductsApi";
 import useFuncDebounce from "hooks/useFuncDebounce";
 import useQueryParams from "hooks/useQueryParams";
 import { keysToCamelCase, filterNonNull } from "neetocist";
-import { Pagination, NoData } from "neetoui";
+import { Search } from "neetoicons";
+import { Input, Pagination, NoData } from "neetoui";
 import { isEmpty, mergeLeft } from "ramda";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
@@ -57,9 +58,9 @@ const ProductsList = () => {
         shouldShowBackButton={false}
         title={t("title")}
         actionBlock={
-          <input
+          <Input
             placeholder={t("product.search")}
-            // prefix={<Search />}
+            prefix={<Search />}
             type="search"
             onChange={handleChange}
           />

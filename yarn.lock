@@ -1288,10 +1288,10 @@
   resolved "https://registry.yarnpkg.com/@bigbinary/neeto-icons/-/neeto-icons-1.17.6.tgz#6e409b70a5056dd95e1b10ae2030566333826595"
   integrity sha512-D+1o+r73sjV1kZNswMX96gPScrz5hhKCji7Xr+IngLTfJhV1AqXyYms7k0pUm59wOHfqx6eUeVsbPP+l1st7Yg==
 
-"@bigbinary/neetoui@^5.2.31":
-  version "5.2.38"
-  resolved "https://registry.yarnpkg.com/@bigbinary/neetoui/-/neetoui-5.2.38.tgz#d5d9bca80a26320ec59a0fb67cfd6c4f2dce16f8"
-  integrity sha512-9NAAhYB4pGNPDH86FwcYtB8mp2qIHt8NXICUR6cmuc7E4HLEOFC18T9s2phB9rOT3mFb+/bVlju6xljMS2ZA+A==
+"@bigbinary/neetoui@^5.2.41":
+  version "5.2.41"
+  resolved "https://registry.yarnpkg.com/@bigbinary/neetoui/-/neetoui-5.2.41.tgz#4d2da0f858e7ab41520707b054defd6d1c17d18a"
+  integrity sha512-Nh21TGSpzkvPQQ+6v/T9TL/LVfON2tzcT4wK5P5BftdpaAjLbNbRCS9+la8XoDWBV+9dxE+Jgsr95ZODX65X4w==
 
 "@csstools/normalize.css@*":
   version "12.0.0"

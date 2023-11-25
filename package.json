@@ -50,7 +50,7 @@
     "@bigbinary/neeto-cist": "^1.0.3",
     "@bigbinary/neeto-commons-frontend": "^2.0.105",
     "@bigbinary/neeto-icons": "^1.17.6",
-    "@bigbinary/neetoui": "^5.2.31",
+    "@bigbinary/neetoui": "^5.2.41",
     "@emotion/is-prop-valid": "^1.2.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
     "@svgr/webpack": "^5.5.0",
