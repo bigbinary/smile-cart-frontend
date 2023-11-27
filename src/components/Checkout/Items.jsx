@@ -7,6 +7,7 @@ import { Button } from "neetoui";
 import { keys } from "ramda";
 import { useTranslation } from "react-i18next";
 import useCartItemsStore from "stores/useCartItemsStore";
+import { shallow } from "zustand/shallow";
 
 import PriceEntry from "./PriceEntry";
 import Product from "./Product";
@@ -14,7 +15,7 @@ import Product from "./Product";
 const Items = ({ isSubmitDisabled }) => {
   const { t } = useTranslation();
 
-  const slugs = useCartItemsStore(store => keys(store.cartItems));
+  const slugs = useCartItemsStore(store => keys(store.cartItems), shallow);
 
   const { data: products = [] } = useFetchCartProducts(slugs);
 
@@ -26,17 +27,11 @@ const Items = ({ isSubmitDisabled }) => {
         <Product key={product.slug} {...product} />
       ))}
       <div className="mt-5 w-3/4 space-y-3">
-        <PriceEntry
-          i18nKey="checkout.subtotal"
-          totalPrice={totalCheckoutPrice}
-        />
-        <PriceEntry
-          className="text-green-700"
-          i18nKey="checkout.deliveryCharges"
-        />
+        <PriceEntry i18nKey="subtotal" totalPrice={totalCheckoutPrice} />
+        <PriceEntry className="text-green-700" i18nKey="deliveryCharges" />
         <div className="neeto-ui-border-black border-t border-dashed" />
         <PriceEntry
-          i18nKey="checkout.totalPrice"
+          i18nKey="totalPayablePrice"
           totalPrice={totalCheckoutPrice}
         />
       </div>
@@ -44,7 +39,7 @@ const Items = ({ isSubmitDisabled }) => {
         <Button
           className="bg-neutral-800 w-1/3 justify-center"
           disabled={isSubmitDisabled}
-          label={t("checkout.confirmOrder")}
+          label={t("confirmOrder")}
           type="submit"
         />
       </div>

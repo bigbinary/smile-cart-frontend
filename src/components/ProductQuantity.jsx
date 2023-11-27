@@ -22,7 +22,7 @@ const ProductQuantity = ({ slug, availableQuantity }) => {
     const isNotValidInputQuantity = parseInt(value) > availableQuantity;
 
     if (isNotValidInputQuantity) {
-      const errorMessage = t("product.error.quantityLimit", {
+      const errorMessage = t("error.quantityLimit", {
         availableQuantity,
         count: availableQuantity,
       });
@@ -61,7 +61,7 @@ const ProductQuantity = ({ slug, availableQuantity }) => {
         onClick={preventNavigation}
       />
       <TooltipWrapper
-        content={t("product.maximumUnits")}
+        content={t("reachedMaximumUnits")}
         position="top"
         showTooltip={isNotValidQuantity}
       >

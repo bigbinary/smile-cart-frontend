@@ -59,7 +59,7 @@ const ProductsList = () => {
         title={t("title")}
         actionBlock={
           <Input
-            placeholder={t("product.search")}
+            placeholder={t("searchProducts")}
             prefix={<Search />}
             type="search"
             onChange={handleChange}
