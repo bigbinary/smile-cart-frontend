@@ -37,7 +37,7 @@ const ProductsList = () => {
   const handleChange = useFuncDebounce(({ target: { value } }) => {
     const params = {
       page: DEFAULT_PAGE_INDEX,
-      page_size: pageSize || DEFAULT_PAGE_SIZE,
+      page_size: DEFAULT_PAGE_SIZE,
       search_term: value || null,
     };
 
@@ -46,7 +46,10 @@ const ProductsList = () => {
 
   const handlePageNavigation = page => {
     history.replace(
-      buildUrl(routes.products.index, mergeLeft({ page }, queryParams))
+      buildUrl(
+        routes.products.index,
+        mergeLeft({ page, pageSize: DEFAULT_PAGE_SIZE }, queryParams)
+      )
     );
   };
 
