@@ -42,7 +42,7 @@ const ProductsList = () => {
     };
 
     history.replace(buildUrl(routes.products.index, filterNonNull(params)));
-  }, 350);
+  });
 
   const handlePageNavigation = page => {
     history.replace(
