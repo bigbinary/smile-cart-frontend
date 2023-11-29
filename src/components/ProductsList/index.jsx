@@ -48,7 +48,7 @@ const ProductsList = () => {
     history.replace(
       buildUrl(
         routes.products.index,
-        mergeLeft({ page, pageSize: DEFAULT_PAGE_SIZE }, queryParams)
+        mergeLeft({ page, page_size: DEFAULT_PAGE_SIZE }, queryParams)
       )
     );
   };
