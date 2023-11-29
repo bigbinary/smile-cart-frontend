@@ -1283,15 +1283,15 @@
   resolved "https://registry.yarnpkg.com/@bigbinary/neeto-commons-frontend/-/neeto-commons-frontend-2.0.120.tgz#d54959af98a2fc326bbce2ee8f6e572cb4f1fab8"
   integrity sha512-VgGl+WTQYDkgZWbsRNPmQMoIV61Nn5fZ3N4RchRiOnRRt/DhnEg2xJ5/fsV642cdNYtn/iJlWr23TzmZLHTTDA==
 
-"@bigbinary/neeto-icons@^1.14.0":
-  version "1.14.0"
-  resolved "https://registry.yarnpkg.com/@bigbinary/neeto-icons/-/neeto-icons-1.14.0.tgz#c5a4b7d99ff5786155fa9d54b9d15a3114b3b491"
-  integrity sha512-k1Gyjn0JplG9mm/eMzIIhScGogZv8LL6BlQNOnJNEktAUtf8L222QMcltjXkqQHQ6NsM7zkJ2mzidag03nbIBg==
+"@bigbinary/neeto-icons@^1.17.6":
+  version "1.17.6"
+  resolved "https://registry.yarnpkg.com/@bigbinary/neeto-icons/-/neeto-icons-1.17.6.tgz#6e409b70a5056dd95e1b10ae2030566333826595"
+  integrity sha512-D+1o+r73sjV1kZNswMX96gPScrz5hhKCji7Xr+IngLTfJhV1AqXyYms7k0pUm59wOHfqx6eUeVsbPP+l1st7Yg==
 
-"@bigbinary/neetoui@^5.0.17":
-  version "5.1.8"
-  resolved "https://registry.yarnpkg.com/@bigbinary/neetoui/-/neetoui-5.1.8.tgz#4a7e72bbf260547dec7483473a8acef26e0606d5"
-  integrity sha512-Cr7e8UEnoPdQMzSuq0oZN+qIrYfmwFB8o+0kQ5gZ+eluK9X1J7C0cY8t7RkeBaW4q8un43/Md9MQrMByb0Q7IA==
+"@bigbinary/neetoui@^5.2.41":
+  version "5.2.41"
+  resolved "https://registry.yarnpkg.com/@bigbinary/neetoui/-/neetoui-5.2.41.tgz#4d2da0f858e7ab41520707b054defd6d1c17d18a"
+  integrity sha512-Nh21TGSpzkvPQQ+6v/T9TL/LVfON2tzcT4wK5P5BftdpaAjLbNbRCS9+la8XoDWBV+9dxE+Jgsr95ZODX65X4w==
 
 "@csstools/normalize.css@*":
   version "12.0.0"

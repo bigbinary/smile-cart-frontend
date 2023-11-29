@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import { Header, PageLoader } from "components/commons";
 import { useFetchProducts } from "hooks/reactQuery/useProductsApi";
-import useDebounce from "hooks/useDebounce";
+import useFuncDebounce from "hooks/useFuncDebounce";
 import useQueryParams from "hooks/useQueryParams";
 import { keysToCamelCase, filterNonNull } from "neetocist";
 import { Search } from "neetoicons";
@@ -25,12 +25,8 @@ const ProductsList = () => {
   const queryParams = useQueryParams();
   const { page, pageSize, searchTerm } = keysToCamelCase(queryParams);
 
-  const [searchKey, setSearchKey] = useState(searchTerm);
-
-  const debouncedSearchKey = useDebounce(searchKey);
-
   const productsParams = {
-    searchTerm: debouncedSearchKey,
+    searchTerm,
     page: Number(page) || DEFAULT_PAGE_INDEX,
     pageSize: Number(pageSize) || DEFAULT_PAGE_SIZE,
   };
@@ -38,29 +34,22 @@ const ProductsList = () => {
   const { data: { products = [], totalProductsCount } = {}, isLoading } =
     useFetchProducts(productsParams);
 
-  useEffect(() => {
+  const handleChange = useFuncDebounce(({ target: { value } }) => {
     const params = {
-      page: page || DEFAULT_PAGE_INDEX,
-      page_size: pageSize || DEFAULT_PAGE_SIZE,
-      search_term: debouncedSearchKey || null,
+      page: DEFAULT_PAGE_INDEX,
+      page_size: DEFAULT_PAGE_SIZE,
+      search_term: value || null,
     };
 
     history.replace(buildUrl(routes.products.index, filterNonNull(params)));
-  }, [debouncedSearchKey]);
-
-  const handleChange = e => {
-    setSearchKey(e.target.value);
-    history.replace(
-      buildUrl(
-        routes.products.index,
-        mergeLeft({ page: DEFAULT_PAGE_INDEX }, queryParams)
-      )
-    );
-  };
+  });
 
   const handlePageNavigation = page => {
     history.replace(
-      buildUrl(routes.products.index, mergeLeft({ page }, queryParams))
+      buildUrl(
+        routes.products.index,
+        mergeLeft({ page, page_size: DEFAULT_PAGE_SIZE }, queryParams)
+      )
     );
   };
 
@@ -76,7 +65,6 @@ const ProductsList = () => {
             placeholder={t("searchProducts")}
             prefix={<Search />}
             type="search"
-            value={searchKey}
             onChange={handleChange}
           />
         }
