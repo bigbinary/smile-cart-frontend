@@ -1,4 +1,4 @@
-import { preprocessForSerialization } from "neetocist";
+import { keysToSnakeCase } from "neetocist";
 import { stringify } from "qs";
 import { isEmpty, toPairs, pipe, omit } from "ramda";
 
@@ -13,7 +13,7 @@ export const buildUrl = (route, params) => {
 
   const queryParams = pipe(
     omit(placeHolders),
-    preprocessForSerialization,
+    keysToSnakeCase,
     stringify
   )(params);
 
