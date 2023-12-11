@@ -1,0 +1,10 @@
+public
+config
+scripts
+tmp
+.vscode
+babel.config.js
+.eslintrc.js
+postcss.config.js
+tailwind.config.js
+jsconfig.json
