@@ -4,7 +4,7 @@ import { Header, PageLoader } from "components/commons";
 import { useFetchProducts } from "hooks/reactQuery/useProductsApi";
 import useFuncDebounce from "hooks/useFuncDebounce";
 import useQueryParams from "hooks/useQueryParams";
-import { keysToCamelCase, filterNonNull } from "neetocist";
+import { filterNonNull } from "neetocist";
 import { Search } from "neetoicons";
 import { Input, Pagination, NoData } from "neetoui";
 import { isEmpty, mergeLeft } from "ramda";
@@ -23,7 +23,7 @@ const ProductsList = () => {
   const history = useHistory();
 
   const queryParams = useQueryParams();
-  const { page, pageSize, searchTerm } = keysToCamelCase(queryParams);
+  const { page, pageSize, searchTerm } = queryParams;
 
   const productsParams = {
     searchTerm,
