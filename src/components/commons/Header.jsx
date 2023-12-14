@@ -1,5 +1,6 @@
 import { LeftArrow } from "neetoicons";
 import { Typography } from "neetoui";
+import { keys } from "ramda";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useHistory } from "react-router-dom";
 import useCartItemsStore from "stores/useCartItemsStore";
@@ -7,7 +8,9 @@ import useCartItemsStore from "stores/useCartItemsStore";
 const Header = ({ title, shouldShowBackButton = true, actionBlock }) => {
   const history = useHistory();
 
-  const cartItemsCount = useCartItemsStore(store => store.cartItems.length);
+  const cartItemsCount = useCartItemsStore(
+    store => keys(store.cartItems).length
+  );
 
   return (
     <div className="m-2">
