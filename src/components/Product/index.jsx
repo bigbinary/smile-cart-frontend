@@ -3,10 +3,12 @@ import { useState, useEffect } from "react";
 import productsApi from "apis/products";
 import AddToCart from "components/AddToCart";
 import { Header, PageLoader, PageNotFound } from "components/commons";
+import i18n from "i18next";
 import { Typography } from "neetoui";
 import { append, isNotNil } from "ramda";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
+import withTitle from "utils/withTitle";
 
 import Carousel from "./Carousel";
 
@@ -83,4 +85,4 @@ const Product = () => {
     </>
   );
 };
-export default Product;
+export default withTitle(Product, i18n.t("product"));
