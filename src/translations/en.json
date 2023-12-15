@@ -1,5 +1,7 @@
 {
   "title": "Smile Cart",
+  "pageTitle": "{{title}} | Smile Cart",
+  "product": "Product",
   "addToCart": "Add to cart",
   "buyNow": "Buy now",
   "searchProducts": "Search Products",
