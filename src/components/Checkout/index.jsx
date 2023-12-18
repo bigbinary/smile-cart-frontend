@@ -5,12 +5,10 @@ import {
   useFetchCountries,
   useCreateOrder,
 } from "hooks/reactQuery/useCheckoutApi";
-import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
 import i18n from "i18next";
 import { LeftArrow } from "neetoicons";
 import { Typography, Button } from "neetoui";
 import { Form as NeetoUIForm } from "neetoui/formik";
-import { keys } from "ramda";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import routes from "routes";
@@ -28,18 +26,13 @@ const Checkout = () => {
 
   const timerRef = useRef(null);
 
-  const { cartItems, clearCart } = useCartItemsStore.pick();
+  const { clearCart } = useCartItemsStore.pick();
 
   const { t } = useTranslation();
 
   const history = useHistory();
 
-  const { isLoading: isLoadingProducts } = useFetchCartProducts(
-    keys(cartItems)
-  );
-  const { isLoading: isLoadingCountries } = useFetchCountries();
-
-  const isLoading = isLoadingProducts || isLoadingCountries;
+  const { isLoading } = useFetchCountries();
 
   const { mutate: createOrder } = useCreateOrder();
 
