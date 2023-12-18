@@ -23,6 +23,7 @@
   "selectState": "Select the state",
   "zipCode": "Zip code",
   "enterZipCode": "Enter zip code",
+  "saveInformationForNextTime": "Save this information for next time",
   "addToCart": "Add to cart",
   "buyNow": "Buy now",
   "confirmOrder": "Confirm Order",
@@ -37,6 +38,9 @@
   "totalMrp": "Total MRP: <typography>${{mrp}}</typography>",
   "totalDiscounts": "Total discounts: <span>${{discounts}} ({{discountPercentage}}%)</span>",
   "totalOfferPrice": "Total offer price: <span>${{offerPrice}}</span>",
+  "subtotal": "Subtotal <span>${{totalPrice}}</span>",
+  "totalPayablePrice": "Total Payable <span>${{totalPrice}}</span>",
+  "deliveryCharges": "Delivery charges <span>FREE</span>",
   "cart": {
     "title": "My cart",
     "empty": "Your cart is empty!"
