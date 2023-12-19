@@ -12,8 +12,6 @@ const shouldShowToastr = response =>
 
 const showSuccessToastr = response => {
   if (shouldShowToastr(response.data)) Toastr.success(response.data);
-
-  return response;
 };
 
 const showErrorToastr = error => {
@@ -22,8 +20,6 @@ const showErrorToastr = error => {
   } else if (error.response?.status !== 404) {
     Toastr.error(error);
   }
-
-  return error;
 };
 
 const transformResponseKeysToCamelCase = response => {
@@ -47,11 +43,8 @@ const responseInterceptors = () => {
 };
 
 const requestInterceptors = () => {
-  axios.interceptors.request.use(request =>
-    evolve(
-      { data: serializeKeysToSnakeCase, params: serializeKeysToSnakeCase },
-      request
-    )
+  axios.interceptors.request.use(
+    evolve({ data: serializeKeysToSnakeCase, params: serializeKeysToSnakeCase })
   );
 };
 
