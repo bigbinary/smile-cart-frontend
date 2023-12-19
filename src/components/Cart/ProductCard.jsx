@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 
 import ProductQuantity from "components/ProductQuantity";
 import { Delete } from "neetoicons";
@@ -59,4 +59,4 @@ const ProductCard = ({
   );
 };
 
-export default ProductCard;
+export default memo(ProductCard);

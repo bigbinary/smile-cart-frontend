@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 import classNames from "classnames";
 import { Typography, Button } from "neetoui";
 import { gt } from "ramda";
@@ -55,4 +57,4 @@ const PriceCard = ({ totalMrp, totalOfferPrice, itemsCount }) => {
     </div>
   );
 };
-export default PriceCard;
+export default memo(PriceCard);
