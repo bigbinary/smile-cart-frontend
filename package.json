@@ -42,6 +42,7 @@
     "@bigbinary/neeto-icons": "1.17.6",
     "@bigbinary/neetoui": "5.2.41",
     "@emotion/is-prop-valid": "1.2.0",
+    "@bigbinary/babel-preset-neeto": "1.0.7",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
     "@svgr/webpack": "^5.5.0",
     "@testing-library/jest-dom": "^5.14.1",
@@ -133,7 +134,8 @@
   },
   "babel": {
     "presets": [
-      "react-app"
+      "react-app",
+      "@bigbinary/neeto"
     ]
   }
 }
