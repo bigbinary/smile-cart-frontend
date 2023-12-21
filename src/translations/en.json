@@ -49,6 +49,17 @@
     "message": "You are removing <strong>{{name}}</strong> from cart. Do you want to continue?",
     "button": "Yes, remove"
   },
+  "validations": {
+    "emailRequired": "Email address is required",
+    "firstNameRequired": "First name is required",
+    "lastNameRequired": "Last name is required",
+    "addressRequired": "Address is required",
+    "apartmentRequired": "Apartment is required",
+    "cityRequired": "City is required",
+    "stateRequired": "State is required",
+    "zipCodeRequired": "Zip code is required",
+    "emailInvalid": "Email address is invalid"
+  },
   "error": {
     "genericError": "An error occurred: {{error}}",
     "quantityLimit_one": "Only 1 unit is available",
