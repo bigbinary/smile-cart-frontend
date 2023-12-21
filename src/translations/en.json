@@ -25,6 +25,7 @@
   "enterZipCode": "Enter zip code",
   "addToCart": "Add to cart",
   "buyNow": "Buy now",
+  "confirmOrder": "Confirm Order",
   "searchProducts": "Search Products",
   "noData": "No products to show",
   "mrp": "MRP: ${{mrp}}",
