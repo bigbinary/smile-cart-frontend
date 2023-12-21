@@ -78,6 +78,8 @@ module.exports = {
     ],
     // not-auto-fixable: No undefined variables allowed.
     "no-undef": "error",
+    // not-auto-fixable: Dont use console statements. Use logger which babel will remove during bundling.
+    "no-console": "error",
     // not-auto-fixable: require `return` statements to either always or never specify values.
     "consistent-return": "error",
     // auto-fixable: disallows repeating variable name when declaring object properties.
