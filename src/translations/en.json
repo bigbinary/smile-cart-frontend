@@ -1,3 +1,35 @@
 {
-  "helloWorld": "Hello World"
+  "title": "Smile Cart",
+  "addToCart": "Add to cart",
+  "buyNow": "Buy now",
+  "searchProducts": "Search Products",
+  "noData": "No products to show",
+  "mrp": "MRP: ${{mrp}}",
+  "offerPrice": "Offer price: ${{offerPrice}}",
+  "discountRate": "{{discountPercentage}}% off",
+  "reachedMaximumUnits": "Reached maximum units",
+  "itemCount_one": "({{count}} item)",
+  "itemCount_other": "({{count}} items)",
+  "totalMrp": "Total MRP: <typography>${{mrp}}</typography>",
+  "totalDiscounts": "Total discounts: <span>${{discounts}} ({{discountPercentage}}%)</span>",
+  "totalOfferPrice": "Total offer price: <span>${{offerPrice}}</span>",
+  "cart": {
+    "title": "My cart",
+    "empty": "Your cart is empty!"
+  },
+  "pageNotFound": {
+    "title": "The page you're looking for can't be found",
+    "label": "Back to home"
+  },
+  "removeItemConfirmation": {
+    "title": "Remove item?",
+    "message": "You are removing <strong>{{name}}</strong> from cart. Do you want to continue?",
+    "button": "Yes, remove"
+  },
+  "error": {
+    "genericError": "An error occurred: {{error}}",
+    "quantityLimit_one": "Only 1 unit is available",
+    "quantityLimit_other": "Only {{count}} units are available",
+    "removedFromCart": "{{name}} is no longer available and has been removed from cart"
+  }
 }

@@ -5,6 +5,7 @@ import { PageLoader, Header } from "components/commons";
 import { cartTotalOf } from "components/utils";
 import { NoData, Toastr } from "neetoui";
 import { isEmpty, keys } from "ramda";
+import { useTranslation } from "react-i18next";
 import useCartItemsStore from "stores/useCartItemsStore";
 
 import PriceCard from "./PriceCard";
@@ -15,6 +16,8 @@ import { MRP, OFFER_PRICE } from "../constants";
 const Cart = () => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const { t } = useTranslation();
 
   const { cartItems, setSelectedQuantity } = useCartItemsStore.pick();
 
@@ -35,17 +38,13 @@ const Cart = () => {
 
         setSelectedQuantity(slug, availableQuantity);
         if (availableQuantity === 0) {
-          Toastr.error(
-            `${name} is no longer available and has been removed from cart`,
-            {
-              autoClose: 2000,
-            }
-          );
+          Toastr.error(t("error.removedFromCart", { name }), {
+            autoClose: 2000,
+          });
         }
       });
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log("An error occurred:", error);
+      console.log(t("error.genericError", { error }));
     } finally {
       setIsLoading(false);
     }
@@ -60,9 +59,9 @@ const Cart = () => {
   if (isEmpty(products)) {
     return (
       <>
-        <Header title="My Cart" />
+        <Header title={t("cart.title")} />
         <div className="flex h-screen items-center justify-center">
-          <NoData title="Your cart is empty!" />
+          <NoData title={t("cart.empty")} />
         </div>
       </>
     );
@@ -70,7 +69,7 @@ const Cart = () => {
 
   return (
     <>
-      <Header title="My Cart" />
+      <Header title={t("cart.title")} />
       <div className="mt-10 flex justify-center space-x-10">
         <div className="w-1/3 space-y-5">
           {products.map(product => (
