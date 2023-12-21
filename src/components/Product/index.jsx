@@ -10,6 +10,7 @@ import {
 import useSelectedQuantity from "components/hooks/useSelectedQuantity";
 import { Typography, Button } from "neetoui";
 import { append, isNotNil } from "ramda";
+import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import routes from "routes";
 
@@ -19,6 +20,8 @@ const Product = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [product, setProduct] = useState({});
+
+  const { t } = useTranslation();
 
   const { slug } = useParams();
 
@@ -30,7 +33,7 @@ const Product = () => {
       setProduct(response);
     } catch (error) {
       setIsError(true);
-      console.log("An error occurred:", error);
+      console.log(t("error.genericError", { error }));
     } finally {
       setIsLoading(false);
     }
@@ -74,18 +77,18 @@ const Product = () => {
         </div>
         <div className="w-3/5 space-y-4">
           <Typography>{description}</Typography>
-          <Typography>MRP: {mrp}</Typography>
+          <Typography>{t("mrp", { mrp })}</Typography>
           <Typography className="font-semibold">
-            Offer price: {offerPrice}
+            {t("offerPrice", { offerPrice })}
           </Typography>
           <Typography className="font-semibold text-green-600">
-            {discountPercentage}% off
+            {t("discountRate", { discountPercentage })}
           </Typography>
           <div className="flex space-x-10">
             <AddToCart {...{ availableQuantity, slug }} />
             <Button
               className="bg-neutral-800 hover:bg-neutral-950"
-              label="Buy now"
+              label={t("buyNow")}
               size="large"
               to={routes.checkout}
               onClick={() => setSelectedQuantity(selectedQuantity || 1)}
