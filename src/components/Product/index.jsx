@@ -1,6 +1,3 @@
-import { useState, useEffect } from "react";
-
-import productsApi from "apis/products";
 import {
   Header,
   PageLoader,
@@ -8,9 +5,10 @@ import {
   AddToCart,
 } from "components/commons";
 import useSelectedQuantity from "components/hooks/useSelectedQuantity";
+import { useShowProduct } from "hooks/reactQuery/useProductsApi";
 import i18n from "i18next";
 import { Typography, Button } from "neetoui";
-import { append, isNotNil } from "ramda";
+import { isNotNil } from "ramda";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import routes from "routes";
@@ -19,31 +17,12 @@ import withTitle from "utils/withTitle";
 import Carousel from "./Carousel";
 
 const Product = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-  const [product, setProduct] = useState({});
-
   const { t } = useTranslation();
 
   const { slug } = useParams();
 
+  const { data: product = {}, isLoading, isError } = useShowProduct(slug);
   const { selectedQuantity, setSelectedQuantity } = useSelectedQuantity(slug);
-
-  const fetchProduct = async () => {
-    try {
-      const response = await productsApi.show(slug);
-      setProduct(response);
-    } catch (error) {
-      setIsError(true);
-      console.log(t("error.genericError", { error }));
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchProduct();
-  }, []);
 
   const {
     name,
@@ -71,7 +50,7 @@ const Product = () => {
         <div className="w-2/5">
           <div className="flex justify-center gap-16">
             {isNotNil(imageUrls) ? (
-              <Carousel imageUrls={append(imageUrl, imageUrls)} title={name} />
+              <Carousel />
             ) : (
               <img alt={name} className="w-48" src={imageUrl} />
             )}
