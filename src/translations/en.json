@@ -25,6 +25,7 @@
   "enterZipCode": "Enter zip code",
   "addToCart": "Add to cart",
   "buyNow": "Buy now",
+  "confirmOrder": "Confirm Order",
   "searchProducts": "Search Products",
   "noData": "No products to show",
   "mrp": "MRP: ${{mrp}}",
@@ -64,6 +65,11 @@
     "genericError": "An error occurred: {{error}}",
     "quantityLimit_one": "Only 1 unit is available",
     "quantityLimit_other": "Only {{count}} units are available",
-    "removedFromCart": "{{name}} is no longer available and has been removed from cart"
+    "removedFromCart": "{{name}} is no longer available and has been removed from cart",
+    "noInternetConnection": "No Internet Connection",
+    "networkError": "Network Error"
+  },
+  "order": {
+    "successfullyPlaced": "Order has been successfully placed"
   }
 }
