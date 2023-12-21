@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "allowSyntheticDefaultImports": true,
+    "strictNullChecks": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "apis": ["src/apis"],
+      "apis/*": ["src/apis/*"],
+      "assets": ["src/assets"],
+      "assets/*": ["src/assets/*"],
+      "constants": ["src/constants"],
+      "constants/*": ["src/constants/*"],
+      "components/*": ["src/components/*"],
+      "hooks": ["src/hooks"],
+      "hooks/*": ["src/hooks/*"],
+      "routes": ["src/routes"],
+      "routes/*": ["src/routes/*"],
+      "stores": ["src/stores"],
+      "stores/*": ["src/stores/*"],
+      "translations": ["src/translations"],
+      "translations/*": ["src/translations/*"],
+      "utils": ["src/utils"],
+      "utils/*": ["src/utils/*"],
+      "neetoui": ["node_modules/@bigbinary/neetoui"],
+      "neetoui/*": ["node_modules/@bigbinary/neetoui/*"],
+      "neetoicons": ["node_modules/@bigbinary/neeto-icons"],
+      "neetoicons/*": ["node_modules/@bigbinary/neeto-icons/*"],
+      "neetocist": ["node_modules/@bigbinary/neeto-cist"],
+      "neetocist/*": ["node_modules/@bigbinary/neeto-cist/*"]
+    },
+    "pretty": true,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "jsx": "preserve"
+  },
+  "exclude": ["**/node_modules", "**/.*/"],
+  "include": ["./**/*.js", "./**/*.jsx", "./**/*.d.ts"]
+}

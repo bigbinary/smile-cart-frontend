@@ -438,7 +438,6 @@ module.exports = function (webpackEnv) {
                       runtime: hasJsxRuntime ? "automatic" : "classic",
                     },
                   ],
-                  "@bigbinary/neeto",
                 ],
 
                 plugins: [
