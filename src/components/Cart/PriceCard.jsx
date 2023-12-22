@@ -2,9 +2,10 @@ import React, { memo } from "react";
 
 import classNames from "classnames";
 import { Typography, Button } from "neetoui";
-import { gt } from "ramda";
+import { gt, keys } from "ramda";
 import { useTranslation, Trans } from "react-i18next";
 import routes from "routes";
+import useCartItemsStore from "stores/useCartItemsStore";
 
 const PriceCard = ({ totalMrp, totalOfferPrice }) => {
   const { t } = useTranslation();
@@ -12,6 +13,8 @@ const PriceCard = ({ totalMrp, totalOfferPrice }) => {
   const totalDiscounts = totalMrp - totalOfferPrice;
   const isDiscountPresent = gt(totalDiscounts, 0);
   const discountPercentage = ((totalDiscounts / totalMrp) * 100).toFixed(1);
+
+  const itemsCount = useCartItemsStore(store => keys(store.cartItems).length);
 
   return (
     <div className="neeto-ui-rounded neeto-ui-border-black space-y-2 border p-3">
@@ -38,10 +41,13 @@ const PriceCard = ({ totalMrp, totalOfferPrice }) => {
           <Typography className="flex justify-between">
             <Trans
               components={{ span: <span /> }}
-              i18nKey="offerPrice"
+              i18nKey="offerPriceCart"
               values={{ offerPrice: totalOfferPrice }}
             />
           </Typography>
+          <span className="neeto-ui-text-gray-500 text-sm">
+            {t("itemCount", { count: itemsCount })}
+          </span>
         </>
       )}
       <div className="flex flex-col items-center pt-4">
