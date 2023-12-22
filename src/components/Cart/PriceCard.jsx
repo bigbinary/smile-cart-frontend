@@ -41,7 +41,7 @@ const PriceCard = ({ totalMrp, totalOfferPrice }) => {
           <Typography className="flex justify-between">
             <Trans
               components={{ span: <span /> }}
-              i18nKey="offerPriceCart"
+              i18nKey="cartOfferPrice"
               values={{ offerPrice: totalOfferPrice }}
             />
           </Typography>
