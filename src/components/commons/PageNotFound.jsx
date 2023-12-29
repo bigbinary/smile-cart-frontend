@@ -1,5 +1,3 @@
-import React from "react";
-
 import { NoData } from "neetoui";
 import { useTranslation } from "react-i18next";
 

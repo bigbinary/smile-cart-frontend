@@ -54,11 +54,8 @@ const responseInterceptors = () => {
 };
 
 const requestInterceptors = () => {
-  axios.interceptors.request.use(request =>
-    evolve(
-      { data: serializeKeysToSnakeCase, params: serializeKeysToSnakeCase },
-      request
-    )
+  axios.interceptors.request.use(
+    evolve({ data: serializeKeysToSnakeCase, params: serializeKeysToSnakeCase })
   );
 };
 

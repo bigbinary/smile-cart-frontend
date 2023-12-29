@@ -1,5 +1,3 @@
-import React from "react";
-
 import Header from "components/commons/Header";
 import PageLoader from "components/commons/PageLoader";
 import { MRP, OFFER_PRICE } from "components/constants";
@@ -30,9 +28,12 @@ const Cart = () => {
 
   if (isEmpty(products)) {
     return (
-      <div className="flex h-screen items-center justify-center">
-        <NoData title={t("cart.empty")} />
-      </div>
+      <>
+        <Header title={t("cart.title")} />
+        <div className="flex h-screen items-center justify-center">
+          <NoData title={t("cart.empty")} />
+        </div>
+      </>
     );
   }
 

@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Header, PageLoader } from "components/commons";
 import { useFetchProducts } from "hooks/reactQuery/useProductsApi";
 import useFuncDebounce from "hooks/useFuncDebounce";
@@ -17,7 +15,7 @@ import withTitle from "utils/withTitle";
 import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from "./constants";
 import ProductListItem from "./ProductListItem";
 
-const ProductsList = () => {
+const ProductList = () => {
   const { t } = useTranslation();
 
   const history = useHistory();
@@ -90,4 +88,4 @@ const ProductsList = () => {
   );
 };
 
-export default withTitle(ProductsList);
+export default withTitle(ProductList);

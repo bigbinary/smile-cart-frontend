@@ -1,6 +1,6 @@
-import React, { memo, useState } from "react";
+import { memo, useState } from "react";
 
-import ProductQuantity from "components/ProductQuantity";
+import ProductQuantity from "components/commons/ProductQuantity";
 import { Delete } from "neetoicons";
 import { Alert, Typography } from "neetoui";
 import { Trans, useTranslation } from "react-i18next";
@@ -16,7 +16,7 @@ const ProductCard = ({
 }) => {
   const { t } = useTranslation();
 
-  const { removeCartItem } = useCartItemsStore.pick();
+  const removeCartItem = useCartItemsStore.pickFrom();
 
   const [shouldShowDeleteAlert, setShouldShowDeleteAlert] = useState(false);
 
