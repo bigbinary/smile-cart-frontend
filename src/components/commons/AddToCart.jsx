@@ -1,10 +1,8 @@
-import React from "react";
-
+import useSelectedQuantity from "components/hooks/useSelectedQuantity";
 import { Button } from "neetoui";
 import { isNil } from "ramda";
 import { useTranslation } from "react-i18next";
 
-import useSelectedQuantity from "./hooks/useSelectedQuantity";
 import ProductQuantity from "./ProductQuantity";
 
 const AddToCart = ({ slug, availableQuantity }) => {

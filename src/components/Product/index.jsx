@@ -1,7 +1,9 @@
-import React from "react";
-
-import AddToCart from "components/AddToCart";
-import { Header, PageNotFound, PageLoader } from "components/commons";
+import {
+  AddToCart,
+  Header,
+  PageNotFound,
+  PageLoader,
+} from "components/commons";
 import useSelectedQuantity from "components/hooks/useSelectedQuantity";
 import { useShowProduct } from "hooks/reactQuery/useProductsApi";
 import i18n from "i18next";

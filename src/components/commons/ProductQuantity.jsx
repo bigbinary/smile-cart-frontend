@@ -1,11 +1,11 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 
 import TooltipWrapper from "components/commons/TooltipWrapper";
 import { Input, Button, Toastr } from "neetoui";
 import { useTranslation } from "react-i18next";
 
-import { VALID_COUNT_REGEX } from "./constants";
-import useSelectedQuantity from "./hooks/useSelectedQuantity";
+import { VALID_COUNT_REGEX } from "../constants";
+import useSelectedQuantity from "../hooks/useSelectedQuantity";
 
 const ProductQuantity = ({ slug, availableQuantity }) => {
   const { t } = useTranslation();

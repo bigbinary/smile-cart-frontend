@@ -1,8 +1,8 @@
-import React, { memo } from "react";
+import { memo } from "react";
 
 import { LeftArrow } from "neetoicons";
 import { Typography } from "neetoui";
-import { values, prop } from "ramda";
+import { keys } from "ramda";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Link, useHistory } from "react-router-dom";
 import routes from "routes";
@@ -12,7 +12,7 @@ const Header = ({ title, actionBlock, shouldShowBackButton = true }) => {
   const history = useHistory();
 
   const cartItemsCount = useCartItemsStore(
-    store => values(prop("cartItems", store)).length
+    store => keys(store.cartItems).length
   );
 
   return (
