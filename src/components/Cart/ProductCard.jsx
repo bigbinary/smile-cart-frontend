@@ -50,7 +50,10 @@ const ProductCard = ({
               />
             }
             onClose={() => setShouldShowDeleteAlert(false)}
-            onSubmit={() => removeCartItem(slug)}
+            onSubmit={() => {
+              removeCartItem(slug);
+              setShouldShowDeleteAlert(false);
+            }}
           />
         </div>
       </div>
