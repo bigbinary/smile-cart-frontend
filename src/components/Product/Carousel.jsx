@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect, useRef } from "react";
+import { memo, useState, useEffect, useRef } from "react";
 
 import classNames from "classnames";
 import { useShowProduct } from "hooks/reactQuery/useProductsApi";

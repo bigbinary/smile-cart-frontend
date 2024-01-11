@@ -4,6 +4,7 @@ const { mergeDeepLeft } = require("ramda");
 module.exports = mergeDeepLeft(
   {
     rules: {
+      "react/react-in-jsx-scope": "off",
       "@bigbinary/neeto/webpack-aliases-and-jsconfig-paths-should-be-in-sync":
         "off",
       "@bigbinary/neeto/no-missing-localization": [

@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Tooltip } from "neetoui";
 
 const TooltipWrapper = ({ showTooltip, children, ...tooltipProps }) => {

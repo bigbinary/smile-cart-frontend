@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Typography } from "neetoui";
 import { Trans } from "react-i18next";
 
