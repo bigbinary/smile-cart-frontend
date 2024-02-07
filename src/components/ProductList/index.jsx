@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { Header, PageLoader } from "components/commons";
 import { useFetchProducts } from "hooks/reactQuery/useProductsApi";
 import useFuncDebounce from "hooks/useFuncDebounce";
@@ -16,12 +18,15 @@ import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from "./constants";
 import ProductListItem from "./ProductListItem";
 
 const ProductList = () => {
+  const queryParams = useQueryParams();
+
+  const { page, pageSize, searchTerm = "" } = queryParams;
+
+  const [searchInputValue, setSearchInputValue] = useState(searchTerm);
+
   const { t } = useTranslation();
 
   const history = useHistory();
-
-  const queryParams = useQueryParams();
-  const { page, pageSize, searchTerm } = queryParams;
 
   const productsParams = {
     searchTerm,
@@ -32,7 +37,7 @@ const ProductList = () => {
   const { data: { products = [], totalProductsCount } = {}, isLoading } =
     useFetchProducts(productsParams);
 
-  const handleChange = useFuncDebounce(({ target: { value } }) => {
+  const handleChange = useFuncDebounce(value => {
     const params = {
       page: DEFAULT_PAGE_INDEX,
       pageSize: DEFAULT_PAGE_SIZE,
@@ -63,7 +68,11 @@ const ProductList = () => {
             placeholder={t("searchProducts")}
             prefix={<Search />}
             type="search"
-            onChange={handleChange}
+            value={searchInputValue}
+            onChange={({ target: { value } }) => {
+              handleChange(value);
+              setSearchInputValue(value);
+            }}
           />
         }
       />
