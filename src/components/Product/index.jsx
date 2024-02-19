@@ -25,15 +25,7 @@ const Product = () => {
 
   const { data: product = {}, isLoading, isError } = useShowProduct(slug);
 
-  const {
-    name,
-    description,
-    mrp,
-    offerPrice,
-    availableQuantity,
-    imageUrl,
-    imageUrls,
-  } = product;
+  const { name, description, mrp, offerPrice, imageUrl, imageUrls } = product;
 
   const totalDiscounts = mrp - offerPrice;
   const discountPercentage = ((totalDiscounts / mrp) * 100).toFixed(1);
@@ -64,7 +56,7 @@ const Product = () => {
             {t("discountRate", { discountPercentage })}
           </Typography>
           <div className="flex space-x-10">
-            <AddToCart {...{ availableQuantity, slug }} />
+            <AddToCart {...{ slug }} />
             <Button
               className="bg-neutral-800 hover:bg-neutral-950"
               label={t("buyNow")}

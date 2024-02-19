@@ -6,14 +6,7 @@ import { Alert, Typography } from "neetoui";
 import { Trans, useTranslation } from "react-i18next";
 import useCartItemsStore from "stores/useCartItemsStore";
 
-const ProductCard = ({
-  slug,
-  imageUrl,
-  offerPrice,
-  mrp,
-  name,
-  availableQuantity,
-}) => {
+const ProductCard = ({ slug, imageUrl, offerPrice, mrp, name }) => {
   const { t } = useTranslation();
 
   const removeCartItem = useCartItemsStore.pickFrom();
@@ -34,7 +27,7 @@ const ProductCard = ({
           </Typography>
         </div>
         <div className="flex items-center space-x-2">
-          <ProductQuantity {...{ availableQuantity, slug }} />
+          <ProductQuantity {...{ slug }} />
           <Delete
             className="cursor-pointer"
             onClick={() => setShouldShowDeleteAlert(true)}
