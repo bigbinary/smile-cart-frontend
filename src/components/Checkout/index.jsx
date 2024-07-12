@@ -70,7 +70,7 @@ const Checkout = () => {
     setIsSubmitDisabled(true);
 
     createOrder(
-      { payload: dataToPersist },
+      { payload: values },
       {
         onSuccess: () => {
           setToLocalStorage(CHECKOUT_LOCAL_STORAGE_KEY, dataToPersist);
