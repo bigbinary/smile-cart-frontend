@@ -215,3 +215,6 @@ function copyPublicFolder() {
     filter: file => file !== paths.appHtml,
   });
 }
+
+
+// adding a new comment 
