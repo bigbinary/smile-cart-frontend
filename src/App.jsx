@@ -15,7 +15,7 @@ const App = () => (
         rel="noopener noreferrer"
         target="_blank"
       >
-        Learn React
+        Learn github
       </a>
     </header>
   </div>
