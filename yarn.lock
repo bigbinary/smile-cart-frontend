@@ -1260,12 +1260,11 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@bigbinary/babel-preset-neeto@^1.0.7":
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/@bigbinary/babel-preset-neeto/-/babel-preset-neeto-1.0.7.tgz#1150c650459631704d3c910b5124a909a1c1813b"
-  integrity sha512-DnlfTcxG+0eskCkSxVqgtp9SRYmV1v4EmDUYzTWzSrCrGcrV3UsOAtMOQVT6NwHwEZudjkzsVofLiZKSYjYZCA==
+"@bigbinary/babel-preset-neeto@1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@bigbinary/babel-preset-neeto/-/babel-preset-neeto-1.0.6.tgz#2c11022c262f933c178c4747c3168346f10437c0"
+  integrity sha512-a0ezm0GBOhzf1I7Ufr7jpomul7cLSBLUKxveePgdHFqQ2G5PH5L8SGspTHqsMZUIO0Ms135LdVvlveVaLhan4g==
   dependencies:
-    "@bigbinary/neeto-cist" "^1.0.4"
     "@bigbinary/neeto-commons-frontend" "^2.0.63"
     ramda "^0.29.0"
 
@@ -1278,11 +1277,6 @@
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@bigbinary/neeto-cist/-/neeto-cist-1.0.3.tgz#605c48c737be78af77335735b5f2faf4236a9cfa"
   integrity sha512-LER8D0dNDdpzOzon1Qki0a36YdId5sNyoX8O/k9gKLlGu4dlIM7v/Qvx3BqS0BGzwismVJW/c2M5ae+yDRKT4A==
-
-"@bigbinary/neeto-cist@^1.0.4":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@bigbinary/neeto-cist/-/neeto-cist-1.0.6.tgz#cf9e34910a765e6cb946503c0bf7ab1632ef8e17"
-  integrity sha512-UebvniTSUyNYOIZMiNSDpV4HqHtwvYfaUaE3+C4ZBSY44csUCRgwOeD0njU3rQpE5eAL+e6KYsV9moRz4/uc0g==
 
 "@bigbinary/neeto-commons-frontend@^2.0.105", "@bigbinary/neeto-commons-frontend@^2.0.63":
   version "2.0.120"
